@@ -13,8 +13,8 @@ Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 " Color config
-colorscheme nord
-set termguicolors
+" colorscheme nord
+" set termguicolors
 
 " Show Line Numbers
 set number
