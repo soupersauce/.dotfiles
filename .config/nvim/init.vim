@@ -7,8 +7,14 @@ Plug 'pearofducks/ansible-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'itchyny/lightline.vim' 
-Plug 'raimondi/delimitmate'
+Plug 'jiangmiao/auto-pairs'
+Plug 'nightsense/vim-crunchbang'
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
+
+" Color config
+colorscheme nord
+set termguicolors
 
 " Show Line Numbers
 set number
