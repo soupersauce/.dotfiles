@@ -7,6 +7,7 @@ Plug 'pearofducks/ansible-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'itchyny/lightline.vim' 
+Plug 'raimondi/delimitmate'
 call plug#end()
 
 " Show Line Numbers
@@ -14,6 +15,12 @@ set number
 
 " Underline current line
 set cursorline
+
+" indent when moving to the next line while writing code
+set autoindent
+
+" show the matching part of the pair for {} [] ()
+set showmatch
 """"""""""""""""""""""""""""""""
 " Config Recommendations for coc
 """"""""""""""""""""""""""""""""
