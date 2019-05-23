@@ -1,10 +1,10 @@
-# Aliases
-alias vimdiff="nvim -d"
-alias fzvim='vim $(fzf)'
-
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export NEOVIM_WIN_DIR=/mnt/c/tools/neovim/Neovim/
+export GOPATH=$HOME/gocode
+export EDITOR="/usr/bin/nvim"
+export DISPLAY=localhost:0
+#
 # Path to your oh-my-zsh installation.
   export ZSH="/home/souper/.oh-my-zsh"
 
@@ -43,10 +43,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -71,8 +71,15 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
+	colored-man-pages
+	colorize
+	command-not-found
+	history
+	tmux
+	debian
+	themes
 	zsh-autosuggestions
-	)
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,21 +108,58 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vimdiff="nvim -d"
+alias fzvim='vim $(fzf)'
+alias vim='nvim'
+alias vimdiff='nvim -d'
 source ~/.purepower
 
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
+#############################################
+# Zsh  Options
+#############################################
+setopt extendedglob
+unsetopt nomatch
+#############################################
+# Functions
+#############################################
+
+peek() { tmux split-window -p 33 $EDITOR $@ || exit; }
+
+function sshretry() {
+	false
+	while [ $? -ne 0 ]; do
+		ssh "$@" || (sleep 1;false)
+	done
+}
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-function linkfile {
-	echo "$1" >> Link.txt
-}
 
 function mkcd {
 	mkdir -p "$1" && cd "$1"
 }
 
+backup () {
+	for file in "$@"; do
+		local new=${file}.$(date '+%F_%R')
+		while [[ -f %new ]]; do
+			new+="~";
+		done;
+		printf "copying '%s' to '%s'\n" "$file" "$new";
+		\cp -ip "$file" "$new";
+	done
+}
+
+psgrep() {
+	ps -ef | grep "$1" | grep -v grep
+}
+
 function reqfile {
 	echo "$1" >> reqs.txt
+}
+
+function linkfile {
+	echo "$1" >> Link.txt
 }
