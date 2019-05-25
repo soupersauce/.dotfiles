@@ -114,7 +114,6 @@ source $ZSH/oh-my-zsh.sh
 alias vimdiff="nvim -d"
 alias fzvim='vim $(fzf)'
 alias vim='nvim'
-alias vimdiff='nvim -d'
 source ~/.purepower
 
 
