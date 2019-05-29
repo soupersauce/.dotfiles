@@ -155,3 +155,9 @@ nnoremap <silent> <space>j :<C-u>CocNext<cr>
 nnoremap <silent> <space>k :<C-u>CocPrev<cr>
 " Resume latest coc list
 nnoremap <silent> <space>p :<C-u>CocListResume<cr>
+
+" Use ctrl l for right in insertmode
+imap <C-l> <right>
+
+" Use enter in normal mode to insert new line
+nnoremap <Enter> o<ESC>
