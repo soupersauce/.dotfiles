@@ -19,18 +19,49 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # cause zsh load theme from this variable instead of
 # looking in ~/.oh-my-zsh/themes/
 # An empty array have no effect
+=======
+export NEOVIM_WIN_DIR=/mnt/c/tools/neovim/Neovim/
+export GOPATH=$HOME/gocode
+export EDITOR="/usr/bin/nvim"
+export DISPLAY=localhost:0
+#
+# Path to your oh-my-zsh installation.
+export ZSH="/home/souper/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+>>>>>>> master
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
+<<<<<<< HEAD
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
+=======
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+>>>>>>> master
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+<<<<<<< HEAD
+=======
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
+>>>>>>> master
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
 
@@ -41,10 +72,17 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
+<<<<<<< HEAD
  ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
  COMPLETION_WAITING_DOTS="true"
+=======
+ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+>>>>>>> master
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -53,13 +91,24 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
+<<<<<<< HEAD
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+=======
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+>>>>>>> master
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+<<<<<<< HEAD
+=======
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+>>>>>>> master
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
@@ -105,11 +154,32 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+<<<<<<< HEAD
 #############################################
 # Zsh  Options
 #############################################
 setopt extendedglob
 unsetopt nomatch
+=======
+alias vimdiff="nvim -d"
+alias fzvim='vim $(fzf)'
+alias vim='nvim'
+source ~/.purepower
+
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+#############################################
+# Zsh  Options
+#############################################
+
+setopt extendedglob
+unsetopt nomatch
+
+#############################################
+# Functions
+#############################################
+
 peek() { tmux split-window -p 33 $EDITOR $@ || exit; }
 
 function sshretry() {
@@ -120,6 +190,12 @@ function sshretry() {
 }
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+function mkcd {
+	mkdir -p "$1" && cd "$1"
+}
 
 backup () {
 	for file in "$@"; do
@@ -136,5 +212,22 @@ psgrep() {
 	ps -ef | grep "$1" | grep -v grep
 }
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+function reqfile {
+	echo "$1" >> reqs.txt
+}
 
+function linkfile {
+	echo "$1" >> Link.txt
+}
+
+export NNN_TMPFILE="/tmp/nnn"
+
+n()
+{
+	nnn "$@"
+
+	if [ -f $NNN_TMPFILE  ]; then
+		. $NNN_TMPFILE
+		rm $NNN_TMPFILE
+	fi
+}

@@ -185,3 +185,10 @@ function! s:check_back_space() abort
     endfunction
 
     let g:coc_snippet_next = '<tab>'
+
+" Use ctrl l for right in insertmode
+imap <C-l> <right>
+
+" Use enter in normal mode to insert new line
+nnoremap <Enter> o<ESC>
+
