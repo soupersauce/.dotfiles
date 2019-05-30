@@ -12,6 +12,7 @@ Plug 'nightsense/vim-crunchbang'
 Plug 'arcticicestudio/nord-vim'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
+Plug 'mcchrish/nnn.vim'
 call plug#end()
 
 " Color config
@@ -191,4 +192,3 @@ imap <C-l> <right>
 
 " Use enter in normal mode to insert new line
 nnoremap <Enter> o<ESC>
-
