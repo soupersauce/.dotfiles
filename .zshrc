@@ -178,5 +178,4 @@ n()
 		. $NNN_TMPFILE
 		rm $NNN_TMPFILE
 	fi
-									
 }
