@@ -10,6 +10,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'nightsense/vim-crunchbang'
 Plug 'arcticicestudio/nord-vim'
+Plug 'mcchrish/nnn.vim'
 call plug#end()
 
 " Color config
