@@ -10,9 +10,12 @@ Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'nightsense/vim-crunchbang'
 Plug 'arcticicestudio/nord-vim'
-Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips'
 Plug 'mcchrish/nnn.vim'
+Plug 'janko/vim-test'
+Plug 'benmills/vimux'
+Plug 'jtdowney/vimux-cargo'
 call plug#end()
 
 " Color config
@@ -174,21 +177,37 @@ let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)"
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? coc#_select_confirm() :
+"       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
 
-function! s:check_back_space() abort
-	  let col = col('.') - 1
-	    return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction
+" function! s:check_back_space() abort
+" 	  let col = col('.') - 1
+" 	    return !col || getline('.')[col - 1]  =~# '\s'
+"     endfunction
 
-    let g:coc_snippet_next = '<tab>'
+"     let g:coc_snippet_next = '<tab>'
 
 " Use ctrl l for right in insertmode
 imap <C-l> <right>
 
 " Use enter in normal mode to insert new line
 nnoremap <Enter> o<ESC>
+
+" vim-test strategy
+let test#strategy = "neovim"
+
+""""""""""""""""""""""""""""""""""""""""""""""""
+" 	vimux config
+"""""""""""""""""""""""""""""""""""""""""""""""" 	
+
+"Orientation of tmux split "h" or "v"
+let g:VimuxOrientation = "v"
+
+" Use nearest existing split(1) or open new(0)
+let g:VimuxUseNearest = 0
+
+" Sequnce to send to terminal before running
+let g:VimuxResetSequence = "<C-[> cc"
