@@ -18,24 +18,91 @@ Plug 'benmills/vimux'
 Plug 'jtdowney/vimux-cargo'
 call plug#end()
 
-" Color config
-" colorscheme nord
-" set termguicolors
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim Options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible
 
-" Show Line Numbers
+"" Show Line Numbers
 set number
 
 " Underline current line
 set cursorline
 
-" indent when moving to the next line while writing code
-set autoindent
+" Indentation - Hard tabs, No Spaces, 4 Char width
+set autoindent " indent when moving to the next line while writing code
+set tabstop=4  " Size of tab indentation
+set shiftwidth=4
+set smartindent
+set noexpandtab " Don't use spaces for tab
 
 " show the matching part of the pair for {} [] ()
 set showmatch
-""""""""""""""""""""""""""""""""
+
+"lets you use backspace on previously inserted words
+set backspace=indent,eol,start 
+
+" Diff mode options
+set diffopt=filler,iwhite
+
+" No automatic C style indentation
+set nocindent
+
+" Comment formatting options
+set formatoptions=tcqron
+
+" Highlight searches
+set hlsearch
+
+" Ignore case unless the search patter has capitals
+set ignorecase
+set smartcase
+
+" Searching show pattern as it's being typed
+set incsearch
+
+" Make sure status line always appears, regardless of splits
+set laststatus=2 
+
+" Characters that form pairs (Jump between with %)
+set matchpairs=(:),{:},[:],<:>
+
+" How long to show matching pairs (10th of a second)
+set matchtime=3
+
+" Enable mouse for (n)ormal, (v)isual, (i)nsert, (c)ommand-line, all modes in
+" (h)elp files, (a)ll modes
+set mouse=n
+" Show partial command in last line of the screen
+set showcmd
+
+" Where new splits will open
+set splitbelow splitright
+
+" Undo file location and enable
+set undodir=~/.vim/undo
+set undofile
+
+" Characters allowed to wrap to next line on first/last character of line
+set whichwrap=b,s,<,>,[,]
+
+" Wrap lines when they exceed edge of window
+set wrap
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim Mappings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Execute the current line of text as a shell command
+noremap      Q !!$SHELL<CR>
+
+" Use <C-L> to clear search highlighting as well as refresh the screen
+noremap      <silent> <C-l> :nohlsearch <bar> redraw<CR>
+inoremap     <silent> <C-l> <C-O>:nohlsearch <bar> redraw<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Config Recommendations for coc
-""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " if hidden is not set, TextEdit might fail
 set hidden
 
