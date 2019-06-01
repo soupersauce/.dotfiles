@@ -77,7 +77,7 @@ export DISPLAY=localhost:0
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
+source ~/.exports.local
 ################################################################################
 # 						Zsh  Options
 ################################################################################
