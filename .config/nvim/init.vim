@@ -282,3 +282,12 @@ let g:VimuxResetSequence = "<C-[> cc"
 
 " Percentage of screen new vimux pane will take up
 let g:VimuxHeight = "30"
+
+""""""""""""""""""""""""""""""""""""""""""""""""
+" Autopairs config
+""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Also auto pair < with >
+let g:AutoPairs['<']='>'
+
+
