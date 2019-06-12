@@ -1,7 +1,6 @@
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'w0rp/ale'
-Plug 'tpope/vim-commentary'
 Plug 'liuchengxu/vista.vim'
 Plug 'pearofducks/ansible-vim'
 Plug 'scrooloose/nerdcommenter'
@@ -22,6 +21,8 @@ call plug#end()
 " Vim Options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
+
+set nomodeline
 
 "" Show Line Numbers
 set number
@@ -73,6 +74,7 @@ set matchtime=3
 " Enable mouse for (n)ormal, (v)isual, (i)nsert, (c)ommand-line, all modes in
 " (h)elp files, (a)ll modes
 set mouse=n
+
 " Show partial command in last line of the screen
 set showcmd
 
@@ -84,7 +86,7 @@ set undodir=~/.vim/undo
 set undofile
 
 " Characters allowed to wrap to next line on first/last character of line
-set whichwrap=b,s,<,>,[,]
+set whichwrap=b,s,
 
 " Wrap lines when they exceed edge of window
 set wrap
@@ -278,3 +280,10 @@ let g:VimuxUseNearest = 0
 
 " Sequnce to send to terminal before running
 let g:VimuxResetSequence = "<C-[> cc"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 	nnn config 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Start nnn in the current file's directory
+nnoremap <leader>n :NnnPicker '%:p:h'<CR>
