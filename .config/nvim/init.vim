@@ -4,7 +4,7 @@ Plug 'w0rp/ale'
 Plug 'liuchengxu/vista.vim'
 Plug 'pearofducks/ansible-vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf'
 Plug 'itchyny/lightline.vim' 
 Plug 'jiangmiao/auto-pairs'
 Plug 'nightsense/vim-crunchbang'
@@ -15,6 +15,7 @@ Plug 'mcchrish/nnn.vim'
 Plug 'janko/vim-test'
 Plug 'benmills/vimux'
 Plug 'jtdowney/vimux-cargo'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -287,3 +288,14 @@ let g:VimuxResetSequence = "<C-[> cc"
 
 " Start nnn in the current file's directory
 nnoremap <leader>n :NnnPicker '%:p:h'<CR>
+
+" Percentage of screen new vimux pane will take up
+let g:VimuxHeight = "30"
+
+""""""""""""""""""""""""""""""""""""""""""""""""
+" Autopairs config
+""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Also auto pair < with >
+let g:AutoPairs['<']='>'
+
