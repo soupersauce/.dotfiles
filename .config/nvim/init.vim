@@ -5,7 +5,7 @@ Plug 'tpope/vim-commentary'
 Plug 'liuchengxu/vista.vim'
 Plug 'pearofducks/ansible-vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf'
 Plug 'itchyny/lightline.vim' 
 Plug 'jiangmiao/auto-pairs'
 Plug 'nightsense/vim-crunchbang'
@@ -16,6 +16,7 @@ Plug 'mcchrish/nnn.vim'
 Plug 'janko/vim-test'
 Plug 'benmills/vimux'
 Plug 'jtdowney/vimux-cargo'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -278,3 +279,6 @@ let g:VimuxUseNearest = 0
 
 " Sequnce to send to terminal before running
 let g:VimuxResetSequence = "<C-[> cc"
+
+" Percentage of screen new vimux pane will take up
+let g:VimuxHeight = "30"
