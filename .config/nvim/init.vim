@@ -288,6 +288,6 @@ let g:VimuxHeight = "30"
 """"""""""""""""""""""""""""""""""""""""""""""""
 
 " Also auto pair < with >
-let g:AutoPairs['<']='>'
+"let g:AutoPairs['<']='>'
 
 
