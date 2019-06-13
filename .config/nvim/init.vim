@@ -16,13 +16,13 @@ Plug 'benmills/vimux'
 Plug 'jtdowney/vimux-cargo'
 Plug 'rust-lang/rust.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'dahu/VimLint'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
-
 set nomodeline
 
 "" Show Line Numbers
@@ -35,14 +35,13 @@ set cursorline
 set autoindent " indent when moving to the next line while writing code
 set tabstop=4  " Size of tab indentation
 set shiftwidth=4
-set smartindent
 set noexpandtab " Don't use spaces for tab
 
 " show the matching part of the pair for {} [] ()
 set showmatch
 
 "lets you use backspace on previously inserted words
-set backspace=indent,eol,start 
+set backspace=indent,eol,start
 
 " Diff mode options
 set diffopt=filler,iwhite
@@ -64,7 +63,7 @@ set smartcase
 set incsearch
 
 " Make sure status line always appears, regardless of splits
-set laststatus=2 
+set laststatus=2
 
 " Characters that form pairs (Jump between with %)
 set matchpairs=(:),{:},[:],<:>
@@ -245,33 +244,30 @@ let g:coc_snippet_next = '<c-j>'
 let g:coc_snippet_prev = '<c-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)"
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? coc#_select_confirm() :
-"       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
+inoremap <silent><expr> <TAB>
+   \ pumvisible() ? coc#_select_confirm() :
+   \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+   \ <SID>check_back_space() ? "\<TAB>" :
+   \ coc#refresh()
 
-" function! s:check_back_space() abort
-" 	  let col = col('.') - 1
-" 	    return !col || getline('.')[col - 1]  =~# '\s'
-"     endfunction
+function! s:check_back_space() abort
+   let col = col('.') - 1
+	 return !col || getline('.')[col - 1]  =~# '\s'
+ endfunction
 
-"     let g:coc_snippet_next = '<tab>'
+ let g:coc_snippet_next = '<tab>'
 
 " Use ctrl l for right in insertmode
 imap <C-l> <right>
-
-" Use enter in normal mode to insert new line
-nnoremap <Enter> o<ESC>
 
 " vim-test strategy
 let test#strategy = "neovim"
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " 	vimux config
-"""""""""""""""""""""""""""""""""""""""""""""""" 	
+""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Orientation of tmux split "h" or "v"
 let g:VimuxOrientation = "v"
@@ -282,6 +278,9 @@ let g:VimuxUseNearest = 0
 " Sequnce to send to terminal before running
 let g:VimuxResetSequence = "<C-[> cc"
 
+" Percentage of screen new vimux pane will take up
+let g:VimuxHeight = "30"
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 	nnn config 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -289,6 +288,8 @@ let g:VimuxResetSequence = "<C-[> cc"
 " Start nnn in the current file's directory
 nnoremap <leader>n :NnnPicker '%:p:h'<CR>
 
-" Percentage of screen new vimux pane will take up
-let g:VimuxHeight = "30"
-
+let g:nnn#action = {
+      \ '<c-t>': 'tab split',
+      \ '<c-x>': 'split',
+      \ '<c-v>': 'vsplit',
+	  \}

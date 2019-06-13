@@ -61,11 +61,15 @@ alias vimdiff="nvim -d"
 alias fzvim='vim $(fzf)'
 alias vim='nvim'
 
+# tmux vim
+alias tvimserver='NVIM_LISTEN_ADDRESS=tmuxEditor nvim'
+alias tvim='nvr --remote-tab'
 ################################################################################
 # 						Exports
 ################################################################################
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export NEOVIM_WIN_DIR=/mnt/c/tools/neovim/Neovim/
 export GOPATH=$HOME/gocode
 export EDITOR="/usr/bin/nvim"
