@@ -83,9 +83,9 @@ export DISPLAY=localhost:0
 ################################################################################
 
 setopt extendedglob
-unsetopt nomatch
 setopt extendedglob
 unsetopt nomatch
+setopt histignorespace
 bindkey -v
 
 ################################################################################

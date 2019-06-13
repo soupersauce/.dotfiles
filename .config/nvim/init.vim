@@ -6,7 +6,6 @@ Plug 'pearofducks/ansible-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/fzf'
 Plug 'itchyny/lightline.vim' 
-Plug 'jiangmiao/auto-pairs'
 Plug 'nightsense/vim-crunchbang'
 Plug 'arcticicestudio/nord-vim'
 "Plug 'honza/vim-snippets'
@@ -16,6 +15,7 @@ Plug 'janko/vim-test'
 Plug 'benmills/vimux'
 Plug 'jtdowney/vimux-cargo'
 Plug 'rust-lang/rust.vim'
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -291,12 +291,4 @@ nnoremap <leader>n :NnnPicker '%:p:h'<CR>
 
 " Percentage of screen new vimux pane will take up
 let g:VimuxHeight = "30"
-
-""""""""""""""""""""""""""""""""""""""""""""""""
-" Autopairs config
-""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Also auto pair < with >
-"let g:AutoPairs['<']='>'
-
 
