@@ -45,7 +45,6 @@ plugins=(
 	command-not-found
 	history
 	tmux
-	debian
 	themes
 	zsh-autosuggestions
 	vi-mode
