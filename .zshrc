@@ -33,6 +33,8 @@ COMPLETION_WAITING_DOTS="true"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="mm/dd/yyyy"
 
+DISABLE_LS_COLORS="false"
+
 ################################################################################
 # 						Plugins
 ################################################################################
@@ -47,6 +49,7 @@ plugins=(
 	themes
 	zsh-autosuggestions
 	vi-mode
+	zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -60,6 +63,7 @@ alias vimconfig="vim ~/.config/nvim/init.vim"
 alias vimdiff="nvim -d"
 alias fzvim='vim $(fzf)'
 alias vim='nvim'
+alias ls='ls --color=auto'
 
 # tmux vim
 alias tvimserver='NVIM_LISTEN_ADDRESS=tmuxEditor nvim'
@@ -154,3 +158,11 @@ n()
 		rm $NNN_TMPFILE
 	fi
 }
+
+###############################################################################
+# Source locals
+###############################################################################
+source ~/.ls_colors
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+autoload -Uz compinit
+compinit
