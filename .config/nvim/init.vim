@@ -17,6 +17,7 @@ Plug 'jtdowney/vimux-cargo'
 Plug 'rust-lang/rust.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'dahu/VimLint'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
