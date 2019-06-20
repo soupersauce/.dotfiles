@@ -45,7 +45,7 @@ plugins=(
 	command-not-found
 	history
 	tmux
-	debian
+	ubuntu
 	themes
 	zsh-autosuggestions
 	vi-mode
@@ -161,6 +161,6 @@ n()
 ###############################################################################
 # Source locals
 ###############################################################################
-source ~/.exports.local.zsh
-source ~/.aliases.local.zsh
-source ~/.functions.local.zsh
+source ~/.exports.local.zsh || touch ~/.exports.local.zsh
+source ~/.aliases.local.zsh || touch ~/.aliases.local.zsh
+source ~/.functions.local.zsh || touch ~/.functions.local.zsh
