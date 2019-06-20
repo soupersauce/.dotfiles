@@ -25,7 +25,8 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
 set nomodeline
-
+filetype plugin on
+syntax on
 "" Show Line Numbers
 set number
 
