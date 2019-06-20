@@ -85,12 +85,10 @@ export DISPLAY=localhost:0
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-#source ~/.exports.local
 ################################################################################
 # 						Zsh  Options
 ################################################################################
 
-setopt extendedglob
 setopt extendedglob
 unsetopt nomatch
 setopt histignorespace
@@ -166,3 +164,6 @@ source ~/.ls_colors
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 autoload -Uz compinit
 compinit
+source ~/.exports.local.zsh
+source ~/.aliases.local.zsh
+source ~/.functions.local.zsh
