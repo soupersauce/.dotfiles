@@ -6,10 +6,8 @@ Plug 'pearofducks/ansible-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/fzf'
 Plug 'itchyny/lightline.vim' 
-Plug 'nightsense/vim-crunchbang'
-Plug 'arcticicestudio/nord-vim'
-"Plug 'honza/vim-snippets'
-"Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
 Plug 'mcchrish/nnn.vim'
 Plug 'janko/vim-test'
 Plug 'benmills/vimux'
@@ -18,11 +16,16 @@ Plug 'rust-lang/rust.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'dahu/VimLint'
 Plug 'vimwiki/vimwiki'
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'vim-scripts/CycleColor'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+colorscheme space-vim-dark
+
 set nocompatible
 set nomodeline
 filetype plugin on
