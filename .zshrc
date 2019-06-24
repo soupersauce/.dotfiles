@@ -45,6 +45,7 @@ plugins=(
 	command-not-found
 	history
 	tmux
+	ubuntu
 	themes
 	zsh-autosuggestions
 	vi-mode
@@ -85,16 +86,20 @@ export KEYTIMEOUT=1
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-#source ~/.exports.local
 ################################################################################
 # 						Zsh  Options
 ################################################################################
 
 setopt extendedglob
-setopt extendedglob
 unsetopt nomatch
 setopt histignorespace
 bindkey -v
+
+################################################################################
+# 						Zsh  Keybinds
+################################################################################
+
+bindkey '^ ' autosuggest-accept
 
 ################################################################################
 # 						Config for VTE Terminals
@@ -162,7 +167,9 @@ n()
 ###############################################################################
 # Source locals
 ###############################################################################
-#source ~/.ls_colors
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 autoload -Uz compinit
 compinit
+source ~/.exports.local.zsh || touch ~/.exports.local.zsh
+source ~/.aliases.local.zsh || touch ~/.aliases.local.zsh
+source ~/.functions.local.zsh || touch ~/.functions.local.zsh
