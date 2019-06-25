@@ -78,6 +78,7 @@ export NEOVIM_WIN_DIR=/mnt/c/tools/neovim/Neovim/
 export GOPATH=$HOME/gocode
 export EDITOR="/usr/bin/nvim"
 export DISPLAY=localhost:0
+export KEYTIMEOUT=1
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
