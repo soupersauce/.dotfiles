@@ -1,37 +1,115 @@
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'w0rp/ale'
-Plug 'tpope/vim-commentary'
 Plug 'liuchengxu/vista.vim'
 Plug 'pearofducks/ansible-vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf'
 Plug 'itchyny/lightline.vim' 
+" Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+Plug 'mcchrish/nnn.vim'
+Plug 'janko/vim-test'
+Plug 'benmills/vimux'
+Plug 'jtdowney/vimux-cargo'
+Plug 'rust-lang/rust.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'nightsense/vim-crunchbang'
-Plug 'arcticicestudio/nord-vim'
-Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
+Plug 'dahu/VimLint'
+Plug 'vimwiki/vimwiki'
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'vim-scripts/CycleColor'
 call plug#end()
 
-" Color config
-" colorscheme nord
-" set termguicolors
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim Options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Show Line Numbers
+colorscheme space-vim-dark
+
+set nocompatible
+set nomodeline
+filetype plugin on
+syntax on
+"" Show Line Numbers
 set number
 
 " Underline current line
 set cursorline
 
-" indent when moving to the next line while writing code
-set autoindent
+" Indentation - Hard tabs, No Spaces, 4 Char width
+set autoindent " indent when moving to the next line while writing code
+set tabstop=4  " Size of tab indentation
+set shiftwidth=4
+set noexpandtab " Don't use spaces for tab
 
 " show the matching part of the pair for {} [] ()
 set showmatch
-""""""""""""""""""""""""""""""""
+
+"lets you use backspace on previously inserted words
+set backspace=indent,eol,start
+
+" Diff mode options
+set diffopt=filler,iwhite
+
+" No automatic C style indentation
+set nocindent
+
+" Comment formatting options
+set formatoptions=tcqron
+
+" Highlight searches
+set hlsearch
+
+" Ignore case unless the search patter has capitals
+set ignorecase
+set smartcase
+
+" Searching show pattern as it's being typed
+set incsearch
+
+" Make sure status line always appears, regardless of splits
+set laststatus=2
+
+" Characters that form pairs (Jump between with %)
+set matchpairs=(:),{:},[:],<:>
+
+" How long to show matching pairs (10th of a second)
+set matchtime=3
+
+" Enable mouse for (n)ormal, (v)isual, (i)nsert, (c)ommand-line, all modes in
+" (h)elp files, (a)ll modes
+set mouse=n
+
+" Show partial command in last line of the screen
+set showcmd
+
+" Where new splits will open
+set splitbelow splitright
+
+" Undo file location and enable
+set undodir=~/.vim/undo
+set undofile
+
+" Characters allowed to wrap to next line on first/last character of line
+set whichwrap=b,s,
+
+" Wrap lines when they exceed edge of window
+set wrap
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim Mappings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Execute the current line of text as a shell command
+noremap      Q !!$SHELL<CR>
+
+" Use <C-L> to clear search highlighting as well as refresh the screen
+noremap      <silent> <C-l> :nohlsearch <bar> redraw<CR>
+inoremap     <silent> <C-l> <C-O>:nohlsearch <bar> redraw<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Config Recommendations for coc
-""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " if hidden is not set, TextEdit might fail
 set hidden
 
@@ -171,17 +249,52 @@ let g:coc_snippet_next = '<c-j>'
 let g:coc_snippet_prev = '<c-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)"
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+"inoremap <silent><expr> <TAB>
+   "\ pumvisible() ? coc#_select_confirm() :
+   "\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+   "\ <SID>check_back_space() ? "\<TAB>" :
+   "\ coc#refresh()
 
 function! s:check_back_space() abort
-	  let col = col('.') - 1
-	    return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction
+   let col = col('.') - 1
+	 return !col || getline('.')[col - 1]  =~# '\s'
+ endfunction
 
-    let g:coc_snippet_next = '<tab>'
+ let g:coc_snippet_next = '<tab>'
+
+" Use ctrl l for right in insertmode
+imap <C-l> <right>
+
+" vim-test strategy
+let test#strategy = "neovim"
+
+""""""""""""""""""""""""""""""""""""""""""""""""
+" 	vimux config
+""""""""""""""""""""""""""""""""""""""""""""""""
+
+"Orientation of tmux split "h" or "v"
+let g:VimuxOrientation = "v"
+
+" Use nearest existing split(1) or open new(0)
+let g:VimuxUseNearest = 0
+
+" Sequnce to send to terminal before running
+let g:VimuxResetSequence = "<C-[> cc"
+
+" Percentage of screen new vimux pane will take up
+let g:VimuxHeight = "30"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 	nnn config 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Start nnn in the current file's directory
+nnoremap <leader>n :NnnPicker '%:p:h'<CR>
+
+let g:nnn#action = {
+      \ '<c-t>': 'tab split',
+      \ '<c-x>': 'split',
+      \ '<c-v>': 'vsplit',
+	  \}
