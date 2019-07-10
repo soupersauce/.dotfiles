@@ -13,11 +13,12 @@ Plug 'janko/vim-test'
 Plug 'benmills/vimux'
 Plug 'jtdowney/vimux-cargo'
 Plug 'rust-lang/rust.vim'
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
 Plug 'dahu/VimLint'
 Plug 'vimwiki/vimwiki'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'vim-scripts/CycleColor'
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
