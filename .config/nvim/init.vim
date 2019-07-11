@@ -1,8 +1,6 @@
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-Plug 'w0rp/ale'
 Plug 'liuchengxu/vista.vim'
-Plug 'pearofducks/ansible-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/fzf'
 Plug 'itchyny/lightline.vim' 
@@ -11,17 +9,15 @@ Plug 'itchyny/lightline.vim'
 Plug 'mcchrish/nnn.vim'
 Plug 'janko/vim-test'
 Plug 'benmills/vimux'
-Plug 'jtdowney/vimux-cargo'
 Plug 'rust-lang/rust.vim'
 "Plug 'jiangmiao/auto-pairs'
-Plug 'dahu/VimLint'
 Plug 'vimwiki/vimwiki'
 Plug 'rafi/awesome-vim-colorschemes'
-Plug 'vim-scripts/CycleColor'
 Plug 'scrooloose/nerdtree'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plug 'vim-scripts/CycleColor'
 " Vim Options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -212,7 +208,7 @@ let g:lightline = {
 	\ 'colorscheme': 'wombat',
 	\ 'active': {
 	\	'left': [ [ 'mode', 'paste' ],
-	\		[ 'cocstatus', 'readonly', 'filename', 'modified', 'coc_git_status' ] ]
+	\		[ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
 	\ },
 	\ 'component_function': {
 	\	'cocstatus': 'coc#status'
@@ -241,16 +237,16 @@ nnoremap <silent> <space>p :<C-u>CocListResume<cr>
 imap <C-l> <Plug>(coc-snippets-expand)
 
 " Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
+"vmap <C-j> <Plug>(coc-snippets-select)
 
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_next = '<C-j>'
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
+let g:coc_snippet_prev = '<C-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
+"imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 "inoremap <silent><expr> <TAB>
    "\ pumvisible() ? coc#_select_confirm() :
@@ -299,3 +295,8 @@ let g:nnn#action = {
       \ '<c-x>': 'split',
       \ '<c-v>': 'vsplit',
 	  \}
+
+""""""""""""""""""
+" Vista "
+""""""""""""""""""
+let g:vista_default_executive="coc"
