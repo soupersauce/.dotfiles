@@ -2,27 +2,27 @@ call plug#begin()
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'w0rp/ale'
 Plug 'liuchengxu/vista.vim'
-Plug 'pearofducks/ansible-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/fzf'
 Plug 'itchyny/lightline.vim' 
-Plug 'nightsense/vim-crunchbang'
-Plug 'arcticicestudio/nord-vim'
-"Plug 'honza/vim-snippets'
-"Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
 Plug 'mcchrish/nnn.vim'
 Plug 'janko/vim-test'
 Plug 'benmills/vimux'
-Plug 'jtdowney/vimux-cargo'
 Plug 'rust-lang/rust.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'dahu/VimLint'
+"Plug 'jiangmiao/auto-pairs'
 Plug 'vimwiki/vimwiki'
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+colorscheme space-vim-dark
+
 set nocompatible
 set nomodeline
 filetype plugin on
@@ -295,3 +295,8 @@ let g:nnn#action = {
       \ '<c-x>': 'split',
       \ '<c-v>': 'vsplit',
 	  \}
+
+""""""""""""""""""
+" Vista "
+""""""""""""""""""
+let g:vista_default_executive="coc"

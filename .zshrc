@@ -78,6 +78,7 @@ export NEOVIM_WIN_DIR=/mnt/c/tools/neovim/Neovim/
 export GOPATH=$HOME/gocode
 export EDITOR="/usr/bin/nvim"
 export DISPLAY=localhost:0
+export KEYTIMEOUT=1
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -90,10 +91,15 @@ export DISPLAY=localhost:0
 ################################################################################
 
 setopt extendedglob
-setopt extendedglob
 unsetopt nomatch
 setopt histignorespace
 bindkey -v
+
+################################################################################
+# 						Zsh  Keybinds
+################################################################################
+
+bindkey '^ ' autosuggest-accept
 
 ################################################################################
 # 						Config for VTE Terminals
@@ -161,6 +167,9 @@ n()
 ###############################################################################
 # Source locals
 ###############################################################################
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+autoload -Uz compinit
+compinit
 source ~/.exports.local.zsh || touch ~/.exports.local.zsh
 source ~/.aliases.local.zsh || touch ~/.aliases.local.zsh
 source ~/.functions.local.zsh || touch ~/.functions.local.zsh
