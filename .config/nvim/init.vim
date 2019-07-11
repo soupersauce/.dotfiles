@@ -2,22 +2,17 @@ call plug#begin()
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'w0rp/ale'
 Plug 'liuchengxu/vista.vim'
-Plug 'pearofducks/ansible-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/fzf'
 Plug 'itchyny/lightline.vim' 
 " Plug 'honza/vim-snippets'
 " Plug 'SirVer/ultisnips'
 Plug 'mcchrish/nnn.vim'
-Plug 'janko/vim-test'
 Plug 'benmills/vimux'
-Plug 'jtdowney/vimux-cargo'
 Plug 'rust-lang/rust.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'dahu/VimLint'
 Plug 'vimwiki/vimwiki'
 Plug 'rafi/awesome-vim-colorschemes'
-Plug 'vim-scripts/CycleColor'
+Plug 'ron-rs/ron.vim'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -35,6 +30,9 @@ set number
 
 " Underline current line
 set cursorline
+
+" Show a line at column 80
+set colorcolumn=80
 
 " Indentation - Hard tabs, No Spaces, 4 Char width
 set autoindent " indent when moving to the next line while writing code
@@ -211,7 +209,7 @@ let g:lightline = {
 	\ 'colorscheme': 'wombat',
 	\ 'active': {
 	\	'left': [ [ 'mode', 'paste' ],
-	\		[ 'cocstatus', 'readonly', 'filename', 'modified', 'coc_git_status' ] ]
+	\		[ 'cocstatus', 'readonly', 'filename', 'modified', 'method' ] ]
 	\ },
 	\ 'component_function': {
 	\	'cocstatus': 'coc#status'
