@@ -1,5 +1,6 @@
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'w0rp/ale'
 Plug 'liuchengxu/vista.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/fzf'
@@ -13,11 +14,9 @@ Plug 'rust-lang/rust.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vimwiki/vimwiki'
 Plug 'rafi/awesome-vim-colorschemes'
-Plug 'scrooloose/nerdtree'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plug 'vim-scripts/CycleColor'
 " Vim Options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -208,7 +207,7 @@ let g:lightline = {
 	\ 'colorscheme': 'wombat',
 	\ 'active': {
 	\	'left': [ [ 'mode', 'paste' ],
-	\		[ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+	\		[ 'cocstatus', 'readonly', 'filename', 'modified', 'coc_git_status' ] ]
 	\ },
 	\ 'component_function': {
 	\	'cocstatus': 'coc#status'
@@ -237,16 +236,16 @@ nnoremap <silent> <space>p :<C-u>CocListResume<cr>
 imap <C-l> <Plug>(coc-snippets-expand)
 
 " Use <C-j> for select text for visual placeholder of snippet.
-"vmap <C-j> <Plug>(coc-snippets-select)
+vmap <C-j> <Plug>(coc-snippets-select)
 
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<C-j>'
+let g:coc_snippet_next = '<c-j>'
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<C-k>'
+let g:coc_snippet_prev = '<c-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
-"imap <C-j> <Plug>(coc-snippets-expand-jump)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 "inoremap <silent><expr> <TAB>
    "\ pumvisible() ? coc#_select_confirm() :
