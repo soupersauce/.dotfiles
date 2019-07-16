@@ -3,7 +3,8 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'w0rp/ale'
 Plug 'liuchengxu/vista.vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug '~/.fzf'
 Plug 'itchyny/lightline.vim' 
 " Plug 'honza/vim-snippets'
 " Plug 'SirVer/ultisnips'
@@ -299,3 +300,12 @@ let g:nnn#action = {
 " Vista "
 """"""""""""""""""
 let g:vista_default_executive="coc"
+
+""""""""
+" FZF  "
+""""""""
+map \zf :Files<CR>
+map \zb :Buffers<CR>
+map \zr :Rg
+map \zl :Lines<CR>
+map \zc :History:
