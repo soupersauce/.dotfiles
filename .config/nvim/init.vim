@@ -2,8 +2,9 @@ call plug#begin()
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'w0rp/ale'
 Plug 'liuchengxu/vista.vim'
-Plug 'scrooloose/nerdcommenter'
-Plug 'junegunn/fzf'
+"Plug 'scrooloose/nerdcommenter'
+Plug 'junegunn/fzf.vim'
+Plug '~/.fzf'
 Plug 'itchyny/lightline.vim' 
 " Plug 'honza/vim-snippets'
 " Plug 'SirVer/ultisnips'
@@ -11,10 +12,13 @@ Plug 'mcchrish/nnn.vim'
 Plug 'janko/vim-test'
 Plug 'benmills/vimux'
 Plug 'rust-lang/rust.vim'
-"Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 Plug 'vimwiki/vimwiki'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -32,6 +36,9 @@ set number
 
 " Underline current line
 set cursorline
+
+" Always show tabline
+setglobal showtabline=2
 
 " Indentation - Hard tabs, No Spaces, 4 Char width
 set autoindent " indent when moving to the next line while writing code
@@ -208,7 +215,7 @@ let g:lightline = {
 	\ 'colorscheme': 'wombat',
 	\ 'active': {
 	\	'left': [ [ 'mode', 'paste' ],
-	\		[ 'cocstatus', 'readonly', 'filename', 'modified', 'coc_git_status' ] ]
+	\		[ 'cocstatus', 'readonly', 'filename', 'modified', 'method' ] ]
 	\ },
 	\ 'component_function': {
 	\	'cocstatus': 'coc#status'
@@ -237,16 +244,16 @@ nnoremap <silent> <space>p :<C-u>CocListResume<cr>
 imap <C-l> <Plug>(coc-snippets-expand)
 
 " Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
+imap <C-j> <Plug>(coc-snippets-select)
 
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_next = '<C-j>'
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
+let g:coc_snippet_prev = '<C-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
+"imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 "inoremap <silent><expr> <TAB>
    "\ pumvisible() ? coc#_select_confirm() :
@@ -300,3 +307,38 @@ let g:nnn#action = {
 " Vista "
 """"""""""""""""""
 let g:vista_default_executive="coc"
+
+"""""""
+" ALE "
+"""""""
+let g:ale_rust_rls_executable = 'ra_lsp_server'
+let g:ale_rust_rls_toolchain  = ''
+
+"""""""
+" fzf "
+"""""""
+let g:fzf_buffers_jump = 1
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d%s %C(black)%C(bold)%cr"'
+let g:fzf_tags_command = 'git ls-files | ctags --links=no -L-'
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+let g:fzf_colors =
+			\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+nmap <leader>zf :Files<CR>
+nmap <leader>zb :Buffers<CR>
+nmap <leader>zr :Rg
+nmap <leader>zt :Tags<CR>
+nmap <leader>zc :History:<CR>
+nmap <leader>zl :Lines<CR>
