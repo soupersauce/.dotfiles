@@ -79,6 +79,7 @@ export GOPATH=$HOME/gocode
 export EDITOR="/usr/bin/nvim"
 export DISPLAY=localhost:0
 export KEYTIMEOUT=1
+export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git/**"'
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
