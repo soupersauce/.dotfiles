@@ -217,7 +217,7 @@ let g:lightline = {
 	\ 'colorscheme': 'wombat',
 	\ 'active': {
 	\	'left': [ [ 'mode', 'paste' ],
-	\		[ 'cocstatus', 'readonly', 'filename', 'modified', 'method' ] ]
+	\		[ 'cocstatus', 'readonly', 'filename', 'modified', 'coc_git_status', 'method' ] ]
 	\ },
 	\ 'component_function': {
 	\	'cocstatus': 'coc#status'
@@ -226,7 +226,7 @@ let g:lightline = {
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a :<C-u>CocList diagnostic<cr>
+nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
 " Manage extensions
 nnoremap <silent> <space>e :<C-u>CocList extensions<cr>
 " Show commands
