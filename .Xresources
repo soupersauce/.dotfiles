@@ -4,6 +4,7 @@
 #URxvt*termName: rxvt-unicode-256color
 #URxvt*font: xft:Source Code Pro:style=bold:pixelsize=14
 URxvt*clipboard.autocopy: 	true
+URxvt*depth: 				32
 
 ! Colors
 *background: bg
