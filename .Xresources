@@ -1,10 +1,12 @@
-#include "~/.termcolors/synthwave"
+#include "/home/souper/.termcolors/synthwave"
 
-#Xft.dpi: 	109
-#URxvt*termName: rxvt-unicode-256color
-#URxvt*font: xft:Source Code Pro:style=bold:pixelsize=14
+!Xft.dpi: 	109
+URxvt*termName: rxvt-unicode-256color
+URxvt*font: xft:Source Code Pro:style=regular:pixelsize=12
 URxvt*clipboard.autocopy: 	true
 URxvt*depth: 				32
+!URxvt*lineSpace: 			1
+!URxvt*letterSpace: 			0
 
 ! Colors
 *background: bg
