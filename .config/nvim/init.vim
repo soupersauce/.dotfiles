@@ -210,7 +210,7 @@ nmap <leader>qf <Plug>(coc-fix-current)
 command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call CocAction('fold', <f-args>
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " Add diagnostic info for https://github.com/itchny/lightline.vim
 let g:lightline = {
@@ -340,7 +340,7 @@ let g:fzf_colors =
 
 nmap <leader>zf :Files<CR>
 nmap <leader>zb :Buffers<CR>
-nmap <leader>zr :Rg
+nmap <leader>zr :Rg<CR>
 nmap <leader>zt :Tags<CR>
 nmap <leader>zc :History:<CR>
 nmap <leader>zl :Lines<CR>
