@@ -50,6 +50,7 @@ plugins=(
 	zsh-autosuggestions
 	vi-mode
 	zsh-syntax-highlighting
+	alias-finder
 )
 
 source $ZSH/oh-my-zsh.sh
