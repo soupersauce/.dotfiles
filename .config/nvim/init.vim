@@ -19,6 +19,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
+Plug 'Yggdroot/indentline'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -44,9 +45,10 @@ setglobal showtabline=2
 
 " Indentation - Hard tabs, No Spaces, 4 Char width
 set autoindent " indent when moving to the next line while writing code
-set tabstop=4  " Size of tab indentation
+set tabstop=8  " Size of tab indentation
 set shiftwidth=4
-set noexpandtab " Don't use spaces for tab
+set softtabstop=4
+set expandtab " Don't use spaces for tab
 
 " show the matching part of the pair for {} [] ()
 set showmatch
@@ -103,6 +105,13 @@ set whichwrap=b,s,
 set wrap
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FileType specific settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" YAML
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

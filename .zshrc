@@ -2,7 +2,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/souper/.oh-my-zsh"
+export ZSH="/home/$USER/.oh-my-zsh"
 
 ################################################################################
 # 						oh-my-zsh Settings
