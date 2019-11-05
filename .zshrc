@@ -10,7 +10,7 @@ export ZSH="/home/souper/.oh-my-zsh"
 # Theme
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
-source ~/.purepower
+# source ~/.purepower
 
 # Case sensitive completion
 # CASE_SENSITIVE="true"
@@ -182,3 +182,6 @@ compinit
 source ~/.exports.local.zsh || touch ~/.exports.local.zsh
 source ~/.aliases.local.zsh || touch ~/.aliases.local.zsh
 source ~/.functions.local.zsh || touch ~/.functions.local.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
