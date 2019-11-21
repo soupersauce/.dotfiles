@@ -61,7 +61,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-
+autoload -U compinit && compinit
 
 ################################################################################
 # 						Aliases
@@ -184,7 +184,7 @@ runscheme () {
 # Source locals
 ###############################################################################
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
-autoload -Uz compinit
+autoload -Uz compinit 
 compinit
 source ~/.exports.local.zsh || touch ~/.exports.local.zsh
 source ~/.aliases.local.zsh || touch ~/.aliases.local.zsh
