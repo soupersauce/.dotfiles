@@ -1,5 +1,5 @@
 call plug#begin()
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'liuchengxu/vista.vim'
 "Plug 'scrooloose/nerdcommenter'
