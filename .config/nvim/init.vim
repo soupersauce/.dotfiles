@@ -108,6 +108,8 @@ set whichwrap=b,s,
 " Wrap lines when they exceed edge of window
 set wrap
 
+" Set conceal level
+set conceallevel=0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FileType specific settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

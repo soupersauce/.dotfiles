@@ -150,6 +150,8 @@ backup () {
 	done
 }
 
+
+
 # greps ps for arguemnt ignores grep
 psgrep() {
 	ps -ef | grep "$1" | grep -v grep
