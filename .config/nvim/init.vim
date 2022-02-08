@@ -22,6 +22,8 @@ Plug 'tpope/vim-commentary'
 Plug 'Yggdroot/indentline'
 Plug 'psliwka/vim-smoothie'
 Plug 'sqwishy/vim-sqf-syntax'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
+Plug 'whiteinge/diffconflicts'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -106,12 +108,14 @@ set whichwrap=b,s,
 " Wrap lines when they exceed edge of window
 set wrap
 
+" Set conceal level
+set conceallevel=0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FileType specific settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " YAML
-au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml 
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Mappings
@@ -355,3 +359,92 @@ nmap <leader>zr :Rg<CR>
 nmap <leader>zt :Tags<CR>
 nmap <leader>zc :History:<CR>
 nmap <leader>zl :Lines<CR>
+
+"""""""""""""""""""""""""
+" markdown-preview.nvim "
+"""""""""""""""""""""""""
+" automaticall open the preview window upon entering markdown buffer
+" default: 0
+let g:mkdp_auto_start =0
+
+" automaticall close the preview window upon changing from markdown buffer
+" default: 1
+let g:mkdp_auto_close =1
+
+" set to 1, vim will refresh markdown when save the buffer or leave from
+" insert mode, default 0 auto refreshes as you edit or move cursor
+let g:mkdp_refresh_slow = 0
+
+" set to 1, the MarkdownPreview command can be use for all files,
+" by default it can be use in markdown file
+" default: 0
+let g:mkdp_command_for_global = 0
+
+" set to 1, preview server available to others in your network
+" by default, the server listens on localhost (127.0.0.1)
+" default: 0
+let g:mkdp_open_to_the_world = 1
+
+" use custom IP to open preview page
+" useful when you work in remote vim and preview on local browser
+" more detail see: https://github.com/iamcco/markdown-preview.nvim/pull/9
+" default empty
+let g:mkdp_open_ip = "127.0.0.1"
+
+" specify browser to open preview page
+" default: ''
+let g:mkdp_browser = 'firefox'
+
+" set to 1, echo preview page url in command line when open preview page
+" default: 0
+let g:mkdp_echo_preview_url = 1
+
+" a custom vim function name to open preview page
+" this function will receive url as param
+" default is empty
+let g:mkdp_browserfunc = ''
+
+" options for markdown render
+" mkit: markdown-it options for render
+" katex: katex options for math
+" uml: markdown-it-plantuml options
+" maid: mermaid options
+" disable_sync_scroll: if disable sync scroll, default 0
+"   middle: cursor position always shows at the middle of the preview page
+"   top: the vim viewport always shows at the top of the preview page
+"   relative: the cursor position always shows at the relative position of the
+"             preview page
+" hide_yaml_meta: if hide yaml metadata, default is 1
+" sequence_diagrams: js-sequence-diagrams options
+" content_editable: if enable content editble for preview page, default:
+"                                                                   v:false
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {},
+    \ 'flowchart_diagrams': {},
+    \ 'content_editable': v:false
+    \ }
+
+" use a custom markdown style must be absolute path
+" like '/Users/username/markdown.css' or expand('~/markdown.css')
+let g:mkdp_markdown_css = ''
+
+" use a custom highlight style must absolute path
+" like '/Users/username/highlight.css' or expand('~/highlight.css')
+let g:mkdp_highlight_css = ''
+
+" use a custom port to start server or random for empty
+let g:mkdp_highlight_css = ''
+
+" use a custom port to start server for random for empty
+let g:mkdp_port = ''
+
+" preview page title
+" ${name} will be replace with the file name
+let g:mkdp_page_title = '「${name}」'

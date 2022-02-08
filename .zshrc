@@ -17,7 +17,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # Theme
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
-# source ~/.purepower
 
 # Case sensitive completion
 # CASE_SENSITIVE="true"
@@ -89,7 +88,7 @@ export PATH="$PATH:/usr/local/go/bin"
 export NEOVIM_WIN_DIR=/mnt/c/tools/neovim/Neovim/
 export GOPATH=$HOME/gocode
 export EDITOR="/usr/bin/nvim"
-export DISPLAY=localhost:0
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 export KEYTIMEOUT=1
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git/**"'
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -151,6 +150,8 @@ backup () {
 		\cp -ip "$file" "$new";
 	done
 }
+
+
 
 # greps ps for arguemnt ignores grep
 psgrep() {
