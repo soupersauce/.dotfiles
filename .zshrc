@@ -55,8 +55,8 @@ plugins=(
 	themes
 	zsh-autosuggestions
 	vi-mode
-	zsh-syntax-highlighting
 	alias-finder
+	zsh-syntax-highlighting # This Plugin should be loaded last
 )
 
 source $ZSH/oh-my-zsh.sh
