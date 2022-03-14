@@ -152,6 +152,10 @@ backup () {
 }
 
 
+# greps ps for arguemnt ignores grep
+maclookup() {
+	curl "https://api.maclookup.app/v2/macs/$1" | jq
+}
 
 # greps ps for arguemnt ignores grep
 psgrep() {
