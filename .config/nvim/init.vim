@@ -12,7 +12,6 @@ Plug 'mcchrish/nnn.vim'
 Plug 'benmills/vimux'
 Plug 'rust-lang/rust.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'vimwiki/vimwiki'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'ron-rs/ron.vim'
 Plug 'scrooloose/nerdtree'
@@ -22,8 +21,13 @@ Plug 'tpope/vim-commentary'
 Plug 'Yggdroot/indentline'
 Plug 'psliwka/vim-smoothie'
 Plug 'sqwishy/vim-sqf-syntax'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
 Plug 'whiteinge/diffconflicts'
+Plug 'hashivim/vim-terraform'
+" Plug 'fatih/vim-go'
+Plug 'vim-scripts/Visual-Mark'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -37,7 +41,14 @@ set nomodeline
 filetype plugin on
 syntax on
 "" Show Line Numbers
-set number
+set number relativenumber
+
+"" Toggles numbering based on current mode and buffer focus
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+augroup END
 
 " Underline current line
 set cursorline
@@ -357,6 +368,12 @@ nmap <leader>zr :Rg<CR>
 nmap <leader>zt :Tags<CR>
 nmap <leader>zc :History:<CR>
 nmap <leader>zl :Lines<CR>
+
+"""""""""""""""""""""""""
+" vim-markdown "
+"""""""""""""""""""""""""
+
+let g:vim_markdown_conceal = 0
 
 """""""""""""""""""""""""
 " markdown-preview.nvim "
