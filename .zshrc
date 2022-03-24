@@ -156,11 +156,6 @@ maclookup() {
 	curl "https://api.maclookup.app/v2/macs/$1" | jq
 }
 
-# greps ps for arguemnt ignores grep
-psgrep() {
-	ps -ef | grep "$1" | grep -v grep
-}
-
 function reqfile {
 	echo "$1" >> reqs.txt
 }
