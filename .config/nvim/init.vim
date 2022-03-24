@@ -2,12 +2,9 @@ call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'liuchengxu/vista.vim'
-"Plug 'scrooloose/nerdcommenter'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install  }  }
 Plug '~/.fzf'
 Plug 'itchyny/lightline.vim' 
-" Plug 'honza/vim-snippets'
-" Plug 'SirVer/ultisnips'
 Plug 'mcchrish/nnn.vim'
 Plug 'benmills/vimux'
 Plug 'rust-lang/rust.vim'
