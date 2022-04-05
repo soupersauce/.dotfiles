@@ -72,6 +72,7 @@ alias fzvim='vim $(fzf)'
 alias vim='nvim'
 alias ls='ls --color=auto'
 alias gfar='git fetch && git reset --hard origin'
+alias info='info --vi-keys'
 
 # tmux vim
 alias tvimserver='NVIM_LISTEN_ADDRESS=tmuxEditor nvim'
