@@ -1,0 +1,3 @@
+[submodule ".config/nvim/nvchad"]
+	path = .config/nvim/
+	url = ssh://git@github.com/soupersauce/nvchad
