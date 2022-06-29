@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"  ]
 fi
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:~/.emacs.d/bin/:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -55,8 +55,8 @@ plugins=(
 	themes
 	zsh-autosuggestions
 	vi-mode
-	zsh-syntax-highlighting
 	alias-finder
+	zsh-syntax-highlighting # This Plugin should be loaded last
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -72,6 +72,8 @@ alias fzvim='vim $(fzf)'
 alias vim='nvim'
 alias ls='ls --color=auto'
 alias gfar='git fetch && git reset --hard origin'
+alias info='info --vi-keys'
+alias lynx='lynx --vikeys'
 
 # tmux vim
 alias tvimserver='NVIM_LISTEN_ADDRESS=tmuxEditor nvim'
@@ -89,9 +91,12 @@ export NEOVIM_WIN_DIR=/mnt/c/tools/neovim/Neovim/
 export GOPATH=$HOME/go
 export EDITOR="/usr/bin/nvim"
 export DISPLAY=localhost:0.0
+export PATH="$PATH:$GOPATH/bin"
+export EDITOR="/usr/bin/nvim"
 export KEYTIMEOUT=1
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git/**"'
-# export MANPATH="/usr/local/man:$MANPATH"
+export TERM=tmux-256color
+export PREMUX=$TERM
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -152,8 +157,8 @@ backup () {
 }
 
 # greps ps for arguemnt ignores grep
-psgrep() {
-	ps -ef | grep "$1" | grep -v grep
+maclookup() {
+	curl "https://api.maclookup.app/v2/macs/$1" | jq
 }
 
 function reqfile {
@@ -202,6 +207,8 @@ runscheme () {
 xhamdl () {
     youtube-dl "$1" &
 }
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 ###############################################################################
 # Source locals
@@ -212,6 +219,3 @@ compinit
 source ~/.exports.local.zsh || touch ~/.exports.local.zsh
 source ~/.aliases.local.zsh || touch ~/.aliases.local.zsh
 source ~/.functions.local.zsh || touch ~/.functions.local.zsh
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
