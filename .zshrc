@@ -90,7 +90,6 @@ export PATH="$PATH:/usr/local/go/bin"
 export NEOVIM_WIN_DIR=/mnt/c/tools/neovim/Neovim/
 export GOPATH=$HOME/go
 export EDITOR="/usr/bin/nvim"
-export DISPLAY=localhost:0.0
 export PATH="$PATH:$GOPATH/bin"
 export EDITOR="/usr/bin/nvim"
 export KEYTIMEOUT=1
