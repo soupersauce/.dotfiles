@@ -1,8 +1,15 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# # Initialization code that may require console input (password prompts, [y/n]
+# # confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"  ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:~/.emacs.d/bin/:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/souper/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 ################################################################################
 # 						oh-my-zsh Settings
@@ -10,7 +17,6 @@ export ZSH="/home/souper/.oh-my-zsh"
 # Theme
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
-source ~/.purepower
 
 # Case sensitive completion
 # CASE_SENSITIVE="true"
@@ -49,11 +55,12 @@ plugins=(
 	themes
 	zsh-autosuggestions
 	vi-mode
-	zsh-syntax-highlighting
+	alias-finder
+	zsh-syntax-highlighting # This Plugin should be loaded last
 )
 
 source $ZSH/oh-my-zsh.sh
-
+autoload -U compinit && compinit
 
 ################################################################################
 # 						Aliases
@@ -64,23 +71,30 @@ alias vimdiff="nvim -d"
 alias fzvim='vim $(fzf)'
 alias vim='nvim'
 alias ls='ls --color=auto'
+alias gfar='git fetch && git reset --hard origin'
+alias info='info --vi-keys'
+alias lynx='lynx --vikeys'
 
 # tmux vim
 alias tvimserver='NVIM_LISTEN_ADDRESS=tmuxEditor nvim'
 alias tvim='nvr --remote-tab'
+
+
 ################################################################################
 # 						Exports
 ################################################################################
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:/usr/local/go/bin"
 export NEOVIM_WIN_DIR=/mnt/c/tools/neovim/Neovim/
 export GOPATH=$HOME/gocode
+export PATH="$PATH:$GOPATH/bin"
 export EDITOR="/usr/bin/nvim"
-export DISPLAY=localhost:0
 export KEYTIMEOUT=1
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git/**"'
-# export MANPATH="/usr/local/man:$MANPATH"
+export TERM=tmux-256color
+export PREMUX=$TERM
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -141,8 +155,8 @@ backup () {
 }
 
 # greps ps for arguemnt ignores grep
-psgrep() {
-	ps -ef | grep "$1" | grep -v grep
+maclookup() {
+	curl "https://api.maclookup.app/v2/macs/$1" | jq
 }
 
 function reqfile {
@@ -165,11 +179,18 @@ n()
 	fi
 }
 
+runscheme () {
+	scheme --quiet < "$1"
+}
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
 ###############################################################################
 # Source locals
 ###############################################################################
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
-autoload -Uz compinit
+autoload -Uz compinit 
 compinit
 source ~/.exports.local.zsh || touch ~/.exports.local.zsh
 source ~/.aliases.local.zsh || touch ~/.aliases.local.zsh

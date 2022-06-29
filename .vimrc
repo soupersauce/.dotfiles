@@ -1,16 +1,11 @@
 call plug#begin()
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'liuchengxu/vista.vim'
-"Plug 'scrooloose/nerdcommenter'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install  }  }
 Plug '~/.fzf'
 Plug 'itchyny/lightline.vim' 
-" Plug 'honza/vim-snippets'
-" Plug 'SirVer/ultisnips'
 Plug 'mcchrish/nnn.vim'
-Plug 'janko/vim-test'
-Plug 'benmills/vimux'
 Plug 'rust-lang/rust.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vimwiki/vimwiki'
@@ -19,6 +14,21 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-vinegar'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-orgmode/orgmode'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
+Plug 'lukas-reineke/headlines.nvim'
+Plug 'akinsho/org-bullets.nvim'
+Plug 'Yggdroot/indentline'
+Plug 'psliwka/vim-smoothie'
+Plug 'sqwishy/vim-sqf-syntax'
+Plug 'whiteinge/diffconflicts'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -37,14 +47,16 @@ set number
 " Underline current line
 set cursorline
 
+" Show a line at column 80
+set colorcolumn=80
 " Always show tabline
 setglobal showtabline=2
 
 " Indentation - Hard tabs, No Spaces, 4 Char width
 set autoindent " indent when moving to the next line while writing code
-set tabstop=4  " Size of tab indentation
+set tabstop=8  " Size of tab indentation
 set shiftwidth=4
-set noexpandtab " Don't use spaces for tab
+set softtabstop=4
 
 " show the matching part of the pair for {} [] ()
 set showmatch
@@ -64,7 +76,7 @@ set formatoptions=tcqron
 " Highlight searches
 set hlsearch
 
-" Ignore case unless the search patter has capitals
+" Ignore case unless the search pattern has capitals
 set ignorecase
 set smartcase
 
@@ -100,7 +112,29 @@ set whichwrap=b,s,
 " Wrap lines when they exceed edge of window
 set wrap
 
+" Set conceal level
+set conceallevel=0
+
+"How many lines to keep visibly above or below the active line
+set scrolloff=1 " Vertical
+set sidescrolloff=5 " Horizontal
+
+" Autoread file if changed outside VIM
+set autoread
+
+" Allow color schemes to do bright coloers without forcing bold.
+if &t_Co == 8 && $TERM !~# '^Eterm'
+    set t_Co=16
+endif
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FileType specific settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" YAML
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -208,14 +242,14 @@ nmap <leader>qf <Plug>(coc-fix-current)
 command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call CocAction('fold', <f-args>
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " Add diagnostic info for https://github.com/itchny/lightline.vim
 let g:lightline = {
 	\ 'colorscheme': 'wombat',
 	\ 'active': {
 	\	'left': [ [ 'mode', 'paste' ],
-	\		[ 'cocstatus', 'readonly', 'filename', 'modified', 'method' ] ]
+	\		[ 'cocstatus', 'readonly', 'filename', 'modified', 'coc_git_status', 'method' ] ]
 	\ },
 	\ 'component_function': {
 	\	'cocstatus': 'coc#status'
@@ -224,7 +258,7 @@ let g:lightline = {
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a :<C-u>CocList diagnostic<cr>
+nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
 " Manage extensions
 nnoremap <silent> <space>e :<C-u>CocList extensions<cr>
 " Show commands
@@ -274,22 +308,6 @@ imap <C-l> <right>
 " vim-test strategy
 let test#strategy = "neovim"
 
-""""""""""""""""""""""""""""""""""""""""""""""""
-" 	vimux config
-""""""""""""""""""""""""""""""""""""""""""""""""
-
-"Orientation of tmux split "h" or "v"
-let g:VimuxOrientation = "v"
-
-" Use nearest existing split(1) or open new(0)
-let g:VimuxUseNearest = 0
-
-" Sequnce to send to terminal before running
-let g:VimuxResetSequence = "<C-[> cc"
-
-" Percentage of screen new vimux pane will take up
-let g:VimuxHeight = "30"
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 	nnn config 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -338,7 +356,7 @@ let g:fzf_colors =
 
 nmap <leader>zf :Files<CR>
 nmap <leader>zb :Buffers<CR>
-nmap <leader>zr :Rg
+nmap <leader>zr :Rg<CR>
 nmap <leader>zt :Tags<CR>
 nmap <leader>zc :History:<CR>
 nmap <leader>zl :Lines<CR>
