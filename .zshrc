@@ -89,10 +89,12 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin"
 export NEOVIM_WIN_DIR=/mnt/c/tools/neovim/Neovim/
 export GOPATH=$HOME/gocode
+export PATH="$PATH:$GOPATH/bin"
 export EDITOR="/usr/bin/nvim"
 export KEYTIMEOUT=1
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git/**"'
-# export MANPATH="/usr/local/man:$MANPATH"
+export TERM=tmux-256color
+export PREMUX=$TERM
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -182,6 +184,9 @@ runscheme () {
 	scheme --quiet < "$1"
 }
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
 ###############################################################################
 # Source locals
 ###############################################################################
@@ -192,5 +197,3 @@ source ~/.exports.local.zsh || touch ~/.exports.local.zsh
 source ~/.aliases.local.zsh || touch ~/.aliases.local.zsh
 source ~/.functions.local.zsh || touch ~/.functions.local.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
