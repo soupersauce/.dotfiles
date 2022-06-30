@@ -1,1 +1,1 @@
-/home/souper/.local/share/nvim/site/pack/plugins/start/knap/qutebrowser/knap-userscript.lua
+/home/souper/.local/share/nvim/site/pack/packer/start/knap/qutebrowser/knap-userscript.lua
