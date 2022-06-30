@@ -88,7 +88,8 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin"
 export NEOVIM_WIN_DIR=/mnt/c/tools/neovim/Neovim/
-export GOPATH=$HOME/gocode
+export GOPATH=$HOME/go
+export EDITOR="/usr/bin/nvim"
 export PATH="$PATH:$GOPATH/bin"
 export EDITOR="/usr/bin/nvim"
 export KEYTIMEOUT=1
@@ -154,7 +155,6 @@ backup () {
 	done
 }
 
-
 # greps ps for arguemnt ignores grep
 maclookup() {
 	curl "https://api.maclookup.app/v2/macs/$1" | jq
@@ -172,18 +172,40 @@ export NNN_TMPFILE="/tmp/nnn"
 
 n()
 {
-	nnn "$@"
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
 
-	if [ -f $NNN_TMPFILE  ]; then
-		. $NNN_TMPFILE
-		rm $NNN_TMPFILE
-	fi
+    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
+    # see. To cd on quit only on ^G, remove the "export" and make sure not to
+    # use a custom path, i.e. set NNN_TMPFILE *exactly* as follows:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    nnn "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
 }
 
 runscheme () {
 	scheme --quiet < "$1"
 }
 
+xhamdl () {
+    youtube-dl "$1" &
+}
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
@@ -196,4 +218,3 @@ compinit
 source ~/.exports.local.zsh || touch ~/.exports.local.zsh
 source ~/.aliases.local.zsh || touch ~/.aliases.local.zsh
 source ~/.functions.local.zsh || touch ~/.functions.local.zsh
-
