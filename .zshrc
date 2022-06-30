@@ -96,6 +96,7 @@ export KEYTIMEOUT=1
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git/**"'
 export TERM=tmux-256color
 export PREMUX=$TERM
+export NVIMCFG='~/.config/nvim'
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
