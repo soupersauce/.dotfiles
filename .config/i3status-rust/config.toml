@@ -1,0 +1,35 @@
+theme = "native"
+icons = "awesome"
+
+[[block]]
+block = "docker"
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "$mem_total_used_percents.eng(2)"
+format_swap = "$swap_used_percents.eng(2)"
+
+[[block]]
+block = "cpu"
+
+[[block]]
+block = "load"
+interval = 5
+
+[[block]]
+block = "net"
+
+[[block]]
+block = "external_ip"
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "time"
+interval = 5
+format = "%a %d/%m %R"
+
+# [[block]]
+# block = "notify"
