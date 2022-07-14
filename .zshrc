@@ -41,18 +41,18 @@ DISABLE_LS_COLORS="false"
 # 						Plugins
 ################################################################################
 plugins=(
-	git
-	colored-man-pages
-	colorize
-	command-not-found
-	history
-	tmux
-	ubuntu
-	themes
-	zsh-autosuggestions
-	vi-mode
-	alias-finder
-	zsh-syntax-highlighting # This Plugin should be loaded last
+    git
+    colored-man-pages
+    colorize
+    command-not-found
+    history
+    tmux
+    ubuntu
+    themes
+    zsh-autosuggestions
+    vi-mode
+    alias-finder
+    zsh-syntax-highlighting # This Plugin should be loaded last
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -92,7 +92,8 @@ export KEYTIMEOUT=1
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git/**"'
 export TERM=tmux-256color
 export PREMUX=$TERM
-export VI_MODE_SET_CURSOR=true
+export NVIMCFG='~/.config/nvim'
+export ORG="/home/$USER/Documents/org"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -118,8 +119,8 @@ bindkey '^ ' autosuggest-accept
 # 						Config for VTE Terminals
 ################################################################################
 if [[ $TERM == xterm-termite  ]]; then
-	  . /etc/profile.d/vte.sh
-	    __vte_osc7
+    . /etc/profile.d/vte.sh
+    __vte_osc7
 fi
 ################################################################################
 # 						Functions
@@ -128,41 +129,41 @@ fi
 peek() { tmux split-window -p 33 $EDITOR $@ || exit; }
 
 function sshretry() {
-	false
-	while [ $? -ne 0 ]; do
-		ssh "$@" || (sleep 1;false)
-	done
+    false
+    while [ $? -ne 0 ]; do
+        ssh "$@" || (sleep 1;false)
+    done
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # mkir and cd to new directory
 function mkcd {
-	mkdir -p "$1" && cd "$1"
+    mkdir -p "$1" && cd "$1"
 }
 
 backup () {
-	for file in "$@"; do
-		local new=${file}.$(date '+%F_%R')
-		while [[ -f %new ]]; do
-			new+="~";
-		done;
-		printf "copying '%s' to '%s'\n" "$file" "$new";
-		\cp -ip "$file" "$new";
-	done
+    for file in "$@"; do
+        local new=${file}.$(date '+%F_%R')
+        while [[ -f %new ]]; do
+            new+="~";
+        done;
+        printf "copying '%s' to '%s'\n" "$file" "$new";
+        \cp -ip "$file" "$new";
+    done
 }
 
-# greps ps for arguemnt ignores grep
+# greps ps for arguement ignores grep
 maclookup() {
-	curl "https://api.maclookup.app/v2/macs/$1" | jq
+    curl "https://api.maclookup.app/v2/macs/$1" | jq
 }
 
 function reqfile {
-	echo "$1" >> reqs.txt
+    echo "$1" >> reqs.txt
 }
 
 function linkfile {
-	echo "$1" >> Link.txt
+    echo "$1" >> Link.txt
 }
 
 export NNN_TMPFILE="/tmp/nnn"
@@ -191,13 +192,13 @@ n()
     nnn "$@"
 
     if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
+        . "$NNN_TMPFILE"
+        rm -f "$NNN_TMPFILE" > /dev/null
     fi
 }
 
 runscheme () {
-	scheme --quiet < "$1"
+    scheme --quiet < "$1"
 }
 
 xhamdl () {
@@ -210,8 +211,11 @@ xhamdl () {
 # Source locals
 ###############################################################################
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
-autoload -Uz compinit 
+autoload -Uz compinit
 compinit
 source ~/.exports.local.zsh || touch ~/.exports.local.zsh
 source ~/.aliases.local.zsh || touch ~/.aliases.local.zsh
 source ~/.functions.local.zsh || touch ~/.functions.local.zsh
+export PATH="$PATH:/home/downingc/.npm-packages/bin"
+export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/home/downingc/.fzf/man:/home/downingc/.npm-packages/share/man"
+export NPM_PACKAGES="/home/downingc/.npm-packages"
