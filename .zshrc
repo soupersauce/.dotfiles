@@ -97,6 +97,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git/**"'
 export TERM=tmux-256color
 export PREMUX=$TERM
 export NVIMCFG='~/.config/nvim'
+export ORG="/home/$USER/Documents/org"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -219,3 +220,6 @@ compinit
 source ~/.exports.local.zsh || touch ~/.exports.local.zsh
 source ~/.aliases.local.zsh || touch ~/.aliases.local.zsh
 source ~/.functions.local.zsh || touch ~/.functions.local.zsh
+export PATH="$PATH:/home/downingc/.npm-packages/bin"
+export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/home/downingc/.fzf/man:/home/downingc/.npm-packages/share/man"
+export NPM_PACKAGES="/home/downingc/.npm-packages"
