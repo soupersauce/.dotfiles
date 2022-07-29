@@ -219,3 +219,9 @@ source ~/.functions.local.zsh || touch ~/.functions.local.zsh
 export PATH="$PATH:/home/downingc/.npm-packages/bin"
 export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/home/downingc/.fzf/man:/home/downingc/.npm-packages/share/man"
 export NPM_PACKAGES="/home/downingc/.npm-packages"
+export LIBGL_ALWAYS_INDIRECT=1 #GWSL
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0 #GWSL
+export PULSE_SERVER=tcp:$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}') #GWSL
+export PATH="$PATH:/home/souper/.npm-packages/bin"
+export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/home/downingc/.fzf/man:/home/downingc/.npm-packages/share/man:/home/souper/.npm-packages/share/man"
+export NPM_PACKAGES="/home/souper/.npm-packages"
