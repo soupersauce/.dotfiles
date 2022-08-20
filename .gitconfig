@@ -1,2 +1,14 @@
 [user]
-	email = soupersauce@gmail.com
+name = soupersauce
+email = soupersauce@gmail.com
+[merge]
+  log = true
+# This is Git's per-user configuration file.
+[includeIf "gitdir:~/yccd/"]
+    path = ~/.gitcfg/gitconfig-yccd
+[includeIf "gitdir:~/github/"]
+    path = ~/.gitcfg/gitconfig-github
+[includeIf "gitdir:~/git/github/"]
+    path = ~/.gitcfg/gitconfig-github
+[includeIf "gitdir:~/.dotfiles/"]
+    path = ~/.gitcfg/gitconfig-github

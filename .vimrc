@@ -8,7 +8,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'mcchrish/nnn.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'vimwiki/vimwiki'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -19,16 +18,17 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-vinegar'
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-orgmode/orgmode'
-Plug 'dhruvasagar/vim-table-mode'
 Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
-Plug 'lukas-reineke/headlines.nvim'
-Plug 'akinsho/org-bullets.nvim'
 Plug 'Yggdroot/indentline'
 Plug 'psliwka/vim-smoothie'
 Plug 'sqwishy/vim-sqf-syntax'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
 Plug 'whiteinge/diffconflicts'
+Plug 'hashivim/vim-terraform'
+" Plug 'fatih/vim-go'
+Plug 'vim-scripts/Visual-Mark'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -42,7 +42,14 @@ set nomodeline
 filetype plugin on
 syntax on
 "" Show Line Numbers
-set number
+set number relativenumber
+
+"" Toggles numbering based on current mode and buffer focus
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+augroup END
 
 " Underline current line
 set cursorline
@@ -55,8 +62,8 @@ setglobal showtabline=2
 " Indentation - Hard tabs, No Spaces, 4 Char width
 set autoindent " indent when moving to the next line while writing code
 set tabstop=8  " Size of tab indentation
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 
 " show the matching part of the pair for {} [] ()
 set showmatch
@@ -113,7 +120,7 @@ set whichwrap=b,s,
 set wrap
 
 " Set conceal level
-set conceallevel=0
+set conceallevel=99
 
 "How many lines to keep visibly above or below the active line
 set scrolloff=1 " Vertical
@@ -360,3 +367,20 @@ nmap <leader>zr :Rg<CR>
 nmap <leader>zt :Tags<CR>
 nmap <leader>zc :History:<CR>
 nmap <leader>zl :Lines<CR>
+<<<<<<< HEAD
+=======
+
+<<<<<<< HEAD:.config/nvim/init.vim
+"""""""""""""""""""""""""
+" vim-markdown "
+"""""""""""""""""""""""""
+
+let g:vim_markdown_conceal = 0
+
+"""""""""""""""""""""""""
+" markdown-preview.nvim "
+"""""""""""""""""""""""""
+" automaticall open the preview window upon entering markdown buffer
+" default: 0
+let g:mkdp_auto_start =0
+>>>>>>> toki
