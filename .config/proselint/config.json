@@ -1,0 +1,6 @@
+{
+  "checks": {
+    "cursing.filth": false,
+    "annotations.misc": false
+  }
+}
