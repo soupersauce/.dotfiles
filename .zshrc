@@ -153,7 +153,7 @@ backup () {
     done
 }
 
-# greps ps for arguement ignores grep
+# greps ps for argument ignores grep
 maclookup() {
     curl "https://api.maclookup.app/v2/macs/$1" | jq
 }
@@ -219,9 +219,9 @@ source ~/.functions.local.zsh || touch ~/.functions.local.zsh
 export PATH="$PATH:/home/downingc/.npm-packages/bin"
 export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/home/downingc/.fzf/man:/home/downingc/.npm-packages/share/man"
 export NPM_PACKAGES="/home/downingc/.npm-packages"
-export LIBGL_ALWAYS_INDIRECT=1 #GWSL
-export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0 #GWSL
-export PULSE_SERVER=tcp:$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}') #GWSL
-export PATH="$PATH:/home/souper/.npm-packages/bin"
-export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/home/downingc/.fzf/man:/home/downingc/.npm-packages/share/man:/home/souper/.npm-packages/share/man"
-export NPM_PACKAGES="/home/souper/.npm-packages"
+
+PATH="/home/downingc/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/downingc/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/downingc/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/downingc/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/downingc/perl5"; export PERL_MM_OPT;
