@@ -216,12 +216,12 @@ compinit
 source ~/.exports.local.zsh || touch ~/.exports.local.zsh
 source ~/.aliases.local.zsh || touch ~/.aliases.local.zsh
 source ~/.functions.local.zsh || touch ~/.functions.local.zsh
-export PATH="$PATH:/home/downingc/.npm-packages/bin"
-export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/home/downingc/.fzf/man:/home/downingc/.npm-packages/share/man"
-export NPM_PACKAGES="/home/downingc/.npm-packages"
+export PATH="$PATH:/home/$USER/.npm-packages/bin"
+export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/home/$USER/.fzf/man:/home/$USER/.npm-packages/share/man"
+export NPM_PACKAGES="/home/$USER/.npm-packages"
 
-PATH="/home/downingc/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/downingc/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/downingc/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/downingc/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/downingc/perl5"; export PERL_MM_OPT;
+PATH="/home/$USER/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/$USER/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/$USER/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/$USER/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/$USER/perl5"; export PERL_MM_OPT;
