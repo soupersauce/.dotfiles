@@ -12,3 +12,5 @@ email = soupersauce@gmail.com
     path = ~/.gitcfg/gitconfig-github
 [includeIf "gitdir:~/.dotfiles/"]
     path = ~/.gitcfg/gitconfig-github
+[credential]
+	provider = generic
