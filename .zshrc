@@ -66,19 +66,12 @@ autoload -U compinit && compinit
 # 						Aliases
 ################################################################################
 alias zshconfig="vim ~/.zshrc"
-alias vimconfig="vim ~/.config/nvim/init.vim"
 alias vimdiff="nvim -d"
 alias fzvim='vim $(fzf)'
-alias vim='nvim'
 alias ls='ls --color=auto'
 alias gfar='git fetch && git reset --hard origin'
 alias info='info --vi-keys'
 alias lynx='lynx --vikeys'
-
-# tmux vim
-alias tvimserver='NVIM_LISTEN_ADDRESS=tmuxEditor nvim'
-alias tvim='nvr --remote-tab'
-
 
 ################################################################################
 # 						Exports
