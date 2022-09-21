@@ -1,5 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# # Initialization code that may require console input (password prompts, [y/n] # confirmations, etc.) must go above this block, everything else may go below. if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"  ]]; then source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" fi
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:~/.emacs.d/bin/:$PATH
@@ -94,6 +98,9 @@ export TERM=tmux-256color
 export PREMUX=$TERM
 export NVIMCFG='~/.config/nvim'
 export ORG="/home/$USER/Documents/org"
+export XDG_PICTURES_DIR="$HOME/Pictures/"
+export XDG_SCREENSHOTS_DIR="$HOME/Pictures/Screenshots"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -224,3 +231,8 @@ PERL5LIB="/home/$USER/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB
 PERL_LOCAL_LIB_ROOT="/home/$USER/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/$USER/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/$USER/perl5"; export PERL_MM_OPT;
+
+# pnpm
+export PNPM_HOME="/home/souper/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
