@@ -4,6 +4,32 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+
+xwayland disable
+
+swaynag_command swaynagmode
+
+exec sway-accel-rotate
+exec wl-paste -t text --watch clipman store --no-persist
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XD
+
+set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
+
+exec swayidle -w \
+  timeout 1800 'swaylock -f' \
+  timeout 1805 'swaymsg "output * dpms"' \
+  resume 'swaymsg "output * dpms on"' \
+  before-sleep 'playerctl pause' \
+  before-sleep 'swaylock'
+
+exec swaync
+
+default_border pixel
+gaps inner 10
+gaps outer 10
+smart_borders on
+smart_gaps inverse_outer
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -18,18 +44,20 @@ set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu rofi -modes "run,drun,window,workspace" -dmenu
+set $menu "~/.config/rofi/scripts/launcher_t1"
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#
+output * bg #000000 solid_color
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+
+output eDP-1 scale 2.0
 
 ### Idle configuration
 #
@@ -48,15 +76,21 @@ set $menu rofi -modes "run,drun,window,workspace" -dmenu
 #
 # Example configuration:
 #
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
+#Input device: SynPS/2 Synaptics TouchPad
+  # Type: Touchpad
+  # Identifier: 
+  # Product ID: 7
+  # Vendor ID: 2
+  # Libinput Send Events: enabled
+
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+  input type:touchpad {
+      dwt enabled
+      tap enabled
+      natural_scroll enabled
+      middle_emulation enabled
+  }
 
 ### Key bindings
 #
@@ -71,6 +105,9 @@ set $menu rofi -modes "run,drun,window,workspace" -dmenu
     # Start your launcher
     bindsym $mod+d exec $menu
 
+    # Toggle swaync control center
+    bindsym $mod+Shift+n exec swaync-client -t -sw
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -81,21 +118,46 @@ set $menu rofi -modes "run,drun,window,workspace" -dmenu
     # Reload the configuration file
     bindsym $mod+Shift+c reload
 
+    set $nag exec swaynagmode
+      mode "nag" {
+        bindsym {
+          Ctrl+d    mode "default"
+
+          Ctrl+c    $nag --exit
+          q         $nag --exit"
+          Escape    $nag --exit
+
+          Return    $nag --confirm
+
+          Tab       $nag --select prev
+          Shift+Tab $nag --select next
+
+          Left      $nag --select prev
+          Right     $nag --select next
+
+          Up        $nag --select prev
+          Down      $nag --select next
+        }
+      }
+
+
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec $nag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
     # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
+bindsym $mod+$left exec sway-overfocus split-lt float-lt output-ls
+bindsym $mod+$down exec sway-overfocus split-dt float-dt output-ds
+bindsym $mod+$up exec sway-overfocus split-ut float-ut output-us
+bindsym $mod+$right exec sway-overfocus split-rt float-rt output-rs
+bindsym $mod+Tab exec sway-overfocus group-rw group-dw
+bindsym $mod+Shift+Tab exec sway-overfocus group-lw group-uw
     # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+bindsym $mod+Left exec sway-overfocus split-lt float-lt output-ls
+bindsym $mod+Down exec sway-overfocus split-dt float-dt output-ds
+bindsym $mod+Up exec sway-overfocus split-ut float-ut output-us
+bindsym $mod+Right exec sway-overfocus split-rt float-rt output-rs
 
     # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
@@ -195,22 +257,56 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +3% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -3% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessDown exec brightnessctl set 3%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK
+bindsym XF86MonBrightnessUp exec brightnessctl set +3% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPrev exec playerctl previous
+bindsym XF86Search exec $menu
+
+bindsym $mod+Escape exec swaylock \
+  --screenshots \
+  --clock \
+  --indicator \
+  --indicator-radius 100 \
+  --indicator-thickness 7 \
+  --effect-blur 7x5 \
+  --effect-vignette 0.5:0.5 \
+  --ring-color 300068 \
+  --key-hl-color 880033 \
+  --line-color 00000000 \
+  --inside-color 00000088 \
+  # --separator-color 000000 \
+  --grace 2 \
+  --fade-in 0.2
+
+
 
 #
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
+font pango:Fira Code Retina Nerd Font Complete Mono: "Retina" 10
     position top
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
     status_command i3status-rs
 
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+colors {
+        separator #666666
+        background #222222
+        statusline #dddddd
+        focused_workspace #0088CC #0088CC #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+
     }
 }
 
