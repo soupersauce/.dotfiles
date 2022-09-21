@@ -1,35 +1,56 @@
-theme = "native"
-icons = "awesome"
+theme = "space-villain"
+icons = "material-nf"
 
 [[block]]
-block = "docker"
+block = "focused_window"
+
+[[block]]
+block = "custom"
+interval = 10
+command = "swaync-client -c"
 
 [[block]]
 block = "memory"
 display_type = "memory"
-format_mem = "$mem_total_used_percents.eng(2)"
-format_swap = "$swap_used_percents.eng(2)"
+format_mem = "{mem_used}/{mem_total}({mem_used_percents})"
+format_swap = "{swap_used}/{swap_total}({swap_used_percents})"
 
 [[block]]
 block = "cpu"
-
-[[block]]
-block = "load"
-interval = 5
+interval = 1
+format = "{utilization}{frequency}"
 
 [[block]]
 block = "net"
+format = "{speed_down;K*b}{speed_up;K*b}"
+
+[[block]]
+block = "networkmanager"
+on_click = "foot -e nmtui"
+interface_name_exclude = ['br\-[0-9a-f]{12}', 'docker\d+']
+interface_name_include = []
+ap_format = "{strength} {ssid^10}"
 
 [[block]]
 block = "external_ip"
-
-[[block]]
-block = "sound"
+format = "{ip} {region_code}{country_flag}"
 
 [[block]]
 block = "time"
 interval = 5
 format = "%a %d/%m %R"
 
-# [[block]]
-# block = "notify"
+[[block]]
+block = "custom"
+command = "sed 's/  //' <(curl 'https://wttr.in/?format=1' -s)"
+interval = 600
+
+[[block]]
+block = "sound"
+step_width = 3
+
+[[block]]
+block = "battery"
+interval = 10
+format = "{percentage} {time}"
+
