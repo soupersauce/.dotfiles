@@ -1,5 +1,7 @@
-theme = "space-villain"
-icons = "material-nf"
+[theme]
+name = "space-villain"
+[icons]
+name = "material-nf"
 
 [[block]]
 block = "focused_window"
@@ -8,6 +10,17 @@ block = "focused_window"
 block = "custom"
 interval = 10
 command = "swaync-client -c"
+
+[[block]]
+block = "disk_space"
+path = "/"
+info_type = "used"
+format = "{icon} {used}/{total} ({available} free)"
+alert_absolute = true
+unit = "GB"
+alert = 50
+warning = 40
+
 
 [[block]]
 block = "memory"
@@ -53,4 +66,12 @@ step_width = 3
 block = "battery"
 interval = 10
 format = "{percentage} {time}"
+
+[[block]]
+block = "custom"
+command = "swaync-client -c 🔔"
+# interval = "10"
+on_click = "swaync-client -t"
+[block.icons_overrides]
+icon = "🔔"
 
