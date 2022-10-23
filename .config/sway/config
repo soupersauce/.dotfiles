@@ -4,26 +4,29 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-
-xwayland disable
-
 swaynag_command swaynagmode
 
 exec sway-accel-rotate
 exec wl-paste -t text --watch clipman store --no-persist
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XD
+exec persway -a -f [tiling] opacity 0.6; opacity 1 -e [tiling] opacity 1.0;
+exec sworkstyle &> /tmp/sworkstyle.log
+
+exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1
 
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
 
-exec swayidle -w \
-  timeout 1800 'swaylock -f' \
-  timeout 1805 'swaymsg "output * dpms"' \
-  resume 'swaymsg "output * dpms on"' \
-  before-sleep 'playerctl pause' \
-  before-sleep 'swaylock'
+# exec swayidle -w \
+#   timeout 1800 'swaylock -f' \
+#   timeout 1805 'swaymsg "output * dpms"' \
+#   resume 'swaymsg "output * dpms on"' \
+#   before-sleep 'playerctl pause' \
+#   before-sleep 'swaylock'
 
 exec swaync
+
+exec --no-startup-id alacritty --config-file ~/.config/alacritty/scratchterm.yml -t scratchterm -d 0 0
 
 default_border pixel
 gaps inner 10
@@ -77,72 +80,72 @@ output eDP-1 scale 2.0
 # Example configuration:
 #
 #Input device: SynPS/2 Synaptics TouchPad
-  # Type: Touchpad
-  # Identifier: 
-  # Product ID: 7
-  # Vendor ID: 2
-  # Libinput Send Events: enabled
+# Type: Touchpad
+# Identifier: 
+# Product ID: 7
+# Vendor ID: 2
+# Libinput Send Events: enabled
 
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
-  input type:touchpad {
-      dwt enabled
-      tap enabled
-      natural_scroll enabled
-      middle_emulation enabled
-  }
+input type:touchpad {
+    dwt enabled
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+}
 
 ### Key bindings
 #
 # Basics:
 #
-    # Start a terminal
-    bindsym $mod+Return exec $term
+# Start a terminal
+bindsym $mod+Return exec $term
 
-    # Kill focused window
-    bindsym $mod+Shift+q kill
+# Kill focused window
+bindsym $mod+Shift+q kill
 
-    # Start your launcher
-    bindsym $mod+d exec $menu
+# Start your launcher
+bindsym $mod+d exec $menu
 
-    # Toggle swaync control center
-    bindsym $mod+Shift+n exec swaync-client -t -sw
+# Toggle swaync control center
+bindsym $mod+Shift+n exec swaync-client -t -sw
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    floating_modifier $mod normal
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
 
-    # Reload the configuration file
-    bindsym $mod+Shift+c reload
+# Reload the configuration file
+bindsym $mod+Shift+c reload
 
-    set $nag exec swaynagmode
-      mode "nag" {
-        bindsym {
-          Ctrl+d    mode "default"
+set $nag exec swaynagmode
+mode "nag" {
+  bindsym {
+    Ctrl+d    mode "default"
 
-          Ctrl+c    $nag --exit
-          q         $nag --exit"
-          Escape    $nag --exit
+    Ctrl+c    $nag --exit
+    q         $nag --exit"
+    Escape    $nag --exit
 
-          Return    $nag --confirm
+    Return    $nag --confirm
 
-          Tab       $nag --select prev
-          Shift+Tab $nag --select next
+    Tab       $nag --select prev
+    Shift+Tab $nag --select next
 
-          Left      $nag --select prev
-          Right     $nag --select next
+    Left      $nag --select prev
+    Right     $nag --select next
 
-          Up        $nag --select prev
-          Down      $nag --select next
-        }
-      }
+    Up        $nag --select prev
+    Down      $nag --select next
+  }
+}
 
 
-    # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec $nag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+# Exit sway (logs you out of your Wayland session)
+bindsym $mod+Shift+e exec $nag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -153,7 +156,7 @@ bindsym $mod+$up exec sway-overfocus split-ut float-ut output-us
 bindsym $mod+$right exec sway-overfocus split-rt float-rt output-rs
 bindsym $mod+Tab exec sway-overfocus group-rw group-dw
 bindsym $mod+Shift+Tab exec sway-overfocus group-lw group-uw
-    # Or use $mod+[up|down|left|right]
+# Or use $mod+[up|down|left|right]
 bindsym $mod+Left exec sway-overfocus split-lt float-lt output-ls
 bindsym $mod+Down exec sway-overfocus split-dt float-dt output-ds
 bindsym $mod+Up exec sway-overfocus split-ut float-ut output-us
@@ -172,28 +175,49 @@ bindsym $mod+Right exec sway-overfocus split-rt float-rt output-rs
 #
 # Workspaces:
 #
-    # Switch to workspace
-    bindsym $mod+1 workspace number 1
-    bindsym $mod+2 workspace number 2
-    bindsym $mod+3 workspace number 3
-    bindsym $mod+4 workspace number 4
-    bindsym $mod+5 workspace number 5
-    bindsym $mod+6 workspace number 6
-    bindsym $mod+7 workspace number 7
-    bindsym $mod+8 workspace number 8
-    bindsym $mod+9 workspace number 9
-    bindsym $mod+0 workspace number 10
-    # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace number 1
-    bindsym $mod+Shift+2 move container to workspace number 2
-    bindsym $mod+Shift+3 move container to workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
-    bindsym $mod+Shift+6 move container to workspace number 6
-    bindsym $mod+Shift+7 move container to workspace number 7
-    bindsym $mod+Shift+8 move container to workspace number 8
-    bindsym $mod+Shift+9 move container to workspace number 9
-    bindsym $mod+Shift+0 move container to workspace number 10
+bindsym --no-repeat $mod+1 workspace number 1; exec "echo 1 > /tmp/sov"
+bindsym --no-repeat $mod+2 workspace number 2; exec "echo 1 > /tmp/sov"
+bindsym --no-repeat $mod+3 workspace number 3; exec "echo 1 > /tmp/sov"
+bindsym --no-repeat $mod+4 workspace number 4; exec "echo 1 > /tmp/sov"
+bindsym --no-repeat $mod+5 workspace number 5; exec "echo 1 > /tmp/sov"
+bindsym --no-repeat $mod+6 workspace number 6; exec "echo 1 > /tmp/sov"
+bindsym --no-repeat $mod+7 workspace number 7; exec "echo 1 > /tmp/sov"
+bindsym --no-repeat $mod+8 workspace number 8; exec "echo 1 > /tmp/sov"
+bindsym --no-repeat $mod+9 workspace number 9; exec "echo 1 > /tmp/sov"
+bindsym --no-repeat $mod+0 workspace number 10; exec "echo 1 > /tmp/sov"
+
+bindsym --release $mod+1 exec "echo 0 > /tmp/sov"
+bindsym --release $mod+2 exec "echo 0 > /tmp/sov"
+bindsym --release $mod+3 exec "echo 0 > /tmp/sov"
+bindsym --release $mod+4 exec "echo 0 > /tmp/sov"
+bindsym --release $mod+5 exec "echo 0 > /tmp/sov"
+bindsym --release $mod+6 exec "echo 0 > /tmp/sov"
+bindsym --release $mod+7 exec "echo 0 > /tmp/sov"
+bindsym --release $mod+8 exec "echo 0 > /tmp/sov"
+bindsym --release $mod+9 exec "echo 0 > /tmp/sov"
+bindsym --release $mod+0 exec "echo 0 > /tmp/sov"
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+bindsym $mod+Ctrl+1 [workspace="1"] move workspace to output current
+bindsym $mod+Ctrl+2 [workspace="2"] move workspace to output current
+bindsym $mod+Ctrl+3 [workspace="3"] move workspace to output current
+bindsym $mod+Ctrl+4 [workspace="4"] move workspace to output current 
+bindsym $mod+Ctrl+5 [workspace="5"] move workspace to output current
+bindsym $mod+Ctrl+6 [workspace="6"] move workspace to output current
+bindsym $mod+Ctrl+7 [workspace="7"] move workspace to output current
+bindsym $mod+Ctrl+8 [workspace="8"] move workspace to output current
+bindsym $mod+Ctrl+9 [workspace="9"] move workspace to output current
+bindsym $mod+Ctrl+0 [workspace="10"] move workspace to output current
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 #
@@ -214,10 +238,10 @@ bindsym $mod+Right exec sway-overfocus split-rt float-rt output-rs
     bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+    # bindsym $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    # bindsym $mod+space focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
@@ -284,7 +308,29 @@ bindsym $mod+Escape exec swaylock \
   --grace 2 \
   --fade-in 0.2
 
+bindsym $mod+Space exec env RUST_BACKTRACE=1 \
+    swayr switch-window >> /tmp/swayr.log 2>&1
 
+bindsym $mod+Delete exec env RUST_BACKTRACE=1 \
+    swayr quit-window >> /tmp/swayr.log 2>&1
+
+# bindsym $mod+Tab exec env RUST_BACKTRACE=1 \
+    # swayr switch-to-urgent-or-lru-window >> /tmp/swayr.log 2>&1
+
+bindsym $mod+Next exec env RUST_BACKTRACE=1 \
+    swayr next-window all-workspaces >> /tmp/swayr.log 2>&2
+
+bindsym $mod+Prior exec env RUST_BACKTRACE=1 \
+    swayr prev-window all-workspaces >> /tmp/swayr.log 2>&2
+
+bindsym $mod+Shift+Space exec env RUST_BACKTRACE=1 \
+    swayr switch-workspace-or-window >> /tmp/swayr.log 2>&1
+
+bindsym $mod+c exec env RUST_BACKTRACE=1 \
+    swayr execute-swaymsg-command >> /tmp/swayr.log 2>&1
+
+# bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \
+#     swayr execute-swayr-command >> /tmp/swayr.log 2>&1
 
 #
 # Status Bar:
@@ -310,4 +356,9 @@ colors {
     }
 }
 
+bindsym grave scratchpad show
+bindsym $mod+Shift+grave move scratchpad
+exec rm -f /tmp/sov && mkfifo /tmp/sov && tail -f /tmp/sov | sov
+
+include ~/.config/sway/scripts/fzfify_config
 include ~/.config/sway/config.d/*
