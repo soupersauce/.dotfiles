@@ -31,12 +31,12 @@ set $menu "~/.config/rofi/scripts/launcher_t1"
 
 output * bg #000000 solid_color
 
-input type:touchpad {
-    dwt enabled
-    tap enabled
-    natural_scroll enabled
-    middle_emulation enabled
-}
+# input type:touchpad {
+#     dwt enabled
+#     tap enabled
+#     natural_scroll enabled
+#     middle_emulation enabled
+# }
 
 ### Key bindings
 #
