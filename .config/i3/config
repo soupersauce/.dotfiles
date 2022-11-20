@@ -23,6 +23,44 @@ set $down   j
 set $up     k
 set $right  l
 
+set $ term alacritty
+# Your preferred application launcher
+# Note: pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
+set $menu "~/.config/rofi/scripts/launcher_t1"
+
+output * bg #000000 solid_color
+
+input type:touchpad {
+    dwt enabled
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+}
+
+### Key bindings
+#
+# Basics:
+#
+    # Start a terminal
+    bindsym $mod+Return exec $term
+
+    # Kill focused window
+    bindsym $mod+Shift+q kill
+
+    # Start your launcher
+    bindsym $mod+d exec $menu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+Shift+c reload
+
 # define names for workspaces
 # set $ws1    "1:   Terminal "
 # set $ws2    "2:   Code "
@@ -34,9 +72,6 @@ set $right  l
 # set $ws8    "8:   Chat "
 # set $ws9    "9:   General "
 # set $ws10   "10:   Settings "
-
-# use $mod+Mouse to drag floating windows to their wanted position
-floating_modifier $mod
 
 # control focused window when follows the mouse movements
 focus_follows_mouse no
@@ -51,18 +86,8 @@ hide_edge_borders none
 # set popups during fullscreen mode
 popup_during_fullscreen smart
 
-# start a terminal
-bindsym $mod+Return workspace $ws1; exec --no-startup-id alacritty
-
-# start a program launcher
-#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -fn 'Source Sans Pro-10' -nb '#212121' -sb '#2b83a6' -sf '#ffffff'"
-bindsym $mod+d exec --no-startup-id rofi -show drun
-
 # switching window with win+tab
 bindsym $mod+Tab exec --no-startup-id rofi -show window
-
-# kill focused window
-bindsym $mod+Shift+q kill
 
 # change focus
 bindsym $mod+$left  focus left
@@ -88,6 +113,33 @@ bindsym $mod+Shift+Down     move down
 bindsym $mod+Shift+Up       move up
 bindsym $mod+Shift+Right    move right
 
+# Workspaces:
+#
+    # Switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9
+    bindsym $mod+Shift+0 move container to workspace number 10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+
 # split in horizontal orientation
 bindsym $mod+h split h
 
@@ -98,9 +150,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout
-# bindsym $mod+s layout stacking
-# bindsym $mod+w layout tabbed
-# bindsym $mod+e layout toggle split
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -120,6 +172,39 @@ bindsym $mod+Shift+minus move scratchpad
 # show the next scratchpad window or hide the focused scratchpad window
 bindsym $mod+minus scratchpad show
 
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +3% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -3% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPrev exec playerctl previous
+bindsym XF86Search exec $menu
+
 # move focused floating window to the center of all outputs
 # bindsym $mod+Shift+h move absolute position center
 
@@ -137,39 +222,10 @@ bindsym $mod+t border normal    0
 bindsym $mod+y border pixel     1
 bindsym $mod+u border none
 
-# switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
-
 # shortcut applications
 bindsym Print                   exec --no-startup-id scrot
 bindsym $mod+Print              exec --no-startup-id scrot -s
 # bindsym $mod+Shift+x            exec --no-startup-id i3lock-fancy -f Source-Sans-Pro
-
-# volume
-# bindsym XF86AudioLowerVolume    exec --no-startup-id amixer -q -D pulse sset Master 5%- unmute
-# bindsym XF86AudioRaiseVolume    exec --no-startup-id amixer -q -D pulse sset Master 5%+ unmute
-# bindsym XF86AudioMute           exec --no-startup-id amixer -q -D pulse sset Master toggle
 
 # notification
 # bindsym Ctrl+space              exec --no-startup-id dunstctl close
@@ -184,28 +240,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # manage i3 session
-bindsym $mod+Shift+e exec --no-startup-id i3-nagbar -t warning -f "pango:Hack 9" -m "Do you really want to exit?" -B "    Exit " "i3-msg exit"
-
-# resize window
-bindsym $mod+r mode "  "
-mode "  " {
-    # pressing left and up will shrink the window's width and height
-    # pressing right and down will grow the window's width and height
-    bindsym $left   resize shrink width 10 px or 10 ppt
-    bindsym $down   resize grow height 10 px or 10 ppt
-    bindsym $up     resize shrink height 10 px or 10 ppt
-    bindsym $right  resize grow width 10 px or 10 ppt
-
-    # same bindings, but for the arrow keys
-    bindsym Left    resize shrink width 10 px or 10 ppt
-    bindsym Down    resize grow height 10 px or 10 ppt
-    bindsym Up      resize shrink height 10 px or 10 ppt
-    bindsym Right   resize grow width 10 px or 10 ppt
-
-    # back to normal: Enter or win+r
-    bindsym Return mode "default"
-    bindsym $mod+r mode "default"
-}
+bindsym $mod+Shift+e exec --no-startup-id i3-nagbar -t warning -f "pango:Fira Code Retina Nerd Font Complete Mono: Regular 9" -m "Do you really want to exit?" -B "    Exit " "i3-msg exit"
 
 # set specific windows to floating mode
 for_window [window_role="app"]                      floating enable
@@ -223,17 +258,17 @@ for_window [title="Preferences$"]                   floating enable
 
 # start i3bar to display a workspace bar
 bar {
-  font pango:Hack Nerd Font Mono 12
+  font pango:Fira Code Retina Nerd Font Complete Mono: "Regular" 12
   position top
-  status_command i3status-rs
+  status_command i3status
   colors {
-    separator #666666
-    background #222222
-    statusline #dddddd
-    focused_workspace #0088CC #0088CC #ffffff
-    active_workspace #333333 #333333 #ffffff
-    inactive_workspace #333333 #333333 #888888
-    urgent_workspace #2f343a #900000 #ffffff
+        separator #666666
+        background #222222
+        statusline #dddddd
+        focused_workspace #0088CC #0088CC #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
   }
 }
 
@@ -247,7 +282,7 @@ bar {
 
 # startup applications
 exec_always --no-startup-id nm-applet
-# exec_always --no-startup-id pulseaudio --start
-# exec_always --no-startup-id lxpolkit
+exec_always --no-startup-id pulseaudio --start
+exec_always --no-startup-id lxpolkit
 # exec_always --no-startup-id feh --bg-fill ~/Public/desktop/dark_planet_minimalist.png
-# exec_always --no-startup-id picom
+exec_always --no-startup-id picom
