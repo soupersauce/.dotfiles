@@ -11,8 +11,8 @@ git clone https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions .oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/romkatv/powerlevel10k .oh-my-zsh/custom/themes/powerlevel10k
-
-mkdir -p ~/.local/share/fonts
-curl -fLo ".otf" \
-	https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
-cd ~/.local/share/fonts && curl -fLo "Fira Nerd Font Complete.otf" Droid Sans Mono for Powerline Nerd Font Complete.chsh -s '/usr/bin/zsh'
+git clone -depth=1 https://github.com/ryanoasis/nerd-fonts /tmp/nerdfonts
+/tmp/nerdfonts/install.sh Hack
+/tmp/nerdfonts/install.sh FiraCode
+/tmp/nerdfonts/install.sh SpaceMono
+rm -rf /tmp/nerdfonts
