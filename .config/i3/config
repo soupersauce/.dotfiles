@@ -4,8 +4,7 @@
 # i3 config file (v4)
 
 # font for window titles and bar
-font pango:"Hack Nerd Font Mono" 10
-
+font pango:Fira Code Retina Nerd Font Complete Mono: "Regular" 12
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id /usr/lib/gsd-xsettings
@@ -23,13 +22,13 @@ set $down   j
 set $up     k
 set $right  l
 
-set $ term alacritty
+set $term kitty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu "~/.config/rofi/scripts/launcher_t1"
+set $menu "dmenu_run -i -l 20"
 
-output * bg #000000 solid_color
+# output * bg #000000 solid_color
 
 # input type:touchpad {
 #     dwt enabled
@@ -56,7 +55,7 @@ output * bg #000000 solid_color
     # Despite the name, also works for non-floating windows.
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
-    floating_modifier $mod normal
+    #floating_modifier $mod
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
@@ -141,7 +140,7 @@ bindsym $mod+Shift+Right    move right
     # We just use 1-10 as the default.
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -196,13 +195,13 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +3% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
-bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -3% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
-bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym --locked XF86AudioPlay exec playerctl play-pause
-bindsym --locked XF86AudioNext exec playerctl next
-bindsym --locked XF86AudioPrev exec playerctl previous
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +3% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -3% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86Search exec $menu
 
 # move focused floating window to the center of all outputs
@@ -218,26 +217,20 @@ bindsym $mod+Shift+s sticky toggle
 bindsym $mod+Shift+p fullscreen disable; floating enable; resize set 350 px 197 px; sticky enable; move window to position 1006 px 537 px
 
 # shortcut to change window border
-bindsym $mod+t border normal    0
-bindsym $mod+y border pixel     1
-bindsym $mod+u border none
+# bindsym $mod+t border normal    0
+# bindsym $mod+y border pixel     1
+# bindsym $mod+u border none
 
 # shortcut applications
 bindsym Print                   exec --no-startup-id scrot
 bindsym $mod+Print              exec --no-startup-id scrot -s
-# bindsym $mod+Shift+x            exec --no-startup-id i3lock-fancy -f Source-Sans-Pro
+bindsym $mod+Shift+x            exec --no-startup-id i3lock-fancy -f Source-Sans-Pro
 
 # notification
-# bindsym Ctrl+space              exec --no-startup-id dunstctl close
-# bindsym Ctrl+Shift+space        exec --no-startup-id dunstctl close-all
-# bindsym Ctrl+grave              exec --no-startup-id dunstctl history-pop
-# bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-
-# restart i3 inplace
-bindsym $mod+Shift+r restart
+bindsym Ctrl+space              exec --no-startup-id dunstctl close
+bindsym Ctrl+Shift+space        exec --no-startup-id dunstctl close-all
+bindsym Ctrl+grave              exec --no-startup-id dunstctl history-pop
+bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
 
 # manage i3 session
 bindsym $mod+Shift+e exec --no-startup-id i3-nagbar -t warning -f "pango:Fira Code Retina Nerd Font Complete Mono: Regular 9" -m "Do you really want to exit?" -B "    Exit " "i3-msg exit"
