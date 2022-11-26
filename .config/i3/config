@@ -5,10 +5,39 @@
 font pango:Fira Code Retina Nerd Font Complete Mono: "Regular" 12
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id /usr/lib/gsd-xsettings
-exec_always --no-startup-id gnome-power-manager
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id gnome-flashback
+# exec --no-startup-id /usr/lib/gsd-xsettings
+# exec_always --no-startup-id gnome-power-manager
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# exec --no-startup-id gnome-flashback
+
+# Don’t spawn an empty window for the Plasma Desktop
+for_window [title="Desktop — Plasma"] kill, floating enable, border none
+
+# >>> Window rules <<<
+  # >>> Avoid tiling Plasma popups, dropdown windows, etc. <<<
+  # For the first time, manually resize them, i3 will remember the setting for floating windows
+for_window [class="yakuake"] floating enable;
+for_window [class="lattedock"] floating enable;
+for_window [class="plasmashell"] floating enable;
+for_window [class="Kmix"] floating enable; border none
+for_window [class="kruler"] floating enable; border none
+for_window [class="Plasma"] floating enable; border none
+for_window [class="Klipper"] floating enable; border none
+for_window [class="krunner"] floating enable; border none
+for_window [class="Plasmoidviewer"] floating enable; border none
+for_window [title="plasma-desktop"] floating enable; border none
+for_window [class="plasmashell" window_type="notification"] floating enable, border none, move position 1450px 20px
+no_focus [class="plasmashell" window_type="notification"]
+
+# >>> Avoid tiling for non-Plasma stuff <<<
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_role="About"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [instance="__scratchpad"] floating enable
 
 # use win key= Mod4
 # TODO: alt key?
@@ -24,7 +53,7 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu "~/.config/rofi/scripts/launcher_t1"
+set $menu --no-startup-id qdbus-qt5 org.kde.krunner /App display
 
 # output * bg #000000 solid_color
 
@@ -193,8 +222,8 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +3% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -3% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +3% && pactl get-sink-volume @DEFAULT_SINK@ 
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -3% && pactl get-sink-volume @DEFAULT_SINK@ 
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -231,7 +260,8 @@ bindsym Ctrl+grave              exec --no-startup-id dunstctl history-pop
 bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
 
 # manage i3 session
-# bindsym $mod+Shift+e exec --no-startup-id i3-nagbar -t warning -f "pango:Fira Code Retina Nerd Font Complete Mono: Regular 9" -m "Do you really want to exit?" -B "    Exit " "i3-msg exit"
+#bindsym $mod+Shift+e exec --no-startup-id i3-nagbar -t warning -f "pango:Fira Code Retina Nerd Font Complete Mono: Regular 9" -m "Do you really want to exit?" -B "    Exit " "i3-msg exit"
+bindsym $mod+Shift+e exec -no-startup-id qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
 
 # set specific windows to floating mode
 for_window [window_role="app"]                      floating enable
@@ -249,9 +279,9 @@ for_window [title="Preferences$"]                   floating enable
 
 # start i3bar to display a workspace bar
 bar {
-  font pango:Fira Code Retina Nerd Font Complete Mono: "Regular" 12
+  font pango:Fira Code Regular Nerd Font Complete Mono: "Regular" 12
   position top
-  status_command i3status-rs
+  status_command i3status-rs ~/.config/i3status-rust/config.toml
   colors {
         separator #666666
         background #222222
@@ -272,8 +302,8 @@ bar {
 # include local.conf
 
 # startup applications
-exec_always --no-startup-id nm-applet
-exec_always --no-startup-id pulseaudio --start
-exec_always --no-startup-id lxpolkit
+# exec_always --no-startup-id nm-applet
+# exec_always --no-startup-id pulseaudio --start
+# exec_always --no-startup-id lxpolkit
 # exec_always --no-startup-id feh --bg-fill ~/Public/desktop/dark_planet_minimalist.png
-exec_always --no-startup-id picom
+# exec_always --no-startup-id picom
