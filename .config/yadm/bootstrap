@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Because Git submodule commands cannot operate without a work tree, they must
+# be run from within $HOME (assuming this is the root of your dotfiles)
+cd "$HOME"
+
+echo "Init submodules"
+yadm submodule update --recursive --init
+
+git clone https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
+git clone https://github.com/zsh-users/zsh-autosuggestions .oh-my-zsh/custom/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+git clone https://github.com/romkatv/powerlevel10k .oh-my-zsh/custom/themes/powerlevel10k
+git clone --depth=1 https://github.com/ryanoasis/nerd-fonts /tmp/nerdfonts
+/tmp/nerdfonts/install.sh Hack
+/tmp/nerdfonts/install.sh FiraCode
+/tmp/nerdfonts/install.sh SpaceMono
+rm -rf /tmp/nerdfonts
