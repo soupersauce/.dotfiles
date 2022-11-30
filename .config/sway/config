@@ -245,6 +245,9 @@ bindsym $mod+Ctrl+0 [workspace="10"] move workspace to output current
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
+    bindsym $mod+shift+a focus child
+
+for_window [class="firefox"] layout tabbed 
 #
 # Scratchpad:
 #
