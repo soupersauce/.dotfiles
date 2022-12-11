@@ -62,3 +62,6 @@ signal = 10
 block = "battery"
 interval = 10
 format = "{percentage} {time}"
+
+[[block]]
+block = "notify"
