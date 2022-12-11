@@ -6,10 +6,10 @@ name = "material-nf"
 [[block]]
 block = "focused_window"
 
-[[block]]
-block = "custom"
-interval = 10
-command = "swaync-client -c"
+# [[block]]
+# block = "custom"
+# interval = 10
+# command = "swaync-client -c"
 
 [[block]]
 block = "disk_space"
@@ -20,7 +20,6 @@ alert_absolute = true
 unit = "GB"
 alert = 50
 warning = 40
-
 
 [[block]]
 block = "memory"
@@ -37,12 +36,12 @@ format = "{utilization}{frequency}"
 block = "net"
 format = "{speed_down;K*b}{speed_up;K*b}"
 
-[[block]]
-block = "networkmanager"
-on_click = "foot -e nmtui"
-interface_name_exclude = ['br\-[0-9a-f]{12}', 'docker\d+']
-interface_name_include = []
-ap_format = "{strength} {ssid^10}"
+# [[block]]
+# block = "networkmanager"
+# on_click = "foot -e nmtui"
+# interface_name_exclude = ['br\-[0-9a-f]{12}', 'docker\d+']
+# interface_name_include = []
+# ap_format = "{strength} {ssid^10}"
 
 [[block]]
 block = "external_ip"
@@ -59,19 +58,12 @@ command = "sed 's/  //' <(curl 'https://wttr.in/?format=1' -s)"
 interval = 600
 
 [[block]]
-block = "sound"
-step_width = 3
-
-[[block]]
-block = "battery"
-interval = 10
-format = "{percentage} {time}"
-
-[[block]]
 block = "custom"
-command = "swaync-client -c 🔔"
-# interval = "10"
-on_click = "swaync-client -t"
-[block.icons_overrides]
-icon = "🔔"
+command = "~/.i3-volume/volume output \"%i %v\n\""
+on_click = "~/.i3-volume/volume mute"
+signal = 10
 
+# [[block]]
+# block = "battery"
+# interval = 10
+# format = "{percentage} {time}"

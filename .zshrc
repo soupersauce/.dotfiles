@@ -84,6 +84,7 @@ export NEOVIM_WIN_DIR=/mnt/c/tools/neovim/Neovim/
 export GOPATH=$HOME/go
 export EDITOR="/usr/bin/nvim"
 export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$HOME/.cargo/bin/"
 export EDITOR="/usr/bin/nvim"
 export KEYTIMEOUT=1
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git/**"'
