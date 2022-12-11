@@ -302,7 +302,7 @@ gaps outer 2
 # include local.conf
 
 # startup applications
-exec_always --no-startup-id ~/.cargo/bin/workstyle &> /tmp/workstyle.log
+exec_always --no-startup-id ~/.cargo/bin/sworkstyle -d &> /tmp/sworkstyle.log
 exec_always --no-startup-id /usr/bin/dunst
 exec_always --no-startup-id ~/.cargo/bin/i3-autolayout autolayout
 # exec_always --no-startup-id nm-applet

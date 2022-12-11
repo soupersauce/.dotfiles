@@ -2,7 +2,7 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # If you come from bash you might have to change your $PATH.
@@ -88,8 +88,6 @@ export PATH="$PATH:$HOME/.cargo/bin/"
 export EDITOR="/usr/bin/nvim"
 export KEYTIMEOUT=1
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git/**"'
-export TERM=tmux-256color
-export PREMUX=$TERM
 export NVIMCFG='~/.config/nvim'
 export ORG="/home/$USER/Documents/org"
 export XDG_PICTURES_DIR="$HOME/Pictures/"
