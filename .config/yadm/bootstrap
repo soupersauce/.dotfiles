@@ -2,7 +2,7 @@
 
 # Because Git submodule commands cannot operate without a work tree, they must
 # be run from within $HOME (assuming this is the root of your dotfiles)
-cd "$HOME"
+cd "$HOME" || exit
 
 echo "Init submodules"
 yadm submodule update --recursive --init
@@ -16,3 +16,6 @@ git clone --depth=1 https://github.com/ryanoasis/nerd-fonts /tmp/nerdfonts
 /tmp/nerdfonts/install.sh FiraCode
 /tmp/nerdfonts/install.sh SpaceMono
 rm -rf /tmp/nerdfonts
+curl https://sh.rustup.rs -sSf | sh -s -- -y
+source "$HOME/.cargo/env"
+cargo install i3-autolayout i3status-rs workstyle
