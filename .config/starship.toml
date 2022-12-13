@@ -1,0 +1,279 @@
+# ttyS3's starship config with custom modules
+# repo https://github.com/ttys3/starship-config
+#
+# ~/.config/starship.toml
+# https://starship.rs/config/
+
+# You can change default configuration file location with STARSHIP_CONFIG environment variable
+# for example:
+# export STARSHIP_CONFIG=~/.starship/config.toml
+
+# default logs ~/.cache/starship/session_${STARSHIP_SESSION_KEY}.log
+# make it custom:
+# export STARSHIP_CACHE=~/.starship/cache
+
+# Inserts a blank line between shell prompts
+add_newline = false
+
+# https://starship.rs/config/#default-prompt-format
+right_format = """
+$status\
+$cmd_duration\
+$kubernetes\
+$docker_context\
+$time\
+$username\
+$hostname\
+"""
+format = """
+$custom\
+$shlvl\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$package\
+$deno\
+$golang\
+$helm\
+$nodejs\
+$php\
+$python\
+$rust\
+$memory_usage\
+$aws\
+$gcloud\
+$env_var\
+$lua\
+$jobs\
+$battery\
+$all\
+
+$line_break\
+$shell\
+$character\
+"""
+
+continuation_prompt = "[❯❯]($green)"
+
+# [fill]
+# symbol = '.'
+# style = "bold dark_grey"
+
+[username]
+format = "[$user]($style)"
+style_user = "bold green"
+show_always = true
+
+[hostname]
+ssh_only = false
+format = "[[@](yellow)$ssh_symbol$hostname](cyan) "
+
+[git_status]
+ahead = "[⇡$count](green)"
+diverged = "[⇡$ahead_count⇣$behind_count](green)"
+behind = "[⇣$count](green)"
+conflicted = "[$count](bold red)"
+untracked = "[★$count](yellow)"
+stashed = "[](yellow)"
+modified = '[$count](bold blue)'
+staged = '[✓$count](green)'
+renamed = "[➜$count](yellow)"
+deleted = "[$count](red) "
+
+[character]
+success_symbol = "[❯ ](bold green)"
+vimcmd_symbol = "[❮](bold green) "
+error_symbol = "[❯ ](bold red)"
+vimcmd_visual_symbol = "[V ]bold green) "
+
+[directory]
+read_only = " "
+truncation_length = 4
+truncate_to_repo = true
+truncation_symbol = "…/"
+
+[kubernetes]
+# The namespace needs to be set in the kubeconfig file
+# If the $KUBECONFIG env var is set the module will use that if
+# not it will use the ~/.kube/config
+disabled = false
+# https://starship.rs/advanced-config/#style-strings
+style = "purple bold"
+format = '[$symbol$context( \($namespace\))]($style) '
+
+[time]
+disabled = false
+use_12hr = false
+format = '[\[ $time \]]($style) '
+time_format = "%T"
+utc_time_offset = "local"
+# time_range = "09:00:00-19:10:00"
+
+[git_commit]
+tag_disabled = false
+
+# https://github.com/starship/starship/discussions/1252#discussioncomment-822676
+# show os icon, thanks https://www.nerdfonts.com/cheat-sheet
+#                 
+[custom.os-icon]
+disabled = false
+command = "os-icon"
+style = "bold blue"
+format = "[$symbol($output  )]($style)"
+symbol = ""
+when = "true"
+shell = ["bash", "--noprofile", "--norc"]
+
+# https://github.com/starship/starship/discussions/1252#discussioncomment-838901
+# symbol presets
+# https://starship.rs/presets/#nerd-font-symbols
+[aws]
+symbol = "  "
+
+[conda]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[package]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[bun]
+format = "[$symbol]($style)"
+
+[buf]
+format = "[$symbol]($style)"
+
+[cmake]
+format = "[$symbol]($style)"
+
+[cobol]
+format = "[$symbol]($style)"
+
+[crystal]
+format = "[$symbol]($style)"
+
+[daml]
+format = "[$symbol]($style)"
+
+[dart]
+symbol = " "
+format = "[$symbol]($style)"
+
+[deno]
+format = "[$symbol]($style)"
+
+[dotnet]
+format = "[$symbol(🎯 $tfm )]($style)"
+
+[elixir]
+symbol = " "
+format = '[$symbol]($style)'
+
+[elm]
+symbol = " "
+format = '[$symbol]($style)'
+
+[erlang]
+format = '[$symbol]($style)'
+
+[golang]
+symbol = " "
+format = '[$symbol]($style)'
+
+[helm]
+format = '[$symbol]($style)'
+
+[julia]
+symbol = " "
+format = '[$symbol]($style)'
+
+[kotlin]
+format = '[$symbol]($style)'
+
+[lua]
+symbol = " "
+format = '[$symbol]($style)'
+
+[meson]
+format = '[$symbol]($style)'
+
+[nim]
+symbol = " "
+format = '[$symbol]($style)'
+
+[nodejs]
+format = '[$symbol]($style)'
+
+[ocaml]
+format = '[$symbol(\($switch_indicator$switch_name\) )]($style)'
+
+[perl]
+symbol = " "
+format = '[$symbol]($style)'
+
+[php]
+symbol = " "
+format = '[$symbol]($style)'
+
+[pulumi]
+format = '[$symbol$stack]($style)'
+
+[purescript]
+format = '[$symbol]($style)'
+
+[python]
+symbol = " "
+format = '[$symbol]($style)'
+
+[raku]
+format = '[$symbol]($style)'
+
+[red]
+format = '[$symbol]($style)'
+
+[rlang]
+format = '[$symbol]($style)'
+
+[ruby]
+symbol = " "
+format = '[$symbol]($style)'
+
+[rust]
+symbol = " "
+format = '[$symbol]($style)'
+
+[swift]
+symbol = "ﯣ "
+format = '[$symbol]($style)'
+
+[vagrant]
+format = '[$symbol]($style)'
+
+[vlang]
+format = '[$symbol]($style)'
+
+[zig]
+format = '[$symbol]($style)'

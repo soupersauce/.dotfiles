@@ -6,16 +6,22 @@ cd "$HOME" || exit
 
 echo "Init submodules"
 yadm submodule update --recursive --init
-
+git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+cd ~/.config/nvim && git checkout master && cd "$HOME"
 git clone https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions .oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/romkatv/powerlevel10k .oh-my-zsh/custom/themes/powerlevel10k
+git clone https://github.com/ttys3/starship-config/ ~/git/github.com/ttys3/starship-config/
+cd ~/git/github.com/ttys3/starship-config/os-icon/ && go build && cd "$HOME"
+mkdir -p ~/.local/bin
+cp ~/git/github.com/ttys3/starship-config/os-icon/os-icon ~/.local/bin
 git clone --depth=1 https://github.com/ryanoasis/nerd-fonts /tmp/nerdfonts
 /tmp/nerdfonts/install.sh Hack
 /tmp/nerdfonts/install.sh FiraCode
 /tmp/nerdfonts/install.sh SpaceMono
 rm -rf /tmp/nerdfonts
 curl https://sh.rustup.rs -sSf | sh -s -- -y
-source "$HOME/.cargo/env"
+. "$HOME/.cargo/env"
 cargo install i3-autolayout i3status-rs sworkstyle persway
