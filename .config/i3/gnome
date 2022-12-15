@@ -7,7 +7,7 @@ font pango:Fira Code Nerd Font, Retina 10
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 # exec --no-startup-id /usr/lib/gsd-xsettings
 # exec_always --no-startup-id gnome-power-manager
-# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # exec --no-startup-id gnome-flashback
 
 # Don’t spawn an empty window for the Plasma Desktop
@@ -38,6 +38,7 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [window_role="Preferences"] floating enable
+for_window [window_role="Settings"] floating enable
 for_window [window_role="About"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
@@ -264,14 +265,15 @@ bindsym Ctrl+grave              exec --no-startup-id dunstctl history-pop
 bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
 
 # manage i3 session
-#bindsym $mod+Shift+e exec --no-startup-id i3-nagbar -t warning -f "pango:Fira Code Retina Nerd Font Complete Mono: Regular 9" -m "Do you really want to exit?" -B "    Exit " "i3-msg exit"
-bindsym $mod+Shift+e exec -no-startup-id qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
+bindsym $mod+Shift+e exec --no-startup-id i3-nagbar -t warning -f "pango:Fira Code Nerd Font: Regular 10" -m "Do you really want to exit?" -B "    Exit " "i3-msg exit"
+# bindsym $mod+Shift+e exec -no-startup-id qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
 
 # set specific windows to floating mode
 for_window [window_role="app"]                      floating enable
 for_window [window_role="pop-up"]                   floating enable
 for_window [window_role="task_dialog"]              floating enable
 for_window [title="Preferences$"]                   floating enable
+for_window [title="(?i)settings"]                   floating enable
 
 for_window [class="firefox"] layout tabbed
 
@@ -300,18 +302,18 @@ bar {
 }
 
 # i3-gaps
-smart_gaps on
-gaps inner 8
-gaps outer 2
+# smart_gaps on
+# gaps inner 8
+# gaps outer 2
 
 # local config file
 # include local.conf
 
 # startup applications
-exec --no-startup-id ~/.cargo/bin/sworkstyle -d -c $HOME/.config/sworkstyle/config.toml &> /tmp/sworkstyle.log
+exec ~/.cargo/bin/sworkstyle -d -l debug &> /tmp/sworkstyle.log
 exec --no-startup-id /usr/bin/dunst
 exec --no-startup-id ~/.cargo/bin/i3-autolayout autolayout
-# exec_always --no-startup-id nm-applet
+exec_always --no-startup-id nm-applet
 # exec_always --no-startup-id pulseaudio --start
 # exec_always --no-startup-id lxpolkit
 # exec_always --no-startup-id feh --bg-fill ~/Public/desktop/dark_planet_minimalist.png

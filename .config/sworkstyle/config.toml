@@ -9,6 +9,8 @@
 # Note if multiple patterns are present in the same application name,
 # precedence is given in order of apparition in this file.
 
+fallback = ""
+
 [matching]
 "alacritty" = ""
 "github" = ""
@@ -32,7 +34,6 @@
 "disk usage" = ""
 ".pdf" = ""
 "spotify" = ""
-
-[other]
-fallback_icon = ""
-deduplicate_icons = true
+"/(?i)settings/" = ""
+"/(?i)microsoft teams/" = ""
+"Evolution" = ""

@@ -17,6 +17,7 @@ export ZSH="$HOME/.oh-my-zsh"
 ################################################################################
 # Theme
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 # Case sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -223,9 +224,8 @@ PERL_LOCAL_LIB_ROOT="/home/$USER/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_R
 PERL_MB_OPT="--install_base \"/home/$USER/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/$USER/perl5"; export PERL_MM_OPT;
 
-if eval "$(starship init zsh)"; then
-else if
-    ZSH_THEME="powerlevel10k/powerlevel10k"
+if [[ -f "$(which starship)" ]]; then
+    eval "$(starship init zsh)"
 fi
 
 # pnpm

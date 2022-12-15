@@ -10,7 +10,7 @@ block = "focused_window"
 block = "disk_space"
 path = "/"
 info_type = "used"
-format = "{icon} {used}/{total} ({available} free)"
+format = "{icon}{used}/{total}({available}  )"
 alert_absolute = true
 unit = "GB"
 alert = 50
@@ -34,23 +34,18 @@ format = "{speed_down;K*b}{speed_up;K*b}"
 [[block]]
 block = "networkmanager"
 on_click = "foot -e nmtui"
-interface_name_exclude = ['br\-[0-9a-f]{12}', 'docker\d+']
-interface_name_include = []
-ap_format = "{strength} {ssid^10}"
+interface_name_exclude = ['br\-[0-9a-f]{12}', 'docker\d+', 'virbr[0-9a-f]']
+# interface_name_include = []
+ap_format = "{strength}{ssid^10}"
 
 [[block]]
 block = "external_ip"
-format = "{ip} {region_code}{country_flag}"
+format = "{ip}{region_code}{country_flag}"
 
 [[block]]
 block = "time"
 interval = 5
 format = "%a %d/%m %R"
-
-[[block]]
-block = "custom"
-command = "sed 's/  //' <(curl 'https://wttr.in/?format=1' -s)"
-interval = 600
 
 [[block]]
 block = "custom"

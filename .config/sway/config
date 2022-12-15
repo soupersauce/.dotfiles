@@ -340,7 +340,7 @@ font pango:Fira Code Retina Nerd Font Complete Mono: "Retina" 10
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command i3status-rs
+    status_command ~/.cargo/bin/i3status-rs
 
 colors {
         separator #666666
