@@ -1,0 +1,13 @@
+\.cache
+\.cargo
+\.local/include
+\.local/lib
+\.local/share/flatpak
+\.local/share/mail
+\.mono
+\.mozilla
+\.node
+\.npm
+\.npm-packages
+\.rustup
+go/pkg/mod
