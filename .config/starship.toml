@@ -1,3 +1,4 @@
+"$schema" = 'https://starship.rs/config-schema.json'
 # ttyS3's starship config with custom modules
 # repo https://github.com/ttys3/starship-config
 #
@@ -56,7 +57,7 @@ $shell\
 $character\
 """
 
-continuation_prompt = "[❯❯]($green)"
+continuation_prompt = "[》]($green)"
 
 # [fill]
 # symbol = '.'
@@ -64,36 +65,37 @@ continuation_prompt = "[❯❯]($green)"
 
 [username]
 format = "[$user]($style)"
-style_user = "bold green"
+style_user = "green"
 show_always = true
 
 [hostname]
 ssh_only = false
-format = "[[@](yellow)$ssh_symbol$hostname](cyan) "
+format = " $ssh_symbol[$hostname](cyan)"
 
 [git_status]
-ahead = "[⇡$count](green)"
-diverged = "[⇡$ahead_count⇣$behind_count](green)"
-behind = "[⇣$count](green)"
-conflicted = "[$count](bold red)"
-untracked = "[★$count](yellow)"
-stashed = "[](yellow)"
-modified = '[$count](bold blue)'
-staged = '[✓$count](green)'
-renamed = "[➜$count](yellow)"
-deleted = "[$count](red) "
+ahead = "[$count⇡](green) "
+diverged = "[$ahead_count⇡$behind_count]⇣(green) "
+behind = "[$count⇣](green) "
+conflicted = "[$count](red) "
+untracked = "[$count★](yellow) "
+stashed = "[$count](white) "
+modified = "[$count](blue) "
+staged = "[$count✓](green) "
+renamed = "[$count➜](yellow) "
+deleted = "[$count](red) "
 
 [character]
-success_symbol = "[❯ ](bold green)"
-vimcmd_symbol = "[❮](bold green) "
-error_symbol = "[❯ ](bold red)"
-vimcmd_visual_symbol = "[V ]bold green) "
+success_symbol = "[❯ ](green)"
+vimcmd_symbol = "[❮]( green) "
+error_symbol = "[❯ ]( red)"
+vimcmd_visual_symbol = "[V ] green) "
 
 [directory]
 read_only = " "
 truncation_length = 4
 truncate_to_repo = true
 truncation_symbol = "…/"
+style = 'cyan'
 
 [kubernetes]
 # The namespace needs to be set in the kubeconfig file
@@ -108,6 +110,7 @@ format = '[$symbol$context( \($namespace\))]($style) '
 disabled = false
 use_12hr = false
 format = '[\[ $time \]]($style) '
+style = 'yellow'
 time_format = "%T"
 utc_time_offset = "local"
 # time_range = "09:00:00-19:10:00"
@@ -121,7 +124,7 @@ tag_disabled = false
 [custom.os-icon]
 disabled = false
 command = "os-icon"
-style = "bold blue"
+style = " blue"
 format = "[$symbol($output  )]($style)"
 symbol = ""
 when = "true"
@@ -141,6 +144,7 @@ symbol = " "
 
 [git_branch]
 symbol = " "
+style = "purple"
 
 [hg_branch]
 symbol = " "
