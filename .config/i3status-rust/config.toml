@@ -55,6 +55,7 @@ signal = 10
 
 [[block]]
 block = "battery"
+if_command = "upower -e | grep 'battery_BAT[0-9]'"
 interval = 10
 format = "{percentage} {time}"
 
