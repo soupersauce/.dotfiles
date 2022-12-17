@@ -70,7 +70,7 @@ show_always = true
 
 [hostname]
 ssh_only = false
-format = " $ssh_symbol[$hostname](cyan)"
+format = "$ssh_symbol[$hostname](cyan)"
 
 [git_status]
 ahead = "[$count⇡](green) "
