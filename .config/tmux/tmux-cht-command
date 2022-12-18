@@ -35,3 +35,14 @@ stow
 chmod
 chown
 make
+fd
+rg
+i3-msg
+sway-msg
+i3
+sway
+dd
+kubectl
+bat
+fzf
+imagemagick

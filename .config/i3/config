@@ -208,31 +208,12 @@ bindsym $mod+minus scratchpad show
 #
 # Resizing containers:
 #
-mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
-
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
-
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
+include "modes/resize"
 bindsym $mod+r mode "resize"
 
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86Search exec $menu
 
 # move focused floating window to the center of all outputs
@@ -264,8 +245,8 @@ bindsym Ctrl+grave              exec --no-startup-id dunstctl history-pop
 bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
 
 # manage i3 session
-#bindsym $mod+Shift+e exec --no-startup-id i3-nagbar -t warning -f "pango:Fira Code Retina Nerd Font Complete Mono: Regular 9" -m "Do you really want to exit?" -B "    Exit " "i3-msg exit"
-bindsym $mod+Shift+e exec -no-startup-id qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
+bindsym $mod+Shift+e exec --no-startup-id i3-nagbar -t warning -f "pango:Fira Code Nerd Font: Retina 10" -m "Do you really want to exit?" -B "    Exit " "i3-msg exit"
+# bindsym $mod+Shift+e exec -no-startup-id qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
 
 # set specific windows to floating mode
 for_window [window_role="app"]                      floating enable
@@ -300,9 +281,9 @@ bar {
 }
 
 # i3-gaps
-smart_gaps on
-gaps inner 8
-gaps outer 2
+# smart_gaps on
+# gaps inner 8
+# gaps outer 2
 
 # local config file
 # include local.conf

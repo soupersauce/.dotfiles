@@ -13,6 +13,7 @@ fallback = ""
 
 [matching]
 "alacritty" = ""
+"kitty" = ""
 "github" = ""
 "rust" = ""
 "google" = ""
@@ -37,3 +38,4 @@ fallback = ""
 "/(?i)settings/" = ""
 "/(?i)microsoft teams/" = ""
 "Evolution" = ""
+"zoom" = ""

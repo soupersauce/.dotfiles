@@ -54,13 +54,14 @@ set $down   j
 set $up     k
 set $right  l
 
-set $term alacritty
+set $term kitty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu --no-startup-id "~/.config/rofi/scripts/launcher_t1"
 
-# output * bg #000000 solid_color
+exec feh --bg-scale ~/Pictures/System76-Chainlink-by_Kate_Hazen_of_System76.png
+exec picom
 
 # input type:touchpad {
 #     dwt enabled
@@ -209,26 +210,7 @@ bindsym $mod+minus scratchpad show
 #
 # Resizing containers:
 #
-mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
-
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
-
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
+include "modes/resize"
 bindsym $mod+r mode "resize"
 
 bindsym XF86AudioPlay exec playerctl play-pause
