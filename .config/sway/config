@@ -8,8 +8,9 @@ swaynag_command swaynagmode
 
 exec sway-accel-rotate
 exec wl-paste -t text --watch clipman store --no-persist
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XD
-exec persway --autolayout
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec export MOZ_ENABLE_WAYLAND=1
+exec persway --autolayout -e [tiling] opacity 1 -f [tiling] opacity 0.7; opacity 0.9
 exec_always sworkstyle -d &> /tmp/sworkstyle.log
 
 exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1
@@ -27,8 +28,6 @@ exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1
 exec_always --no-startup-id dunst
 exec_always ~/.cargo/bin/i3-autolayout autolayout
 
-exec --no-startup-id alacritty --config-file ~/.config/alacritty/scratchterm.yml -t scratchterm -d 0 0
-
 default_border pixel
 gaps inner 10
 gaps outer 10
@@ -44,17 +43,19 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term foot
+set $term kitty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu "~/.config/rofi/scripts/launcher_t1"
 
+bindsym $mod+grave [app_id="quake"] scratchpad show
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg #000000 solid_color
+exec wpaperd
+# output * bg /usr/share/backgrounds/pop/nasa-89127.jpg fill
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -330,6 +331,12 @@ bindsym $mod+c exec env RUST_BACKTRACE=1 \
 # bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \
 #     swayr execute-swayr-command >> /tmp/swayr.log 2>&1
 
+client.focused_inactive  #00000000 #06060f99 #c1c1c1dd
+client.focused_tab_title #3940499e #06060f99 #c1c1c1dd #394049ff 
+client.focused #394049ff #06060f99 #c1c1c1dd #c1c1c1dd #394049ff 
+client.unfocused #000000ff #3940499e #c1c1c1dd #000000ff #00000066
+client.urgent #2f343a99  #90000099  #c1c1c1dd #c1c1c1dd
+
 #
 # Status Bar:
 #
@@ -343,20 +350,17 @@ font pango:Fira Code Retina Nerd Font Complete Mono: "Retina" 10
     status_command ~/.cargo/bin/i3status-rs
 
 colors {
-        separator #666666
-        background #222222
+        separator #66666699
+        background #22222299
         statusline #dddddd
-        focused_workspace #0088CC #0088CC #ffffff
-        active_workspace #333333 #333333 #ffffff
-        inactive_workspace #333333 #333333 #888888
-        urgent_workspace #2f343a #900000 #ffffff
+        focused_workspace #3940499e  #06060f99  #c1c1c1dd
+        active_workspace #00000099 #33333399 #c1c1c1dd
+        inactive_workspace #33333399 #33333366 #c1c1c166
+        urgent_workspace #2f343a99 #90000099 #ffffff
 
     }
 }
 
-bindsym grave scratchpad show
-bindsym $mod+Shift+grave move scratchpad
-exec rm -f /tmp/sov && mkfifo /tmp/sov && tail -f /tmp/sov | sov
 
 # Path to volume control, without trailing slash
 set $volumepath ~/.i3-volume
@@ -384,6 +388,9 @@ set $volumestep 2
 bindsym XF86AudioRaiseVolume exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig up $volumestep
 bindsym XF86AudioLowerVolume exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig down $volumestep
 bindsym XF86AudioMute        exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig mute
+
+exec --no-startup-id kitty --class quake --name quake --title quake
+for_window [app_id="quake"] floating enable, border none, move absolute position 120px 28px, resize set 1680px 384px, move scratchpad
 
 include ~/.config/sway/scripts/fzfify_config
 include ~/.config/sway/config.d/*
