@@ -1,0 +1,30 @@
+
+# DEFAULTS:
+# class                   border    backgr.   text      indicator child_border
+# client.focused          #2b83a6   #2b83a6   #ffffff   #dddddd   #2b83a6
+# client.focused_inactive #212121   #212121   #86888c   #292d2e   #5a5a5a
+# client.unfocused        #212121   #212121   #86888c   #292d2e   #5a5a5a
+# client.urgent           #d64e4e   #d64e4e   #ffffff   #d64e4e   #d64e4e
+# client.placeholder      #212121   #0c0c0c   #ffffff   #212121   #262626
+# client.background       #212121
+
+# class                   border    backgr.   text      indicator child_border
+client.focused_inactive   #00000000 #06060f99 #c1c1c1dd
+client.focused_tab_title  #3940499e #06060f99 #c1c1c1dd #394049ff
+client.focused            #394049ff #06060f99 #c1c1c1dd #c1c1c1dd #394049ff 
+client.unfocused          #000000ff #3940499e #c1c1c1dd #000000ff #00000066
+client.urgent             #2f343a99 #90000099 #c1c1c1dd #c1c1c1dd
+
+# bar {
+#   colors {
+#     separator #66666699
+#     background #22222299
+#     statusline #dddddd
+#     focused_workspace #3940499e  #06060f99  #c1c1c1dd
+#     active_workspace #00000099 #33333399 #c1c1c1dd
+#     inactive_workspace #33333399 #33333366 #c1c1c166
+#     urgent_workspace #2f343a99 #90000099 #ffffff
+#   }
+# }
+
+# vim ft=i3config

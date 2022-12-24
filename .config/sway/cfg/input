@@ -1,0 +1,21 @@
+
+### Input configuration
+#
+# Example configuration:
+#
+#Input device: SynPS/2 Synaptics TouchPad
+# Type: Touchpad
+# Identifier: 
+# Product ID: 7
+# Vendor ID: 2
+# Libinput Send Events: enabled
+
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+input type:touchpad {
+    dwt enabled
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+}
+# vim: ft=i3config

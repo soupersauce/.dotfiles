@@ -1,0 +1,18 @@
+
+bar {
+  font $font
+  position top
+  status_command exec $statuscmd
+  tray_output primary
+
+  colors {
+    separator #66666699
+    background #22222299
+    statusline #dddddd
+    focused_workspace #3940499e  #06060f99  #c1c1c1dd
+    active_workspace #00000099 #33333399 #c1c1c1dd
+    inactive_workspace #33333399 #33333366 #c1c1c166
+    urgent_workspace #2f343a99 #90000099 #ffffff66
+  }
+}
+# vim: ft=i3config
