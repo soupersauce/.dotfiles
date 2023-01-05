@@ -1,0 +1,13 @@
+
+# control focused window when follows the mouse movements
+focus_follows_mouse no
+
+# hiding borders adjacent to the screen edges
+hide_edge_borders none
+
+# set popups during fullscreen mode
+popup_during_fullscreen smart
+
+default_border pixel
+smart_borders on
+# vim: ft=i3config

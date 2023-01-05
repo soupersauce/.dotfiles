@@ -23,6 +23,10 @@ set smoothscroll true
 
 seturl service-now.com noiframe true
 
+set completionfuzziness = 0.4
+
+set containerindicator = true
+
 " " Binds
 
 unbind <F1>

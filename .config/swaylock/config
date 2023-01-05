@@ -1,0 +1,28 @@
+clock
+indicator-idle-visible
+image=$HOME/Pictures/backgrounds/pexels-adrien-olichon-2538107.jpg
+scaling=fill
+indicator-radius=100
+indicator-thickness=7
+effect-blur=7x5
+effect-vignette=0.5:0.5
+ring-color=00000066
+font=Fira Code Nerd Font
+key-hl-color=88003366
+line-color=00000000
+inside-color=00000088
+separator-color=00000000
+inside-ver-color=00000000
+inside-clear-color=00000000
+layout-text-color=66666666
+text-color=66666666
+text-clear-color=66666666
+text-ver-color=66666666
+line-ver-color=00000000
+ring-ver-color=00000000
+ring-clear-color=00000000
+line-clear-color=00000000
+grace=0.5
+grace-no-mouse
+fade-in=0.2
+# vim: ft=config

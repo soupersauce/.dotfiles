@@ -1,16 +1,15 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
-set $font pango:Fira Code Retina Nerd Font Complete Mono: "Retina" 10
-set $workstyle sworkstyle -d -c ~/.config/sworkstyle/config.toml 2&1> /tmp/sworkstyle.log
+### Variables
+set $mod Mod4
+set $font pango:Fira Code Retina Nerd Font Complete Mono, "Retina" 10
+set $workstyle sworkstyle -d -c ~/.config/sworkstyle/config.toml -l warn &> /tmp/sworkstyle.log
 set $notifier dunst
-set $persway persway --autolayout -e [tiling] opacity 1 -f [tiling] opacity 0.7; opacity 0.9
+set $persway persway --autolayout -e "opacity 1" -f "[tiling] opacity 0.8; opacity 0.95"
 set $autolayout ~/.cargo/bin/i3-autolayout autolayout
 set $wallpaper wpaperd
+set $statuscmd i3status-rs
 set $term kitty
-set swaynag_command ~/.local/bin/swaynagmode
+set $menu "~/.config/rofi/scripts/launcher_t1"
+set $swaynag_command ~/.local/bin/swaynagmode
 
 exec sway-accel-rotate
 exec wl-paste -t text --watch clipman store --no-persist
@@ -19,51 +18,24 @@ exec_always export MOZ_ENABLE_WAYLAND=1
 
 exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1
 
-include ~/.config/wm/idle
-
 exec_always --no-startup-id $notifier
 exec_always --no-startup-id $workstyle
-exec_always --no-startup-id $autolayout
-
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-set $menu "~/.config/rofi/scripts/launcher_t1"
+exec_always $persway
+exec rm -f /tmp/sovpipe && mkfifo /tmp/sovpipe && tail -f /tmp/sovpipe | sov -t 200
 
 include ~/.config/wm/gaps
-### Variables
-#
 
 include ~/.config/wm/windows
 
 include ~/.config/wm/maps/core
-bindsym $mod+grave [app_id="quake"] scratchpad show
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 exec $wallpaper
-# output * bg /usr/share/backgrounds/pop/nasa-89127.jpg fill
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
 
-output eDP-1 scale 1.0
+include ~/.config/wm/idle/sway
 
-### Idle configuration #
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
+# Inhibit idle when a video device is open
+exec wl-video-idle-inhibit
 
+include cfg/output
 include cfg/input
 set $nag exec swaynagmode
 mode "nag" {
@@ -87,172 +59,58 @@ mode "nag" {
   }
 }
 
-
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec $nag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-#
-# Moving around:
-#
-    # Move your focus around
-bindsym $mod+$left exec sway-overfocus split-lt float-lt output-ls
-bindsym $mod+$down exec sway-overfocus split-dt float-dt output-ds
-bindsym $mod+$up exec sway-overfocus split-ut float-ut output-us
-bindsym $mod+$right exec sway-overfocus split-rt float-rt output-rs
-bindsym $mod+Tab exec sway-overfocus group-rw group-dw
-bindsym $mod+Shift+Tab exec sway-overfocus group-lw group-uw
-# Or use $mod+[up|down|left|right]
-bindsym $mod+Left exec sway-overfocus split-lt float-lt output-ls
-bindsym $mod+Down exec sway-overfocus split-dt float-dt output-ds
-bindsym $mod+Up exec sway-overfocus split-ut float-ut output-us
-bindsym $mod+Right exec sway-overfocus split-rt float-rt output-rs
+# include cfg/waylogout
+include cfg/wlogout
+# include cfg/rofi-powermenu
+# bindsym $mod+Shift+e exec nwg-bar
 
-# Move the focused window with the same, but add Shift
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
-# Ditto, with arrow keys
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-#
+# Focus
+include ~/.config/wm/focus/overfocus
+
 # Workspaces:
-#
-bindsym --no-repeat $mod+1 workspace number 1; exec "echo 1 > /tmp/sov"
-bindsym --no-repeat $mod+2 workspace number 2; exec "echo 1 > /tmp/sov"
-bindsym --no-repeat $mod+3 workspace number 3; exec "echo 1 > /tmp/sov"
-bindsym --no-repeat $mod+4 workspace number 4; exec "echo 1 > /tmp/sov"
-bindsym --no-repeat $mod+5 workspace number 5; exec "echo 1 > /tmp/sov"
-bindsym --no-repeat $mod+6 workspace number 6; exec "echo 1 > /tmp/sov"
-bindsym --no-repeat $mod+7 workspace number 7; exec "echo 1 > /tmp/sov"
-bindsym --no-repeat $mod+8 workspace number 8; exec "echo 1 > /tmp/sov"
-bindsym --no-repeat $mod+9 workspace number 9; exec "echo 1 > /tmp/sov"
-bindsym --no-repeat $mod+0 workspace number 10; exec "echo 1 > /tmp/sov"
+include ~/.config/wm/workspaces/sov
 
-bindsym --release $mod+1 exec "echo 0 > /tmp/sov"
-bindsym --release $mod+2 exec "echo 0 > /tmp/sov"
-bindsym --release $mod+3 exec "echo 0 > /tmp/sov"
-bindsym --release $mod+4 exec "echo 0 > /tmp/sov"
-bindsym --release $mod+5 exec "echo 0 > /tmp/sov"
-bindsym --release $mod+6 exec "echo 0 > /tmp/sov"
-bindsym --release $mod+7 exec "echo 0 > /tmp/sov"
-bindsym --release $mod+8 exec "echo 0 > /tmp/sov"
-bindsym --release $mod+9 exec "echo 0 > /tmp/sov"
-bindsym --release $mod+0 exec "echo 0 > /tmp/sov"
-
-bindsym $mod+Shift+1 move container to workspace number 1
-bindsym $mod+Shift+2 move container to workspace number 2
-bindsym $mod+Shift+3 move container to workspace number 3
-bindsym $mod+Shift+4 move container to workspace number 4
-bindsym $mod+Shift+5 move container to workspace number 5
-bindsym $mod+Shift+6 move container to workspace number 6
-bindsym $mod+Shift+7 move container to workspace number 7
-bindsym $mod+Shift+8 move container to workspace number 8
-bindsym $mod+Shift+9 move container to workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 10
-
-bindsym $mod+Ctrl+1 [workspace="1"] move workspace to output current
-bindsym $mod+Ctrl+2 [workspace="2"] move workspace to output current
-bindsym $mod+Ctrl+3 [workspace="3"] move workspace to output current
-bindsym $mod+Ctrl+4 [workspace="4"] move workspace to output current 
-bindsym $mod+Ctrl+5 [workspace="5"] move workspace to output current
-bindsym $mod+Ctrl+6 [workspace="6"] move workspace to output current
-bindsym $mod+Ctrl+7 [workspace="7"] move workspace to output current
-bindsym $mod+Ctrl+8 [workspace="8"] move workspace to output current
-bindsym $mod+Ctrl+9 [workspace="9"] move workspace to output current
-bindsym $mod+Ctrl+0 [workspace="10"] move workspace to output current
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
-#
 # Resizing containers:
-#
 include ~/.config/wm/modes/resize
 
-bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86MonBrightnessDown exec brightnessctl set 3%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK
-bindsym XF86MonBrightnessUp exec brightnessctl set +3% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK
-bindsym --locked XF86AudioPlay exec playerctl play-pause
-bindsym --locked XF86AudioNext exec playerctl next
-bindsym --locked XF86AudioPrev exec playerctl previous
-bindsym XF86Search exec $menu
+bindsym XF86MonBrightnessDown exec brightnessctl set 3%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +3%
 
-bindsym $mod+Escape exec swaylock \
-  --screenshots \
-  --clock \
-  --indicator \
-  --indicator-radius 100 \
-  --indicator-thickness 7 \
-  --effect-blur 7x5 \
-  --effect-vignette 0.5:0.5 \
-  --ring-color 300068 \
-  --key-hl-color 880033 \
-  --line-color 00000000 \
-  --inside-color 00000088 \
-  # --separator-color 000000 \
-  --grace 2 \
-  --fade-in 0.2
+bindsym $mod+Shift+X exec swaylock -C ~/.config/swaylock/config
 
-bindsym $mod+Space exec env RUST_BACKTRACE=1 \
-    swayr switch-window >> /tmp/swayr.log 2>&1
+# bindsym $mod+Space exec env RUST_BACKTRACE=1 \
+#     swayr switch-window >> /tmp/swayr.log 2>&1
 
-bindsym $mod+Delete exec env RUST_BACKTRACE=1 \
-    swayr quit-window >> /tmp/swayr.log 2>&1
+# bindsym $mod+Delete exec env RUST_BACKTRACE=1 \
+#     swayr quit-window >> /tmp/swayr.log 2>&1
 
 # bindsym $mod+Tab exec env RUST_BACKTRACE=1 \
     # swayr switch-to-urgent-or-lru-window >> /tmp/swayr.log 2>&1
 
-bindsym $mod+Next exec env RUST_BACKTRACE=1 \
-    swayr next-window all-workspaces >> /tmp/swayr.log 2>&2
+# bindsym $mod+Next exec env RUST_BACKTRACE=1 \
+#     swayr next-window all-workspaces >> /tmp/swayr.log 2>&2
 
-bindsym $mod+Prior exec env RUST_BACKTRACE=1 \
-    swayr prev-window all-workspaces >> /tmp/swayr.log 2>&2
+# bindsym $mod+Prior exec env RUST_BACKTRACE=1 \
+#     swayr prev-window all-workspaces >> /tmp/swayr.log 2>&2
 
-bindsym $mod+Shift+Space exec env RUST_BACKTRACE=1 \
-    swayr switch-workspace-or-window >> /tmp/swayr.log 2>&1
+# bindsym $mod+Shift+Space exec env RUST_BACKTRACE=1 \
+#     swayr switch-workspace-or-window >> /tmp/swayr.log 2>&1
 
-bindsym $mod+c exec env RUST_BACKTRACE=1 \
-    swayr execute-swaymsg-command >> /tmp/swayr.log 2>&1
+# bindsym $mod+c exec env RUST_BACKTRACE=1 \
+#     swayr execute-swaymsg-command >> /tmp/swayr.log 2>&1
 
 # bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \
 #     swayr execute-swayr-command >> /tmp/swayr.log 2>&1
 
-#
 # Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
 include ~/.config/wm/bar
 include ~/.config/wm/colors
 
 # Path to volume control, without trailing slash
-set $volumepath ~/.i3-volume
-
-# Command for the status line
-#   ie: i3blocks, i3status
-set $statuscmd i3status-rs
-
-# Signal used to update the status line
-#   i3blocks uses SIGRTMIN+10 by default
-#   i3status uses SIGUSR1 by default
-set $statussig SIGRTMIN+10
-
-# Amount to increase/decrease volume as a percentage
-set $volumestep 2
-
-# pulseaudio-utils settings
-#
-# Symbolic name for sink (numeric index not supported)
-#   Recommended: comment out this setting and omit the -s option to use default sink
-#   List sink names: pacmd list-sinks | awk -F "[<>]" '/^\s+name: <.*>/{print $2}'
-#set $sinkname alsa_output.pci-0000_00_1b.0.analog-stereo
-
-# Using pulseaudio-utils (append "-s $sinkname" without quotes to override default sink)
-bindsym XF86AudioRaiseVolume exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig up $volumestep
-bindsym XF86AudioLowerVolume exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig down $volumestep
-bindsym XF86AudioMute        exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig mute
-
-exec --no-startup-id kitty --class quake --name quake --title quake
-for_window [app_id="quake"] floating enable, border none, move absolute position 120px 28px, resize set 1680px 384px, move scratchpad
+include ~/.config/wm/maps/i3-volume
+include ~/.config/wm/quake
 
 include ~/.config/sway/scripts/fzfify_config
 include ~/.config/sway/config.d/*

@@ -1,7 +1,5 @@
-default_border pixel
-gaps inner 10
-gaps outer 10
-smart_borders on
+gaps inner 5
+gaps outer 5
 smart_gaps inverse_outer
 
 # vim: ft=i3config

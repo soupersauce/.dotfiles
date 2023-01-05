@@ -1,0 +1,23 @@
+debug
+hide-cancel
+screenshots
+# font="Fira Code Nerd Font 2"
+effect-blur=7x5
+indicator-thickness=20
+ring-color=888888aa
+inside-color=88888866
+text-color=eaeaeaaa
+line-color=ffffffff
+ring-selection-color=33cc33aa
+inside-selection-color=33cc3366
+text-selection-color=eaeaeaaa
+line-selection-color=ffffffff
+lock-command="swaylock"
+logout-command="swaymsg exit"
+suspend-command="systemctl suspend"
+hibernate-command="systemctl hibernate"
+poweroff-command="systemctl poweroff"
+reboot-command="systemctl reboot"
+# switch-user-command="echo switch"
+selection-label
+# vim: ft=config

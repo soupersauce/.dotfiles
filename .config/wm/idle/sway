@@ -1,0 +1,7 @@
+exec swayidle -w \
+  timeout 300 'swaylock -C ~/.config/swaylock/config --grace 30' \
+  timeout 400 'swaymsg "output * dpms"' \
+  resume 'swaymsg "output * dpms on"' \
+  before-sleep 'playerctl pause' \
+  before-sleep 'swaylock'
+# vim: ft=i3config

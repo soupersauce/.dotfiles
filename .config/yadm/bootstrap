@@ -14,6 +14,9 @@ git clone https://github.com/zsh-users/zsh-autosuggestions .oh-my-zsh/custom/plu
 git clone https://github.com/zsh-users/zsh-syntax-highlighting .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/romkatv/powerlevel10k .oh-my-zsh/custom/themes/powerlevel10k
 git clone https://github.com/ttys3/starship-config/ ~/git/github.com/ttys3/starship-config/
+git clone https://github.com/jluttine/rofi-power-menu ~/git/github.com/rofi-power-menu/
+cp ~/git/github.com/rofi-power-menu/rofi-power-menu ~/.local/bin/
+chmod +x ~/.local/bin/rofi-power-menu
 cd ~/git/github.com/ttys3/starship-config/os-icon/ && go build && cd "$HOME"
 mkdir -p ~/.local/bin
 cp ~/git/github.com/ttys3/starship-config/os-icon/os-icon ~/.local/bin

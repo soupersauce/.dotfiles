@@ -1,0 +1,13 @@
+# set $notifier dunst -conf ~/.config/dunst/dunstrc
+# set $font pango:Fira Code Nerd Font, Retina 10
+# set $background setrandom -m scale $HOME/Pictures/backgrounds
+# set $statuscmd i3status-rs
+# set $workstyle ~/.cargo/bin/sworkstyle -d -l debug &> /tmp/sworkstyle.log
+
+# set $term kitty
+# # Your preferred application launcher
+# # Note: pass the final command to swaymsg so that the resulting window can be opened
+# # on the original workspace that the command was run on.
+# set $menu --no-startup-id "~/.config/rofi/scripts/launcher_t1"
+
+# vim: ft=i3config

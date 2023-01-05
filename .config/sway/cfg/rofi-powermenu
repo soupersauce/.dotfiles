@@ -1,0 +1,6 @@
+bindsym $mod+Shift+Escape exec rofi -show power-menu -modi power-menu:~/.local/bin/rofi-power-menu \
+  -theme Paper \
+  -font "Fira Code NF 16" \
+  -width 20 \
+  -lines 6
+# vim: ft=i3config

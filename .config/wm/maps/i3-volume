@@ -1,0 +1,22 @@
+
+## Volume control
+
+# Path to volume control, without trailing slash
+set $volumepath ~/.i3-volume
+
+# Command for the status line
+#   ie: i3blocks, i3status
+
+# Signal used to update the status line
+#   i3blocks uses SIGRTMIN+10 by default
+#   i3status uses SIGUSR1 by default
+#   i3status-rs uses SIGRTMIN+10 by default
+set $statussig SIGRTMIN+10
+
+# Amount to increase/decrease volume as a percentage
+set $volumestep 2
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig up $volumestep
+bindsym XF86AudioLowerVolume exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig down $volumestep
+bindsym XF86AudioMute        exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig mute
+# vim: ft=i3config

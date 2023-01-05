@@ -1,0 +1,3 @@
+bindsym $mod+Shift+Escape exec wlogout
+
+# vim: ft=swayconfig

@@ -1,0 +1,4 @@
+exec --no-startup-id kitty --class quake --name quake --title quake
+for_window [app_id="quake"] floating enable, border none, move absolute position 120px 28px, resize set 1680px 384px, move scratchpad
+bindsym $mod+grave [app_id="quake"] scratchpad show
+# vim: ft=i3config

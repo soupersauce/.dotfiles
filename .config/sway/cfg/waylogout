@@ -1,0 +1,3 @@
+bindsym $mod+Shift+Escape exec waylogout -C ~/.config/waylogout/config
+
+# vim: ft=swayconfig

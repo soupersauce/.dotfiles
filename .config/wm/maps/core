@@ -1,6 +1,4 @@
 
-# Logo key. Use Mod1 for Alt.
-set $mod Mod4
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -25,7 +23,7 @@ bindsym $mod+d exec $menu
 # Despite the name, also works for non-floating windows.
 # Change normal to inverse to use left mouse button for resizing and right
 # mouse button for dragging.
-floating_modifier $mod normal
+# floating_modifier $mod normal
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
@@ -48,10 +46,10 @@ bindsym $mod+e layout toggle split
 bindsym $mod+f fullscreen
 
 # Toggle the current focus between tiling and floating mode
-# bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+space floating toggle
 
 # Swap focus between the tiling area and the floating area
-# bindsym $mod+space focus mode_toggle
+bindsym $mod+space focus mode_toggle
 
 # Move focus to the parent container
 bindsym $mod+a focus parent
@@ -83,5 +81,10 @@ bindsym $mod+Shift+Right    move right
 
 # move focused floating window to the current position of the cursor
 bindsym $mod+Shift+m move position mouse
+
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86Search exec $menu
 
 # vim: ft=i3config
