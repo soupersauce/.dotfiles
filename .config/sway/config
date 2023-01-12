@@ -25,12 +25,13 @@ exec rm -f /tmp/sovpipe && mkfifo /tmp/sovpipe && tail -f /tmp/sovpipe | sov -t 
 
 include ~/.config/wm/gaps
 
-include ~/.config/wm/windows
+include ~/.config/wm/windows/core
+include ~/.config/wm/windows/sway
 
 include ~/.config/wm/maps/core
 exec $wallpaper
 
-include ~/.config/wm/idle/sway
+# include ~/.config/wm/idle/sway
 
 # Inhibit idle when a video device is open
 exec wl-video-idle-inhibit

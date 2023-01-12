@@ -1,6 +1,5 @@
 # >>> Window rules <<<
 for_window [class="(?i)firefox"]                              layout tabbed
-for_window [app_id="(?i)firefox"]                             layout tabbed
 
 # Don’t spawn an empty window for the Plasma Desktop
 for_window [title="Desktop — Plasma"]                         kill, floating enable, border none

@@ -1,0 +1,4 @@
+
+for_window [app_id="(?i)firefox"]                             layout tabbed
+
+# vim: ft=swayconfig
