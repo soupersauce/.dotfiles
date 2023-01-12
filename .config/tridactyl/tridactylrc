@@ -75,6 +75,8 @@ unbind --mode=ex <C-c>
 "
 " " Open right click menu on links
 bind ;C composite hint_focus; !s xdotool key Menu
+
+bind <C-,> composite escapehatch; source
 "
 " Suspend / "discard" all tabs - handy for stretching out battery life
 command discardall jsb browser.tabs.query({}).then(ts => browser.tabs.discard(ts.map(t=>t.id)))
