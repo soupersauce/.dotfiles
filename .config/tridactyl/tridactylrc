@@ -38,12 +38,12 @@ bind j scrollline 5
 bind k scrollline -5
 
 " " make d take you to the left (I find it much less confusing)
-" bind d composite  tabclose # */; tabprev
-bind D tabclose */
+bind D composite tabprev; tabclose #
+bind d composite tabclose;
+" bind D js:addons.webextension.{8645f5e1-2d18-480f-ae0b-67b39b1150c3}
 "
 " " make t open the selection with tabopen
 " bind --mode=visual t composite js document.getSelection().toString() | fillcmdline tabopen
-
 bind n findnext 1
 bind N findnext -?
 

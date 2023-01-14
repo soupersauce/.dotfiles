@@ -50,12 +50,11 @@
 *color21: base06
 
 !! Fonts
-#define fonts xft:Hack:pixelsize=12,\
-              xft:FontAwesome:size=12,\
-              xft:Dejavu Sans:style=book:size=14
+#define fonts xft:Fira Code Nerd Font Complete:pixelsize=12,\
 
+!Xft.i3font "Fira Code Nerd Font Complete, Regular 12"
 
-! Application-specific configuration:
+! Application/Machine-specific configuration:
 #include ".Xresources.d/urxvt"
 #include ".Xresources.d/dpi"
 

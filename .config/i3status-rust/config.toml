@@ -33,8 +33,8 @@ format = "{speed_down;K*b}{speed_up;K*b}"
 
 [[block]]
 block = "networkmanager"
-on_click = "foot -e nmtui"
-interface_name_exclude = ['br\[0-9a-f]', 'docker\d+', 'virbr[0-9a-f]']
+# on_click = "foot -e nmtui"
+interface_name_exclude = ['br[0-9a-f]', 'docker\d+', 'virbr[0-9a-f]', 'ppp[0-9]']
 # interface_name_include = []
 ap_format = "{strength}{ssid^10}"
 

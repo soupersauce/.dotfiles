@@ -4,7 +4,7 @@ exec --no-startup-id xrandr --output eDP-1 --primary
 
 include $HOME/.config/i3/vars
 set $notifier dunst -conf ~/.config/dunst/dunstrc
-set $font pango:Fira Code Nerd Font, Retina 10
+set $font pango:Fira Code Nerd Font, Regular 10
 set $background setrandom -m scale $HOME/Pictures/backgrounds
 set $statuscmd i3status-rs
 set $workstyle ~/.cargo/bin/sworkstyle -d -l warn &> /tmp/sworkstyle.log
@@ -23,14 +23,13 @@ font $font
 # exec_always --no-startup-id gnome-power-manager
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-include $HOME/.config/wm/windows
+include $HOME/.config/wm/windows/core
 # use win key= Mod4
 # TODO: alt key?
 set $mod Mod4
 
 exec_always --no-startup-id $background
 exec_always --no-startup-id picom --experimental-backends
-exec --no-startup-id gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "[{'Gdk/WindowScalingFactor', <2>}]"
 
 include $HOME/.config/i3/startup
 include $HOME/.config/wm/maps/core

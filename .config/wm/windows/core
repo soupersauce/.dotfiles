@@ -42,6 +42,7 @@ for_window [class="(?i)dunst" window_type="notification"]     floating enable, b
 no_focus   [class="(?i)dunst" window_type="notification"]
 for_window [class="(?i)slack" ]                               move container workspace number 10
 for_window [class="(?i)teams"]                                move container workspace number 10
+for_window [title="Zoom - Free Account"]                      floating enable; border none
 
 
 # any window with the title "fzf-switcher" will be floating
