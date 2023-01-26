@@ -86,13 +86,13 @@ command discardall jsb browser.tabs.query({}).then(ts => browser.tabs.discard(ts
 nativeinstallcmd "curl -fsSl https://raw.githubusercontent.com/tridactyl/native_messenger/master/installers/install.sh -o /tmp/trinativeinstall.sh && sh /tmp/trinativeinstall.sh master"
 
 " " set editorcmd to suckless terminal, or use the defaults on other platforms
-js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "alacritty -e nvim" : "auto"; tri.config.set("editorcmd", editorcmd)})
+js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "kitty nvim" : "auto"; tri.config.set("editorcmd", editorcmd)})
 
 " " set profile dir on Windows
-jsb browser.runtime.getPlatformInfo().then(os=>{const profiledir = os.os=="win" ? "C:\\Users\\souper\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\gwm76nmk.default" : "auto"; tri.config.set("profiledir", profiledir)})
+" jsb browser.runtime.getPlatformInfo().then(os=>{const profiledir = os.os=="win" ? "C:\\Users\\souper\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\gwm76nmk.default" : "auto"; tri.config.set("profiledir", profiledir)})
 
 " " Sane hinting mode
-" set hintfiltermode vimperator-reflow
+set hintfiltermode vimperator-reflow
 " set hintnames numeric
 "
 " " Defaults to 300ms but I'm a 'move fast and close the wrong tabs' kinda chap
