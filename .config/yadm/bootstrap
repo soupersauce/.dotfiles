@@ -4,27 +4,31 @@
 # be run from within $HOME (assuming this is the root of your dotfiles)
 cd "$HOME" || exit
 
-echo "Init submodules"
-yadm submodule update --recursive --init
-git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-cd ~/.config/nvim && git checkout master && cd "$HOME"
-git clone https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
-git clone https://github.com/zsh-users/zsh-autosuggestions .oh-my-zsh/custom/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-git clone https://github.com/romkatv/powerlevel10k .oh-my-zsh/custom/themes/powerlevel10k
+# Make expected directories
+mkdir -p ~/.local/bin
+mkdir -p ~/git/github.com/
+
+git clone ssh://git@github.com/soupersauce/anvil ~/.config/nvim
+git clone https://github.com/ohmyzsh/ohmyzsh ~/.oh-my-zsh
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+git clone https://github.com/romkatv/powerlevel10k ~/.oh-my-zsh/custom/themes/powerlevel10k
 git clone https://github.com/ttys3/starship-config/ ~/git/github.com/ttys3/starship-config/
 git clone https://github.com/jluttine/rofi-power-menu ~/git/github.com/rofi-power-menu/
 cp ~/git/github.com/rofi-power-menu/rofi-power-menu ~/.local/bin/
 chmod +x ~/.local/bin/rofi-power-menu
 cd ~/git/github.com/ttys3/starship-config/os-icon/ && go build && cd "$HOME"
-mkdir -p ~/.local/bin
 cp ~/git/github.com/ttys3/starship-config/os-icon/os-icon ~/.local/bin
-# git clone --depth=1 https://github.com/ryanoasis/nerd-fonts /tmp/nerdfonts
-# /tmp/nerdfonts/install.sh Hack
-# /tmp/nerdfonts/install.sh FiraCode
-# /tmp/nerdfonts/install.sh SpaceMono
-# rm -rf /tmp/nerdfonts
-# curl https://sh.rustup.rs -sSf | sh -s -- -y
-# . "$HOME/.cargo/env"
-cargo install i3-autolayout i3status-rs sworkstyle persway
+
+if [[ 0 -eq $(grep arch /etc/os-release) ]]; then
+  echo "Arch derivative; install nerdfonts, cargo packages, etc from repos"
+else
+ git clone --depth=1 https://github.com/ryanoasis/nerd-fonts /tmp/nerdfonts
+ /tmp/nerdfonts/install.sh Hack
+ /tmp/nerdfonts/install.sh FiraCode
+ /tmp/nerdfonts/install.sh SpaceMono
+ rm -rf /tmp/nerdfonts
+ curl https://sh.rustup.rs -sSf | sh -s -- -y
+ . "$HOME/.cargo/env"
+ cargo install i3-autolayout i3status-rs sworkstyle persway starship install-update
+fi
