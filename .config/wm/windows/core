@@ -1,5 +1,5 @@
 # >>> Window rules <<<
-for_window [class="(?i)firefox"]                              layout tabbed
+for_window [class="firefox"]                              layout tabbed
 
 # Don’t spawn an empty window for the Plasma Desktop
 for_window [title="Desktop — Plasma"]                         kill, floating enable, border none
@@ -38,8 +38,8 @@ for_window [title="Preferences$"]                             floating enable
 for_window [title="(?i)settings"]                             floating enable
 
 for_window [class="(?i)nwg-bar"]                              floating enable; border none
-for_window [class="(?i)dunst" window_type="notification"]     floating enable, border none, move position top left
-no_focus   [class="(?i)dunst" window_type="notification"]
+for_window [class="Dunst" window_type="notification"]     floating enable, border none, move position top left
+no_focus   [class="Dunst" window_type="notification"]
 for_window [class="(?i)slack" ]                               move container workspace number 10
 for_window [class="(?i)teams"]                                move container workspace number 10
 for_window [title="Zoom - Free Account"]                      floating enable; border none
