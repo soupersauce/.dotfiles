@@ -38,9 +38,9 @@ interface_name_exclude = ['br[0-9a-f]', 'docker\d+', 'virbr[0-9a-f]', 'ppp[0-9]'
 # interface_name_include = []
 ap_format = "{strength}{ssid^10}"
 
-[[block]]
-block = "external_ip"
-format = "{ip}{region_code}{country_flag}"
+# [[block]]
+# block = "external_ip"
+# format = "{ip}{region_code}{country_flag}"
 
 [[block]]
 block = "time"
