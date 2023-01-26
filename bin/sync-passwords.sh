@@ -14,10 +14,10 @@
 #####################
 
 # Name of your remote storage as defined in Rclone
-#DRIVE_NAME="" the name of the rclone remote
+DRIVE_NAME="gdrive" #pass envvar for rclone remote
 
 # Name and locations of the passwords file
-#DB_FILE_NAME="" # set filename as env variable for service
+DB_FILE_NAME="mdb.kdbx" #pass envar for db filename
 LOCAL_LOCATION="$HOME/Documents"
 REMOTE_LOCATION=""
 
@@ -35,27 +35,27 @@ shopt -s expand_aliases
 
 function format_datetime_from_string ()
 {
-	echo $( date -d "$1" +"%F %T.%3N" )
+	echo `date -d "$1" +"%F %T.%3N"`
 }
 
 # Parse local passwords file modification time using the stat command
 function get_local_passwords_mtime ()
 {
-        local string=$( stat -c %y $LOCAL_PATH | cut -d ' ' -f 1,2; )
-	 echo $( format_datetime_from_string "$string" )
+        local string=`stat -c %y $LOCAL_PATH | cut -d ' ' -f 1,2;`
+	echo `format_datetime_from_string "$string"`
 }
 
 # Parse remote passwords file modification time using Rclone's lsl command
 # See: https://rclone.org/commands/rclone_lsl/
 function get_remote_passwords_mtime ()
 {
-	output=$( rclone lsl $DRIVE_NAME:$REMOTE_PATH 2>/dev/null )
+	output=`rclone lsl $DRIVE_NAME:$REMOTE_PATH 2>/dev/null`
 	if [ $? -eq 3 ]; then
 		unset output
 		return 1
 	else
-        	local string=$( echo "$output" | tr -s ' ' | cut -d ' ' -f 3,4; )
-		echo $( format_datetime_from_string "$string" )
+        	local string=`echo "$output" | tr -s ' ' | cut -d ' ' -f 3,4;`
+		echo `format_datetime_from_string "$string"`
 		unset output
 		return 0
 	fi
@@ -66,8 +66,8 @@ function sync_passwords ()
 {
 
 	# Storing the values so they can be used for printing and then conversion
-        local human_readable_local_mtime=$( get_local_passwords_mtime )
-        human_readable_remote_mtime=$( get_remote_passwords_mtime 2>/dev/null )
+        local human_readable_local_mtime=`get_local_passwords_mtime`
+        human_readable_remote_mtime=`get_remote_passwords_mtime 2>/dev/null`
 
 	# In case there is no remote yet
 	if [ $? -ne 0 ]; then
