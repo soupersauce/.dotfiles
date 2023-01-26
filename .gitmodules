@@ -2,3 +2,6 @@
 	path = .config/nvim
 	url = ssh://git@github.com/soupersauce/anvil
 	ignore = all
+[submodule ".tmux/tmux-better-mouse-mode"]
+	path = .tmux/tmux-better-mouse-mode
+	url = https://github.com/NHDaly/tmux-better-mouse-mode
