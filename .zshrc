@@ -36,23 +36,36 @@ COMPLETION_WAITING_DOTS="true"
 # Untracked files dirty in version-control
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+# DISABLE_AUTO_TITLE="true"
+
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyymmdd"
 
 DISABLE_LS_COLORS="false"
 
+FZF_BASE='~/.fzf/'
 ################################################################################
 # 						Plugins
 ################################################################################
 plugins=(
     git
+    gh
+    ripgrep
+    catimg
     colored-man-pages
     colorize
     command-not-found
+    common-aliases
+    copybuffer
+    copyfile
+    fd
+    fzf
     history
-    tmux
     ubuntu
     themes
+    rsync
+    rust
+    sudo
     zsh-autosuggestions
     vi-mode
     alias-finder
