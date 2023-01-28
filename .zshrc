@@ -52,6 +52,7 @@ plugins=(
     gh
     ripgrep
     catimg
+    zoxide
     colored-man-pages
     colorize
     command-not-found
@@ -240,7 +241,6 @@ PERL_MM_OPT="INSTALL_BASE=/home/$USER/perl5"; export PERL_MM_OPT;
 if [[ -f "$(which starship)" ]]; then
     eval "$(starship init zsh)"
 fi
-source ~/.completions/*
 # pnpm
 export PNPM_HOME="/home/souper/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
