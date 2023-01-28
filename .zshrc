@@ -52,6 +52,7 @@ plugins=(
     gh
     ripgrep
     catimg
+    zoxide
     colored-man-pages
     colorize
     command-not-found
