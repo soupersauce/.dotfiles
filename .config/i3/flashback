@@ -23,11 +23,14 @@ exec --no-startup-id /usr/bin/gnome-screensaver
 exec_always --no-startup-id gnome-power-manager
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id gnome-flashback
+exec_always --no-startup-id feh --bg-scale --randomize --recursive ~/Pictures/backgrounds/*
 
 include $HOME/.config/wm/windows/core
 # use win key= Mod4
 # TODO: alt key?
 set $mod Mod4
+
+include include/windowpicker
 
 exec_always --no-startup-id picom --experimental-backends
 
@@ -73,8 +76,8 @@ include $HOME/.config/wm/i3quake
 # startup applications
 exec --no-startup-id $workstyle
 exec --no-startup-id dbus-launch $notifier
-# exec --no-startup-id ~/.cargo/bin/i3-autolayout autolayout
-exec_always --no-startup-id dbus-launch nm-applet
+exec --no-startup-id ~/.cargo/bin/i3-autolayout autolayout
+exec --no-startup-id dbus-launch nm-applet
 exec --no-startup-id dbus-launch remmina -i
 
 bindsym XF86MonBrightnessDown exec brightnessctl set 3%-

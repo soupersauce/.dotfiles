@@ -27,6 +27,7 @@ floating_modifier $mod
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
 
 #
 # Layout stuff:
