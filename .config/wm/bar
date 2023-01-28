@@ -1,6 +1,6 @@
 
 bar {
-  font $font
+  font pango:Fira Code Nerd Font, Regular 10
   position top
   status_command exec $statuscmd
   tray_output primary

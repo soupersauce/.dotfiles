@@ -26,7 +26,6 @@ exec --no-startup-id gnome-flashback
 
 include $HOME/.config/wm/windows/core
 # use win key= Mod4
-# TODO: alt key?
 set $mod Mod4
 
 exec_always --no-startup-id picom --experimental-backends
@@ -42,12 +41,6 @@ include $HOME/.config/wm/workspaces/base
 # Resizing containers:
 #
 include $HOME/.config/wm/modes/resize
-
-# set a window to stick to the glass
-bindsym $mod+Shift+s sticky toggle
-
-# sticky preview for media
-bindsym $mod+Shift+p fullscreen disable; floating enable; resize set 350 px 197 px; sticky enable; move window to position 1006 px 537 px
 
 # shortcut applications
 bindsym Print                   exec --no-startup-id scrot

@@ -28,6 +28,8 @@ floating_modifier $mod
 # Reload the configuration file
 bindsym $mod+Shift+c reload
 
+# Restart wm in place
+bindsym $mod+Shift+r restart
 #
 # Layout stuff:
 #
@@ -39,7 +41,7 @@ bindsym $mod+v splitv
 
 # Switch the current container between different layout styles
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+w exec i3-autolayout tabmode
 bindsym $mod+e layout toggle split
 
 # Make the current focus fullscreen
@@ -50,6 +52,9 @@ bindsym $mod+Shift+space floating toggle
 
 # Swap focus between the tiling area and the floating area
 bindsym $mod+space focus mode_toggle
+
+# move focused floating window to the center of all outputs
+# bindsym $mod+Shift+h move absolute position center
 
 # Move focus to the parent container
 bindsym $mod+a focus parent
@@ -66,6 +71,13 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
+
+# set a window to stick to the glass
+bindsym $mod+Shift+s sticky toggle
+
+# sticky preview for media
+bindsym $mod+Shift+p fullscreen disable; floating enable; resize set 350 px 197 px; sticky enable; move window to position 1006 px 537 px
+
 
 # move focused window
 bindsym $mod+Shift+$left    move left
