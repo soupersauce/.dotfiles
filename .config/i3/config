@@ -69,7 +69,7 @@ exec --no-startup-id i3-autolayout autolayout
 exec --no-startup-id dbus-launch nm-applet
 exec --no-startup-id wireplumber
 exec --no-startup-id lxpolkit
-# exec_always --no-startup-id feh --bg-fill ~/Public/desktop/dark_planet_minimalist.png
+exec_always --no-startup-id feh --bg-scale --randomize --recurse ~/Pictures/backgrounds/*
 
 ## Volume control
 
