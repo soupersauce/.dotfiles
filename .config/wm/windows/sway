@@ -1,4 +1,6 @@
-
+default_border none
 for_window [app_id="(?i)firefox"]                             layout tabbed
+for_window [title=".*(^firefox)"] default_border normal 0 default_floating_border normal 0
+
 
 # vim: ft=swayconfig

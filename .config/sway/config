@@ -8,8 +8,7 @@ set $autolayout ~/.cargo/bin/i3-autolayout autolayout
 set $wallpaper wpaperd
 set $statuscmd i3status-rs
 set $term kitty
-set $menu "~/.config/rofi/scripts/launcher_t1"
-set $swaynag_command ~/.local/bin/swaynagmode
+set $menu "TERMINAL=/usr/bin/kitty ~/.config/rofi/scripts/launcher_t4"
 
 exec sway-accel-rotate
 exec wl-paste -t text --watch clipman store --no-persist
@@ -38,34 +37,9 @@ exec wl-video-idle-inhibit
 
 include cfg/output
 include cfg/input
-set $nag exec swaynagmode
-mode "nag" {
-  bindsym {
-    Ctrl+d    mode "default"
-
-    Ctrl+c    $nag --exit
-    q         $nag --exit"
-    Escape    $nag --exit
-
-    Return    $nag --confirm
-
-    Tab       $nag --select prev
-    Shift+Tab $nag --select next
-
-    Left      $nag --select prev
-    Right     $nag --select next
-
-    Up        $nag --select prev
-    Down      $nag --select next
-  }
-}
 
 # Exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec $nag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-# include cfg/waylogout
-include cfg/wlogout
-# include cfg/rofi-powermenu
-# bindsym $mod+Shift+e exec nwg-bar
+bindsym $mod+Shift+e exec --no-startup-id ~/.config/rofi/powermenu/type-2/powermenu.sh
 
 # Focus
 include ~/.config/wm/focus/overfocus
@@ -111,7 +85,7 @@ include ~/.config/wm/colors
 
 # Path to volume control, without trailing slash
 include ~/.config/wm/maps/i3-volume
-include ~/.config/wm/quake
+include ~/.config/wm/swayquake
 
 include ~/.config/sway/scripts/fzfify_config
 include ~/.config/sway/config.d/*

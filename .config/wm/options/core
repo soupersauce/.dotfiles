@@ -8,6 +8,7 @@ hide_edge_borders none
 # set popups during fullscreen mode
 popup_during_fullscreen smart
 
-default_border pixel 0
+default_border pixel
+default_floating_border pixel
 # smart_borders on
 # vim: ft=i3config
