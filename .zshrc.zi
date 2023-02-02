@@ -1,0 +1,59 @@
+source <(curl -sL init.zshell.dev); zzinit
+if [[ -x "$HOME/.zi/bin/zi.zsh" ]]; then
+    . ~/.zi/bin/zi.zsh
+else
+    . <(curl -sL init.zshell.dev); zzinit
+    sh -c "$(curl -fsSL get.zshell.dev)" -- -i skip -b main -a annex
+fi
+
+zi ice as"command" from"gh-r" \
+    atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+    atpull"%atclone" src"init.zsh"
+zi light starship/starship
+
+zi light z-shell/z-a-meta-plugins
+zi light-mode for @annexes @zsh-users @console-tools @z-shell
+
+zi wait lucid for \
+    atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    z-shell/F-Sy-H \
+    blockf \
+    zsh-users/zsh-completions \
+    atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
+
+zi has'zoxide' wait lucid for \
+    z-shell/zsh-zoxide
+
+zi ice as"program" pack"default+keys" for fzf \
+  pick"~/.fzf/ \
+  make="PREFIX=$HOME DESTDIR=$HOME/.fzf install"
+
+zi snippet OMZP::git
+zi snippet OMZP::gh
+zi light zsh-users/zsh-autosuggestions
+zi pack for ls_colors
+# zi snippet OMZP::ripgrep
+# zi snippet OMZP::catimg
+# zi snippet OMZP::zoxide
+# zi snippet OMZP::colored-man-pages
+# zi snippet OMZP::colorize
+# zi snippet OMZP::command-not-found
+# zi snippet OMZP::common-aliases
+# zi snippet OMZP::copybuffer
+# zi snippet OMZP::copyfile
+# zi snippet OMZP::fd
+# zi snippet OMZP::fzf
+# zi snippet OMZP::history
+# zi snippet OMZP::rsync
+# zi snippet OMZP::rust
+# zi snippet OMZP::sudo
+# zi snippet OMZP::zsh-autosuggestions
+# zi snippet OMZP::vi-mode
+# zi snippet OMZP::alias-finder
+# zi snippet OMZP::zsh-syntax-highlighting # This Plugin should be loaded last
+
+autoload -Uz compinit
+compinit
+
+zi cdreplay -q
