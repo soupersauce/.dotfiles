@@ -1,0 +1,69 @@
+belak/zsh-utils path:editor
+belak/zsh-utils path:history
+belak/zsh-utils path:utility
+
+foxleigh81/unwrap-zsh-plugin
+
+csurfer/tmuxrepl
+
+arzzen/calc.plugin.zsh
+Tarrasch/zsh-bd
+
+fdellwing/zsh-bat
+none9632/zsh-sudo/
+
+davidde/git
+laggardkernel/git-ignore
+
+mattmc3/zsh-xdg-basedir
+MichaelAquilina/zsh-history-filter
+
+~/.fzf/bin/ kind:path
+junegunn/fzf path:shell
+redxtech/zsh-show-path
+rummik/zsh-tailf
+b0o/zfzf
+srijanshetty/zsh-suffix-alias
+
+le0me55i/zsh-systemd
+
+# MohamedElashri/fd-zsh
+TwoPizza9621536/zsh-exa
+reegnz/jq-zsh-plugin
+Czocher/gpg-crypt
+
+# ahmetb/kubectx
+# ahmetb/kubectl-aliases path:.kubectl_aliases kind:zsh
+# benjefferies/safe-kubectl
+
+mattmc3/zman
+
+
+RobertAudi/tsm path:dist/bin/tsm kind:path
+RobertAudi/tsm path:dist/functions/_tsm kind:fpath
+
+Freed-Wu/zsh-command-not-found
+ael-code/zsh-colored-man-pages
+
+
+amyreese/zsh-titles
+jeffreytse/zsh-vi-mode
+
+~/.config/zsh/zshrc.d/
+
+zsh-users/zsh-completions path:src kind:fpath
+ptavares/zsh-terraform
+MenkeTechnologies/zsh-cargo-completion
+eastokes/aws-plugin-zsh
+wintermi/zsh-rust
+belak/zsh-utils path:completion
+MenkeTechnologies/zsh-cargo-completion path:src kind:fpath
+robin-mbg/switch-git
+kjhaber/tm.zsh
+
+zsh-users/zsh-autosuggestions
+3v1n0/zsh-bash-completions-fallback
+zdharma-continuum/fast-syntax-highlighting kind:defer
+zsh-users/zsh-history-substring-search
+
+# vim: ft=zsh sw=2 ts=2 et
