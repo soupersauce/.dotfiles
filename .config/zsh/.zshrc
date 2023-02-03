@@ -1,3 +1,8 @@
+if [[ ! -a "$ZDOTDIR/.antidote/antidote.zsh" ]]; then
+  git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
+fi
+first, run this from an interactive zsh terminal session:
+
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 
 # Set general Zsh options needed for config.
@@ -65,12 +70,11 @@ antidote load
 
 function zvm_after_init() {
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
-if [[ -n "$key_info" ]]; then
-  # vi
-  bindkey -M viins "$key_info[Control]F" vi-forward-word
-  bindkey -M viins "$key_info[Control]E" vi-add-eol
-fi
+  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+  if [[ -n "$key_info" ]]; then
+    # vi
+    bindkey -M viins "$key_info[Control]F" vi-forward-word
+    bindkey -M viins "$key_info[Control]E" vi-add-eol
+  fi
 
 }
-

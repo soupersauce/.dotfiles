@@ -19,10 +19,9 @@ mattmc3/zsh-xdg-basedir
 MichaelAquilina/zsh-history-filter
 
 ~/.fzf/bin/ kind:path
-junegunn/fzf path:shell
+~/.fzf/ path:shell
 redxtech/zsh-show-path
 rummik/zsh-tailf
-b0o/zfzf
 srijanshetty/zsh-suffix-alias
 
 le0me55i/zsh-systemd
@@ -38,19 +37,18 @@ Czocher/gpg-crypt
 
 mattmc3/zman
 
-
 RobertAudi/tsm path:dist/bin/tsm kind:path
 RobertAudi/tsm path:dist/functions/_tsm kind:fpath
 
 Freed-Wu/zsh-command-not-found
 ael-code/zsh-colored-man-pages
 
-
 amyreese/zsh-titles
 jeffreytse/zsh-vi-mode
 
 ~/.config/zsh/zshrc.d/
 
+b0o/zfzf
 zsh-users/zsh-completions path:src kind:fpath
 ptavares/zsh-terraform
 MenkeTechnologies/zsh-cargo-completion
@@ -64,6 +62,6 @@ kjhaber/tm.zsh
 zsh-users/zsh-autosuggestions
 3v1n0/zsh-bash-completions-fallback
 zdharma-continuum/fast-syntax-highlighting kind:defer
-zsh-users/zsh-history-substring-search
+# zsh-users/zsh-history-substring-search
 
 # vim: ft=zsh sw=2 ts=2 et
