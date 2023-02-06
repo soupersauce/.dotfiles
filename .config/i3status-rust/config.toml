@@ -15,6 +15,7 @@ alert_absolute = true
 unit = "GB"
 alert = 50
 warning = 40
+if_command = "[[ $(df -h  --output=avail / | tail -n1 | cut -dG -f1) -lt 100 ]]"
 
 [[block]]
 block = "memory"
