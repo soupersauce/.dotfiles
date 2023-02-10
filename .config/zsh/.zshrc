@@ -1,7 +1,7 @@
 if [[ ! -a "$ZDOTDIR/.antidote/antidote.zsh" ]]; then
   git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
 fi
-first, run this from an interactive zsh terminal session:
+# first, run this from an interactive zsh terminal session:
 
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 
@@ -78,3 +78,5 @@ function zvm_after_init() {
   fi
 
 }
+export TMUX_CONFIG=$HOME/.tmux.conf
+export CARGO_HOME=$HOME/.cargo

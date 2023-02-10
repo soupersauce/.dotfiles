@@ -15,7 +15,6 @@ none9632/zsh-sudo/
 davidde/git
 laggardkernel/git-ignore
 
-mattmc3/zsh-xdg-basedir
 MichaelAquilina/zsh-history-filter
 
 ~/.fzf/bin/ kind:path
