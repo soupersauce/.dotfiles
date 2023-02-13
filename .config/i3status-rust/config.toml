@@ -43,9 +43,15 @@ ap_format = "{strength}{ssid^10}"
 # format = "{ip}{region_code}{country_flag}"
 
 [[block]]
+block = "sound"
+format = "{output_description} {volume}"
+on_click = "~/bin/i3-scratchpad -d675x525 -atr -p-400,25 -wt -mt pavucontrol-qt"
+
+[[block]]
 block = "time"
 interval = 5
 format = "%a%F %R"
+on_click = "~/bin/i3-scratchpad -d175x125 -atr -p-120,25 -wtu -mt cal"
 
 [[block]]
 block = "custom"

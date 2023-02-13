@@ -1,9 +1,9 @@
-exec_always pavucontrol-qt
-for_window [title="^pavucontrol-qt$"] floating enable
-for_window [title="^pavucontrol-qt$"] border pixel 0
-for_window [title="^pavucontrol-qt$"] resize set 675 525
-for_window [title="^pavucontrol-qt$"] move absolute position 1825 30
-for_window [title="^pavucontrol-qt$"] move scratchpad
+# exec_always pavucontrol-qt
+# for_window [title="^pavucontrol-qt$"] floating enable
+# for_window [title="^pavucontrol-qt$"] border pixel 0
+# for_window [title="^pavucontrol-qt$"] resize set 675 525
+# for_window [title="^pavucontrol-qt$"] move absolute position 1825 30
+# for_window [title="^pavucontrol-qt$"] move scratchpad
 
-bindsym $mod+o [title="^pavucontrol-qt$"] scratchpad show
+bindsym $mod+o exec --no-startup-id ~/.config/wm/maps/pavucontrol.sh
 # vim: ft=i3config
