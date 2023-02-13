@@ -16,7 +16,7 @@ set $term kitty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu --no-startup-id "~/.config/rofi/scripts/launcher_t1"
+set $menu --no-startup-id "~/.config/rofi/scripts/launcher_t4"
 # font for window titles and bar
 font pango:Fira Code Nerd Font, Regular 10
 
@@ -25,6 +25,7 @@ include $HOME/.config/wm/windows/core
 set $mod Mod4
 
 exec_always --no-startup-id picom
+exec --no-startup-id light-locker --lock-after-screesaver=5 --idle-hint --no-late-locking --idle-hint
 
 # include $HOME/.config/i3/startup
 include $HOME/.config/wm/maps/core
@@ -42,13 +43,14 @@ include $HOME/.config/wm/modes/resize
 # switching window with win+tab
 # bindsym $mod+Tab exec --no-startup-id rofi -show window
 
-# shortcut applications
-bindsym Print                   exec --no-startup-id scrot
-bindsym $mod+Print              exec --no-startup-id scrot -s
-bindsym $mod+Shift+x            exec --no-startup-id i3lock-fancy -f Source-Sans-Pro
+# Screenshots
+bindsym Print                   exec --no-startup-id flameshot screen
+bindsym $mod+Print              exec --no-startup-id flameshot gui
+
+bindsym $mod+Shift+x            exec --no-startup-id dm-tool lock
 
 # notification
-# bindsym Ctrl+space              exec --no-startup-id dunstctl close
+bindsym Ctrl+space              exec --no-startup-id dunstctl close
 bindsym Ctrl+Shift+space        exec --no-startup-id dunstctl close-all
 bindsym Ctrl+grave              exec --no-startup-id dunstctl history-pop
 bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
@@ -67,9 +69,10 @@ exec_always --no-startup-id $workstyle
 exec --no-startup-id dbus-launch $notifier
 exec --no-startup-id i3-autolayout autolayout
 exec --no-startup-id dbus-launch nm-applet
-exec --no-startup-id wireplumber
+# exec --no-startup-id wireplumber
 exec --no-startup-id lxpolkit
 exec_always --no-startup-id feh --bg-scale --randomize --recurse ~/Pictures/backgrounds/*
+bindsym $mod+p exec --no-startup-id ~/.local/bin/keepmenu
 
 ## Volume control
 
