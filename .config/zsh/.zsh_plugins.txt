@@ -4,25 +4,21 @@ belak/zsh-utils path:utility
 
 foxleigh81/unwrap-zsh-plugin
 
-csurfer/tmuxrepl
-
 arzzen/calc.plugin.zsh
 Tarrasch/zsh-bd
 
 fdellwing/zsh-bat
-none9632/zsh-sudo/
 
 davidde/git
 laggardkernel/git-ignore
 
-mattmc3/zsh-xdg-basedir
 MichaelAquilina/zsh-history-filter
 
 ~/.fzf/bin/ kind:path
-~/.fzf/ path:shell
 redxtech/zsh-show-path
 rummik/zsh-tailf
-srijanshetty/zsh-suffix-alias
+# srijanshetty/zsh-suffix-alias
+wfxr/forgit
 
 le0me55i/zsh-systemd
 
@@ -36,9 +32,10 @@ Czocher/gpg-crypt
 # benjefferies/safe-kubectl
 
 mattmc3/zman
+chitoku-k/fzf-zsh-completions
 
-RobertAudi/tsm path:dist/bin/tsm kind:path
-RobertAudi/tsm path:dist/functions/_tsm kind:fpath
+RobertAudi/tsm
+RobertAudi/tsm
 
 Freed-Wu/zsh-command-not-found
 ael-code/zsh-colored-man-pages
@@ -46,22 +43,25 @@ ael-code/zsh-colored-man-pages
 amyreese/zsh-titles
 jeffreytse/zsh-vi-mode
 
-~/.config/zsh/zshrc.d/
+Bhupesh-V/ugit
 
-b0o/zfzf
-zsh-users/zsh-completions path:src kind:fpath
-ptavares/zsh-terraform
-MenkeTechnologies/zsh-cargo-completion
-eastokes/aws-plugin-zsh
+srijanshetty/zsh-pandoc-completion
+nix-community/nix-zsh-completions
+buzuloiu/zsh-github-folders
+zsh-users/zsh-completions
+zchee/zsh-completions
+z-shell/zsh-fancy-completions
+# ptavares/zsh-terraform
+# eastokes/aws-plugin-zsh
 wintermi/zsh-rust
+~/.config/zsh/zshrc.d/
 belak/zsh-utils path:completion
-MenkeTechnologies/zsh-cargo-completion path:src kind:fpath
+MenkeTechnologies/zsh-cargo-completion
 robin-mbg/switch-git
 kjhaber/tm.zsh
+~/.fzf/ path:shell
 
-zsh-users/zsh-autosuggestions
 3v1n0/zsh-bash-completions-fallback
+zsh-users/zsh-autosuggestions
 zdharma-continuum/fast-syntax-highlighting kind:defer
-# zsh-users/zsh-history-substring-search
-
 # vim: ft=zsh sw=2 ts=2 et

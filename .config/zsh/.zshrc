@@ -1,7 +1,7 @@
 if [[ ! -a "$ZDOTDIR/.antidote/antidote.zsh" ]]; then
   git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
 fi
-first, run this from an interactive zsh terminal session:
+# first, run this from an interactive zsh terminal session:
 
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 
@@ -66,8 +66,6 @@ eval "$(zoxide init zsh)"
 
 antidote load
 
-# vim: ft=zsh sw=2 ts=2 et
-
 function zvm_after_init() {
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
@@ -78,3 +76,5 @@ function zvm_after_init() {
   fi
 
 }
+
+# vim: ft=zsh sw=2 ts=2 et
