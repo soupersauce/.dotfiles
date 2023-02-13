@@ -76,5 +76,7 @@ function zvm_after_init() {
   fi
 
 }
+export TMUX_CONFIG=$HOME/.tmux.conf
+export CARGO_HOME=$HOME/.cargo
 
 # vim: ft=zsh sw=2 ts=2 et

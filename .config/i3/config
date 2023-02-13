@@ -4,7 +4,7 @@
 # font for window titles and bar
 include ./display
 
-set $notifier dunst -conf ~/.config/dunst/dunstrc.fresh
+set $notifier dunst -conf ~/.config/dunst/dunstrc
 
 # use win key= Mod4
 set $mod Mod4
