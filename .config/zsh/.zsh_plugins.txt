@@ -35,7 +35,8 @@ mattmc3/zman
 chitoku-k/fzf-zsh-completions
 
 RobertAudi/tsm
-RobertAudi/tsm
+
+romkatv/powerlevel10k
 
 Freed-Wu/zsh-command-not-found
 ael-code/zsh-colored-man-pages
