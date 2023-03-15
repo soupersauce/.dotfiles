@@ -30,8 +30,6 @@ set $mod Mod4
 
 include include/windowpicker
 
-exec_always --no-startup-id picom --experimental-backends
-
 # include $HOME/.config/i3/startup
 include $HOME/.config/wm/maps/core
 include $HOME/.config/wm/options/core
@@ -47,10 +45,10 @@ include $HOME/.config/wm/modes/resize
 # shortcut applications
 bindsym Print                   exec --no-startup-id scrot
 bindsym $mod+Print              exec --no-startup-id scrot -sf
-bindsym $mod+Shift+x            exec dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
+bindsym $mod+Shift+x            exec --no-startup-id dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
 
 # notification
-# bindsym Ctrl+space              exec --no-startup-id dunstctl close
+bindsym Ctrl+space              exec --no-startup-id dunstctl close
 bindsym Ctrl+Shift+space        exec --no-startup-id dunstctl close-all
 bindsym Ctrl+grave              exec --no-startup-id dunstctl history-pop
 bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
@@ -71,6 +69,7 @@ exec --no-startup-id dbus-launch $notifier
 exec --no-startup-id ~/.cargo/bin/i3-autolayout autolayout
 exec --no-startup-id dbus-launch nm-applet
 exec --no-startup-id dbus-launch remmina -i
+exec --no-startup-id dbus-launch blueman-applet
 
 bindsym XF86MonBrightnessDown exec brightnessctl set 3%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +3%
