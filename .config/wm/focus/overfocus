@@ -1,8 +1,8 @@
 # switching window with win+tab
 # bindsym $mod+Tab exec --no-startup-id rofi -show window
 
-bindsym Mod1+Tab exec --no-startup-id sway-overfocus group-rw group-dw
-bindsym Mod1+Shift+Tab exec --no-startup-id sway-overfocus group-lw group-uw
+bindsym $mod+Tab exec --no-startup-id sway-overfocus group-rw group-dw
+bindsym $mod+Shift+Tab exec --no-startup-id sway-overfocus group-lw group-uw
 
 # change focus
 bindsym $mod+$left  exec --no-startup-id sway-overfocus split-lt float-lt output-ls

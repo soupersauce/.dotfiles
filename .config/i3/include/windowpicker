@@ -1,2 +1,2 @@
-bindsym $mod+tab exec --no-startup-id ~/.config/i3/scripts/windopicker.sh
+bindsym Mod1+tab exec --no-startup-id ~/.config/i3/scripts/windopicker.sh
 # vim: ft=i3config
