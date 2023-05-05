@@ -1,11 +1,7 @@
 "call plug#begin()
 "Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install  }  }
 "Plug '~/.fzf'
-"Plug 'itchyny/lightline.vim'
-"Plug 'mcchrish/nnn.vim'
-"Plug 'rust-lang/rust.vim'
 "Plug 'jiangmiao/auto-pairs'
-"Plug 'rafi/awesome-vim-colorschemes'
 "Plug 'scrooloose/nerdtree'
 "Plug 'Xuyuanp/nerdtree-git-plugin'
 "Plug 'tpope/vim-unimpaired'
@@ -15,10 +11,8 @@
 "Plug 'tpope/vim-fugitive'
 "Plug 'tpope/vim-eunuch'
 "Plug 'tpope/vim-vinegar'
-"Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
 "Plug 'Yggdroot/indentline'
 "Plug 'psliwka/vim-smoothie'
-"Plug 'sqwishy/vim-sqf-syntax'
 "Plug 'godlygeek/tabular'
 "Plug 'whiteinge/diffconflicts'
 "call plug#end()
@@ -48,7 +42,7 @@ augroup END
 set cursorline
 
 " Show a line at column 80
-set colorcolumn=80
+""set colorcolumn=80
 " Always show tabline
 setglobal showtabline=2
 
@@ -113,7 +107,7 @@ set whichwrap=b,s,
 set nowrap
 
 " Set conceal level
-set conceallevel=99
+""set conceallevel=99
 
 "How many lines to keep visibly above or below the active line
 set scrolloff=6 " Vertical
@@ -137,9 +131,6 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Execute the current line of text as a shell command
-noremap      Q !!$SHELL<CR>
 
 " Use <C-L> to clear search highlighting as well as refresh the screen
 noremap      <silent><C-l> :let @/ = ""<CR>
