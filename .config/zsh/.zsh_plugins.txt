@@ -60,8 +60,7 @@ belak/zsh-utils path:completion
 MenkeTechnologies/zsh-cargo-completion
 robin-mbg/switch-git
 kjhaber/tm.zsh
-~/.fzf path:shell/completion.zsh
-~/.fzf path:shell/key-bindings.zsh
+~/.fzf path:shell
 
 3v1n0/zsh-bash-completions-fallback
 zsh-users/zsh-autosuggestions
