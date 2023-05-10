@@ -3,6 +3,7 @@
 
 # font for window titles and bar
 include ./display
+include ./autostart
 
 set $notifier dunst -conf ~/.config/dunst/dunstrc
 
@@ -74,10 +75,13 @@ exec --no-startup-id lxpolkit
 exec_always --no-startup-id feh --bg-scale --randomize --recurse ~/Pictures/backgrounds/*
 bindsym $mod+p exec --no-startup-id ~/.local/bin/keepmenu
 
+bindsym $mod+Home exec --no-startup-id caja
+
 ## Volume control
 
 include $HOME/.config/wm/maps/i3-volume
 include $HOME/.config/wm/maps/pavucontrol
+include $HOME/.config/i3/include/startup
 
 bindsym XF86MonBrightnessDown exec brightnessctl set 3%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +3%

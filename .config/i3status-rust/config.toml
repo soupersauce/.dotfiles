@@ -1,7 +1,7 @@
 [theme]
-name = "space-villain"
+theme = "space-villain"
 [icons]
-name = "material-nf"
+icons = "material-nf"
 
 [[block]]
 block = "focused_window"
@@ -10,63 +10,64 @@ block = "focused_window"
 block = "disk_space"
 path = "/"
 info_type = "used"
-format = "{icon}{percentage}×{total}({available}🗋)"
-alert_absolute = true
-unit = "GB"
-alert = 50
-warning = 40
+# format = "{icon}{percentage}×{total}({available}🗋)"
+# alert= true
+alert_unit = "GB"
 if_command = "[[ $(df -h  --output=avail / | tail -n1 | cut -dG -f1) -lt 100 ]]"
 
 [[block]]
 block = "memory"
-display_type = "memory"
-format_mem = "{mem_used}/{mem_total}({mem_used_percents})"
-format_swap = "{swap_used}/{swap_total}({swap_used_percents})"
+# format = "{mem_used}/{mem_total}({mem_used_percents})"
+# format_alt = "{swap_used}/{swap_total}({swap_used_percents})"
 
 [[block]]
 block = "cpu"
 interval = 1
-format = "{utilization}{frequency}"
+# format = "{utilization}{frequency}"
+
+# [[block]]
+# block = "net"
 
 [[block]]
 block = "net"
-format = "{speed_down;K*b}{speed_up;K*b}"
-
-[[block]]
-block = "networkmanager"
 # on_click = "foot -e nmtui"
-interface_name_exclude = ['br[0-9a-f]', 'docker\d+', 'virbr[0-9a-f]', 'ppp[0-9]']
-# interface_name_include = []
-ap_format = "{strength}{ssid^10}"
+# interface_name_exclude = 
+# interface_name_include = ['enp[0-9a-f]', 'wlp[0-9a-f]']
+# ap_format = "{strength}{ssid^10}"
 
 [[block]]
 block = "external_ip"
-format = "{country_flag} {region_code}"
+# format = "{country_flag} {region_code}"
 
 [[block]]
 block = "sound"
-format = "{output_description} {volume}"
-on_click = "~/bin/i3-scratchpad -d675x525 -atr -p-400,25 -wt -mt pavucontrol-qt"
+# format = "{output_description} {volume}"
+icons_format = "volume"
+[[block.click]]
+button = "left"
+action = "~/bin/i3-scratchpad -d675x525 -atr -p-400,25 -wt -mt pavucontrol-qt"
 
 [[block]]
 block = "time"
 interval = 5
-format = "%a%F %R"
-on_click = "~/bin/i3-scratchpad -d175x125 -atr -p-120,25 -wtu -mt cal"
+# format = "%a%F %R"
+[[block.click]]
+button = "left"
+action = "~/bin/i3-scratchpad -d175x125 -atr -p-120,25 -wtu -mt cal"
 
-[[block]]
-block = "custom"
-command = "~/.i3-volume/volume output \"%i %v\n\""
-on_click = "~/.i3-volume/volume mute"
-# scroll_up = "~/.i3-volume/volume up"
-# scroll_down = "~/.i3-volume/volume down"
-signal = 10
+# [[block]]
+# block = "custom"
+# command = "~/.i3-volume/volume output \"%i %v\n\""
+# on_click = "~/.i3-volume/volume mute"
+# # scroll_up = "~/.i3-volume/volume up"
+# # scroll_down = "~/.i3-volume/volume down"
+# signal = 10
 
 [[block]]
 block = "battery"
 if_command = "upower -e | grep 'battery_BAT[0-9]'"
 interval = 10
-format = "{percentage}{time}"
+# format = "{percentage}{time}"
 
 [[block]]
 block = "notify"
