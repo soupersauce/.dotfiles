@@ -46,6 +46,8 @@ jeffreytse/zsh-vi-mode
 
 Bhupesh-V/ugit
 
+nnao45/zsh-kubectl-completion
+
 srijanshetty/zsh-pandoc-completion
 nix-community/nix-zsh-completions
 buzuloiu/zsh-github-folders
