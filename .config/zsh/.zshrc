@@ -1,6 +1,4 @@
-if [[ ! -a "$ZDOTDIR/.antidote/antidote.zsh" ]]; then
-  git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
-fi
+eval "$(zoxide init zsh)"
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -8,6 +6,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+if [[ ! -a "$ZDOTDIR/.antidote/antidote.zsh" ]]; then
+  git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
+fi
 # first, run this from an interactive zsh terminal session:
 
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
@@ -52,9 +53,6 @@ fpath=(${ZDOTDIR}/completions(-/FN) $fpath)
 # Set the name of the static .zsh plugins file antidote will generate.
 zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins.zsh
 
-# Ensure you have a .zsh_plugins.txt file where you can add plugins.
-[[ -f ${zsh_plugins:r}.txt ]] || touch ${zsh_plugins:r}.txt
-
 # Lazy-load antidote.
 fpath+=(${ZDOTDIR:-~}/.antidote)
 autoload -Uz $fpath[-1]/antidote
@@ -68,7 +66,6 @@ fi
 source $zsh_plugins
 source $ZDOTDIR/functions.zsh
 
-eval "$(zoxide init zsh)"
 
 antidote load
 
@@ -85,7 +82,8 @@ function zvm_after_init() {
 export TMUX_CONFIG=$HOME/.tmux.conf
 export CARGO_HOME=$HOME/.cargo
 
-# vim: ft=zsh sw=2 ts=2 et
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+# vim: ft=zsh sw=2 ts=2 et
