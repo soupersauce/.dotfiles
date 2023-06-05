@@ -1,5 +1,6 @@
 # >>> Window rules <<<
 for_window [class="firefox"]                              layout tabbed
+for_window [class="evolution"]                              layout tabbed
 
 # Don’t spawn an empty window for the Plasma Desktop
 for_window [title="Desktop — Plasma"]                         kill, floating enable, border none
@@ -35,7 +36,7 @@ for_window [window_role="app"]                                floating enable
 for_window [window_role="pop-up"]                             floating enable
 for_window [window_role="task_dialog"]                        floating enable
 for_window [title="Preferences$"]                             floating enable
-for_window [title="(?i)settings"]                             floating enable
+for_window [title="(?i)settings$"]                             floating enable
 
 for_window [class="(?i)nwg-bar"]                              floating enable; border none
 for_window [class="Dunst" window_type="notification"]     floating enable, border none, move position top left
