@@ -23,7 +23,7 @@ wfxr/forgit
 le0me55i/zsh-systemd
 
 # MohamedElashri/fd-zsh
-TwoPizza9621536/zsh-exa
+TwoPizza9621536/zsh-eza
 reegnz/jq-zsh-plugin
 Czocher/gpg-crypt
 
