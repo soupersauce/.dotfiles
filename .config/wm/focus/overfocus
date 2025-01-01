@@ -1,19 +1,20 @@
 # switching window with win+tab
 # bindsym $mod+Tab exec --no-startup-id rofi -show window
+set $overfocus ~/.local/bin/sway-overfocus
 
-bindsym $mod+Tab exec --no-startup-id sway-overfocus group-rw group-dw
-bindsym $mod+Shift+Tab exec --no-startup-id sway-overfocus group-lw group-uw
+bindsym $mod+Tab exec --no-startup-id $overfocus group-rw group-dw
+bindsym $mod+Shift+Tab exec --no-startup-id $overfocus group-lw group-uw
 
 # change focus
-bindsym $mod+$left  exec --no-startup-id sway-overfocus split-lt float-lt output-ls
-bindsym $mod+$down  exec --no-startup-id sway-overfocus split-dt float-dt output-ds
-bindsym $mod+$up    exec --no-startup-id sway-overfocus split-ut float-ut output-us
-bindsym $mod+$right exec --no-startup-id sway-overfocus split-rt float-rt output-rs
+bindsym $mod+$left  exec --no-startup-id $overfocus split-lt float-lt output-ls
+bindsym $mod+$down  exec --no-startup-id $overfocus split-dt float-dt output-ds
+bindsym $mod+$up    exec --no-startup-id $overfocus split-ut float-ut output-us
+bindsym $mod+$right exec --no-startup-id $overfocus split-rt float-rt output-rs
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left   exec --no-startup-id sway-overfocus split-lt float-lt output-ls
-bindsym $mod+Down   exec --no-startup-id sway-overfocus split-dt float-dt output-ds
-bindsym $mod+Up     exec --no-startup-id sway-overfocus split-ut float-ut output-us
-bindsym $mod+Right  exec --no-startup-id sway-overfocus split-rt float-rt output-rs
+bindsym $mod+Left   exec --no-startup-id $overfocus split-lt float-lt output-ls
+bindsym $mod+Down   exec --no-startup-id $overfocus split-dt float-dt output-ds
+bindsym $mod+Up     exec --no-startup-id $overfocus split-ut float-ut output-us
+bindsym $mod+Right  exec --no-startup-id $overfocus split-rt float-rt output-rs
 
 # vim: ft=i3config
