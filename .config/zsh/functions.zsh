@@ -41,4 +41,7 @@ function runscheme () {
     scheme --quiet < "$1"
 }
 
+function .. () {
+  cd ..
+}
 # vim: ft=zsh sw=2 ts=2 et
